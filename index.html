@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDL Radar · 会议/期刊截稿日追踪</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand">
+    <h1>📡 DDL Radar</h1>
+    <p>学术会议 / 期刊截稿日追踪 — 倒计时 · 收藏 · 日历订阅</p>
+  </div>
+  <div class="header-actions">
+    <button id="themeBtn" class="theme-btn" title="切换 暗色 / 亮色 / 跟随系统"></button>
+    <button id="exportIcs" title="把收藏的会议 DDL 导出为 .ics 日历文件">📅 导出收藏到日历</button>
+  </div>
+</header>
+
+<main>
+  <section class="filters">
+    <input id="search" type="text" placeholder="🔍 搜索会议名称（如 NeurIPS / CVPR…）">
+    <select id="areaFilter">
+      <option value="">全部领域</option>
+    </select>
+    <select id="rankFilter">
+      <option value="">全部等级</option>
+      <option value="CCF-A">CCF-A</option>
+      <option value="CCF-B">CCF-B</option>
+      <option value="CCF-C">CCF-C</option>
+      <option value="Non-CCF">非 CCF</option>
+    </select>
+    <label class="chk"><input type="checkbox" id="starredOnly"> 只看收藏 ⭐</label>
+    <label class="chk"><input type="checkbox" id="hidePast" checked> 隐藏已截止</label>
+  </section>
+
+  <section id="cards" class="cards"></section>
+
+  <footer>
+    <p>⚠️ 截稿日期为示例/往年推算数据，投稿前请务必核对会议官网。数据维护在
+      <code>data.js</code>，欢迎修改补充（未来可改为 YAML + PR 众包模式）。</p>
+    <p>倒计时按会议官方时区计算（多数为 AoE = UTC-12）。收藏保存在浏览器本地。</p>
+  </footer>
+</main>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
