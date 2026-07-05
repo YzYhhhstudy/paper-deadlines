@@ -462,6 +462,16 @@ const CONFERENCES = [
     ]
   },
   {
+    "name": "IJCV",
+    "type": "journal",
+    "rolling": true,
+    "fullName": "International Journal of Computer Vision",
+    "area": "CV",
+    "rank": "CCF-A",
+    "core": "Unranked",
+    "link": "https://link.springer.com/journal/11263"
+  },
+  {
     "name": "IMC 2027",
     "fullName": "ACM Internet Measurement Conference",
     "area": "Networking",
@@ -542,6 +552,16 @@ const CONFERENCES = [
     "confDate": "2027-07",
     "place": "TBD",
     "link": "https://conf.researchr.org/series/issta"
+  },
+  {
+    "name": "JMLR",
+    "type": "journal",
+    "rolling": true,
+    "fullName": "Journal of Machine Learning Research",
+    "area": "AI/ML",
+    "rank": "CCF-A",
+    "core": "Unranked",
+    "link": "https://jmlr.org"
   },
   {
     "name": "KDD 2027 (Cycle 1)",
@@ -805,6 +825,26 @@ const CONFERENCES = [
     "confDate": "2027-06",
     "place": "TBD",
     "link": "https://acm-stoc.org"
+  },
+  {
+    "name": "TACL",
+    "type": "journal",
+    "rolling": true,
+    "fullName": "Transactions of the Association for Computational Linguistics",
+    "area": "NLP",
+    "rank": "CCF-B",
+    "core": "Unranked",
+    "link": "https://transacl.org"
+  },
+  {
+    "name": "TPAMI",
+    "type": "journal",
+    "rolling": true,
+    "fullName": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+    "area": "CV",
+    "rank": "CCF-A",
+    "core": "Unranked",
+    "link": "https://www.computer.org/csdl/journal/tp"
   },
   {
     "name": "UAI 2027",

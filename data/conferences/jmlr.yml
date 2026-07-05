@@ -1,0 +1,9 @@
+# JMLR — 期刊（滚动投稿）
+name: "JMLR"
+type: journal
+rolling: true
+fullName: "Journal of Machine Learning Research"
+area: "AI/ML"
+ccf: "CCF-A"
+core: "Unranked"
+link: "https://jmlr.org"

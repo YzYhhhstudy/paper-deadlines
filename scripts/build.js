@@ -46,6 +46,28 @@ for (const f of files) {
   if (doc.ccf && !CCF_RANKS.includes(doc.ccf)) err(f, `ccf 必须是 ${CCF_RANKS.join(" / ")}，收到 "${doc.ccf}"`);
   if (doc.core && !CORE_RANKS.includes(doc.core)) err(f, `core 必须是 ${CORE_RANKS.join(" / ")}，收到 "${doc.core}"`);
   if (doc.link && !/^https?:\/\//.test(doc.link)) err(f, `link 必须是 http(s) URL`);
+
+  const type = doc.type || "conference";
+  if (!["conference", "journal"].includes(type)) { err(f, `type 必须是 conference / journal，收到 "${doc.type}"`); continue; }
+
+  // 期刊：滚动投稿，无固定截稿日
+  if (type === "journal") {
+    if (doc.rolling !== true) { err(f, "期刊暂只支持滚动投稿，请设置 rolling: true"); continue; }
+    if (errors.some((e) => e.startsWith(f + ":"))) continue;
+    conferences.push({
+      name: doc.name,
+      type: "journal",
+      rolling: true,
+      fullName: doc.fullName,
+      area: doc.area,
+      rank: doc.ccf,
+      core: doc.core,
+      link: doc.link,
+      ...(doc.aliases ? { aliases: doc.aliases } : {}),
+    });
+    continue;
+  }
+
   if (!Array.isArray(doc.editions) || !doc.editions.length) { err(f, "editions 至少要有一届"); continue; }
 
   doc.editions.forEach((ed, i) => {
@@ -163,6 +185,7 @@ function writeFeed(fileBase, calName, confs) {
     "REFRESH-INTERVAL;VALUE=DURATION:P1D",
   ];
   for (const c of confs) {
+    if (c.rolling) continue; // 滚动投稿的期刊没有固定日期
     if (c.abstractDeadline) lines.push(...icsEvent(c, "abstract deadline", c.abstractDeadline));
     lines.push(...icsEvent(c, "full paper deadline", c.deadline));
   }

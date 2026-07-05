@@ -1,0 +1,9 @@
+# TACL — 期刊（滚动投稿）
+name: "TACL"
+type: journal
+rolling: true
+fullName: "Transactions of the Association for Computational Linguistics"
+area: "NLP"
+ccf: "CCF-B"
+core: "Unranked"
+link: "https://transacl.org"

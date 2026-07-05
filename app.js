@@ -39,6 +39,10 @@ const I18N = {
     subBtn: "📡 订阅日历",
     subTitle: "在 Google/Apple 日历中订阅 DDL，数据更新自动同步",
     subAll: "📅 全部会议",
+    rolling: "🔄 随时可投",
+    rollingLabel: "滚动审稿",
+    rollingMeta: "期刊滚动收稿，无固定截止日期",
+    journalTag: "期刊",
     contribLead: "发现 DDL 过期或缺了你关注的会议？",
     contribAdd: "➕ 添加新会议",
     contribFix: "✏️ 修正现有数据",
@@ -87,6 +91,10 @@ const I18N = {
     subBtn: "📡 Subscribe",
     subTitle: "Subscribe to DDLs in Google/Apple Calendar — updates sync automatically",
     subAll: "📅 All conferences",
+    rolling: "🔄 Open for submission",
+    rollingLabel: "Rolling review",
+    rollingMeta: "Journal with rolling submissions — no fixed deadline",
+    journalTag: "Journal",
     contribLead: "Spotted an outdated DDL, or missing your venue?",
     contribAdd: "➕ Add a conference",
     contribFix: "✏️ Fix existing data",
@@ -264,17 +272,20 @@ function nextDeadline(conf) {
   return { iso: conf.deadline, type: "full" };
 }
 
-// 距下一个截点（排序、倒计时用）
+// 距下一个截点（排序、倒计时用）；滚动投稿视为无限远
 function msLeft(conf) {
+  if (conf.rolling) return Infinity;
   return new Date(nextDeadline(conf).iso).getTime() - Date.now();
 }
 
-// 距全文截止（判断"已截止"用）
+// 距全文截止（判断"已截止"用）；滚动投稿永不截止
 function fullMsLeft(conf) {
+  if (conf.rolling) return Infinity;
   return new Date(conf.deadline).getTime() - Date.now();
 }
 
 function countdownHtml(conf) {
+  if (conf.rolling) return `<div class="cd-label">${t("rollingLabel")}</div><div class="countdown rolling">${t("rolling")}</div>`;
   if (fullMsLeft(conf) <= 0) return `<div class="countdown done">${t("done")}</div>`;
   const nd = nextDeadline(conf);
   const ms = new Date(nd.iso).getTime() - Date.now();
@@ -316,8 +327,11 @@ function visibleConfs() {
     .filter((c) => !state.hidePast || fullMsLeft(c) > 0)
     .sort((a, b) => {
       const aAlive = fullMsLeft(a) > 0, bAlive = fullMsLeft(b) > 0;
-      // 未截止的按「下一个截点」（摘要或全文）升序，已截止的排最后
-      if (aAlive && bAlive) return msLeft(a) - msLeft(b);
+      // 未截止的按「下一个截点」（摘要或全文）升序，滚动期刊排其后，已截止的排最后
+      if (aAlive && bAlive) {
+        const d = msLeft(a) - msLeft(b);
+        return isNaN(d) ? 0 : d; // 两个 Infinity 相减为 NaN（都是滚动期刊）
+      }
       if (aAlive) return -1;
       if (bAlive) return 1;
       return fullMsLeft(b) - fullMsLeft(a);
@@ -345,14 +359,15 @@ function render() {
       <div class="full-name">${c.fullName}</div>
       <div class="tags">
         <span class="tag rank-${rankSlug(rank)}">${t("rankTag")(rank)}</span>
+        ${c.type === "journal" ? `<span class="tag type-journal">📖 ${t("journalTag")}</span>` : ""}
         <span class="tag">${c.area}</span>
-        <span class="tag">📍 ${c.place}</span>
-        <span class="tag">🗓 ${c.confDate}</span>
+        ${c.place ? `<span class="tag">📍 ${c.place}</span>` : ""}
+        ${c.confDate ? `<span class="tag">🗓 ${c.confDate}</span>` : ""}
       </div>
       ${countdownHtml(c)}
       <div class="meta">
         ${c.abstractDeadline ? `<span class="${absUpcoming ? "abs-hot" : ""}">${absUpcoming ? "⚠️ " : ""}${t("absLabel")}<b>${fmtLocal(c.abstractDeadline)}</b>${t("localTime")}${absUpcoming ? t("absNote") : ""}</span><br>` : ""}
-        ${t("fullLabel")}<b>${fmtLocal(c.deadline)}</b>${t("localTime")}
+        ${c.rolling ? t("rollingMeta") : `${t("fullLabel")}<b>${fmtLocal(c.deadline)}</b>${t("localTime")}`}
         ${c.history ? `<br><span class="hist" title="${t("histTitle")}">${t("hist")}${c.history.map(fmtHist).join(" · ")}</span>` : ""}
       </div>
     </div>`;
@@ -432,7 +447,7 @@ function icsDate(iso) {
 }
 
 function exportIcs() {
-  const chosen = CONFERENCES.filter((c) => state.starred.has(c.name));
+  const chosen = CONFERENCES.filter((c) => state.starred.has(c.name) && !c.rolling);
   if (!chosen.length) {
     alert(t("alertStar"));
     return;

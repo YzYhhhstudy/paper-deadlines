@@ -209,6 +209,8 @@ main { max-width: 1100px; margin: 0 auto; padding: 20px 24px 40px; }
 .countdown.soon { color: var(--soon); }
 .countdown.safe { color: var(--safe); }
 .countdown.done { color: var(--past); font-size: 18px; }
+.countdown.rolling { color: var(--safe); font-size: 20px; }
+.tag.type-journal { background: #1f333d; color: #7fc8e0; border-color: #2f4f5a; }
 .countdown small { font-size: 13px; font-weight: 400; color: var(--muted); margin-left: 6px; }
 
 .meta { font-size: 12px; color: var(--muted); line-height: 1.7; }

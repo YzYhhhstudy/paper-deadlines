@@ -1,0 +1,9 @@
+# IJCV — 期刊（滚动投稿）
+name: "IJCV"
+type: journal
+rolling: true
+fullName: "International Journal of Computer Vision"
+area: "CV"
+ccf: "CCF-A"
+core: "Unranked"
+link: "https://link.springer.com/journal/11263"

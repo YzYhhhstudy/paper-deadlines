@@ -1,0 +1,9 @@
+# TPAMI — 期刊（滚动投稿）
+name: "TPAMI"
+type: journal
+rolling: true
+fullName: "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+area: "CV"
+ccf: "CCF-A"
+core: "Unranked"
+link: "https://www.computer.org/csdl/journal/tp"
