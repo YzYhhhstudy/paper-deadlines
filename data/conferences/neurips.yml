@@ -12,6 +12,7 @@ editions:
     verified: true   # 带时区偏移，AoE 写 -12:00
     confDate: "2026-12"
     place: "TBD"
+    submitLink: "https://openreview.net/group?id=NeurIPS.cc/2026/Conference"
     rebuttal: "2026-08-04"   # rebuttal 开始（约数）
     notification: "2026-09-24"   # 结果通知（约数）
 history:   # 往年全文截稿日（大致日期）

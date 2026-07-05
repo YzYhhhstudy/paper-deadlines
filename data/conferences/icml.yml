@@ -10,6 +10,7 @@ editions:
     deadline: "2027-01-28T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-07"
     place: "TBD"
+    submitLink: "https://openreview.net/group?id=ICML.cc/2027/Conference"
     rebuttal: "2027-04-01"   # rebuttal 开始（约数）
     notification: "2027-05-01"   # 结果通知（约数）
 history:   # 往年全文截稿日（大致日期）

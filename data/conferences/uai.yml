@@ -10,3 +10,4 @@ editions:
     deadline: "2027-02-20T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-07"
     place: "TBD"
+    submitLink: "https://openreview.net/group?id=auai.org/UAI/2027/Conference"

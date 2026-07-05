@@ -88,6 +88,7 @@ for (const f of files) {
     for (const key of ["notification", "rebuttal"]) {
       if (ed[key] != null && !DATE_RE.test(String(ed[key]))) err(f, `${where}.${key} 需为 YYYY-MM-DD，收到 "${ed[key]}"`);
     }
+    if (ed.submitLink != null && !/^https?:\/\//.test(ed.submitLink)) err(f, `${where}.submitLink 必须是 http(s) URL`);
   });
 
   if (doc.history != null) {
@@ -127,6 +128,7 @@ for (const f of files) {
       ...(ed.verified ? { verified: true } : {}), // 官网核实过：对账机器人不自动改写
       ...(ed.rebuttal ? { rebuttal: String(ed.rebuttal) } : {}),
       ...(ed.notification ? { notification: String(ed.notification) } : {}),
+      ...(ed.submitLink ? { submitLink: ed.submitLink } : {}),
       confDate: ed.confDate,
       place: ed.place,
       link: doc.link,

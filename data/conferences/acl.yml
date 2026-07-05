@@ -10,6 +10,7 @@ editions:
     deadline: "2027-02-15T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-07"
     place: "TBD"
+    submitLink: "https://openreview.net/group?id=aclweb.org/ACL/ARR"
     notification: "2027-05-15"   # 结果通知（约数）
 history:   # 往年全文截稿日（大致日期）
   - "2024-02-15"

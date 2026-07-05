@@ -133,6 +133,8 @@ main { max-width: min(1680px, 94vw); margin: 0 auto; padding: 20px 24px 40px; }
   width: 128px; /* 固定宽度，切换语言时不跳动 */
 }
 .tag.tag-metric { background: #33261f; color: #e0a97f; border-color: #5a3f2f; }
+.tag.tag-submit { background: var(--accent); color: #fff; border-color: var(--accent); text-decoration: none; font-weight: 600; }
+.tag.tag-submit:hover { filter: brightness(1.12); }
 .chk { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); cursor: pointer; }
 .chk .bi-wrap { justify-items: start; }
 

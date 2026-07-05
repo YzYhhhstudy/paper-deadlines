@@ -11,3 +11,4 @@ editions:
     deadline: "2026-10-08T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-04"
     place: "TBD"
+    submitLink: "https://openreview.net/group?id=aistats.org/AISTATS/2027/Conference"

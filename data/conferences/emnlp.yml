@@ -10,6 +10,7 @@ editions:
     deadline: "2026-05-25T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2026-11"
     place: "TBD"
+    submitLink: "https://openreview.net/group?id=aclweb.org/ACL/ARR"
 history:   # 往年全文截稿日（大致日期）
   - "2022-06-24"
   - "2023-06-23"

@@ -752,6 +752,7 @@ function openDetail(c) {
     ${dateRow(t("rebuttalLabel"), c.rebuttal)}
     ${dateRow(t("notifLabel"), c.notification)}
     ${c.history ? `<div class="dt-row hist"><span>${t("hist")}</span><b>${c.history.map(fmtHist).join(" · ")}</b></div>` : ""}
+    ${c.submitLink ? `<div class="dt-row"><span></span><a class="tag tag-submit" href="${c.submitLink}" target="_blank" rel="noopener">${t("submitBtn")}</a></div>` : ""}
     ${c.acceptHistory ? `<h4>${t("acceptTrend")}</h4>${acceptChartSvg(c.acceptHistory)}` : ""}
   `;
   $("#detailOverlay").hidden = false;
@@ -987,6 +988,7 @@ function render() {
         ${c.confDate ? `<span class="tag">🗓 ${c.confDate}</span>` : ""}
         ${c.h5 ? `<span class="tag tag-metric">${t("h5Tag")(c.h5)}</span>` : ""}
         ${c.acceptRate ? `<span class="tag tag-metric">${t("acceptTag")(c.acceptRate)}</span>` : ""}
+        ${c.submitLink ? `<a class="tag tag-submit" href="${c.submitLink}" target="_blank" rel="noopener">${t("submitBtn")}</a>` : ""}
       </div>
       ${countdownHtml(c)}
       <div class="meta">
