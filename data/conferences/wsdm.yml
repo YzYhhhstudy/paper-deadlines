@@ -1,0 +1,12 @@
+# WSDM — 修改后请提 PR，CI 会自动校验格式并重建站点
+name: "WSDM"
+fullName: "ACM International Conference on Web Search and Data Mining"
+area: "Data Mining"
+ccf: "CCF-B"   # CCF-A / CCF-B / CCF-C / Non-CCF
+core: "A*"   # CORE: A* / A / B / C / Unranked
+link: "https://wsdm-conference.org"
+editions:
+  - id: "WSDM 2027"
+    deadline: "2026-08-08T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    confDate: "2027-02"
+    place: "TBD"

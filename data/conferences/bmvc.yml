@@ -1,0 +1,12 @@
+# BMVC — 修改后请提 PR，CI 会自动校验格式并重建站点
+name: "BMVC"
+fullName: "British Machine Vision Conference"
+area: "CV"
+ccf: "CCF-C"   # CCF-A / CCF-B / CCF-C / Non-CCF
+core: "A"   # CORE: A* / A / B / C / Unranked
+link: "https://bmvc2027.org"
+editions:
+  - id: "BMVC 2027"
+    deadline: "2027-05-20T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    confDate: "2027-11"
+    place: "TBD (UK)"

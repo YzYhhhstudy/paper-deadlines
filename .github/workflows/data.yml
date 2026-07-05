@@ -1,0 +1,45 @@
+name: Data validate & build
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - name: Validate data & rebuild generated files
+        run: npm run build
+
+      # PR：生成物（data.js / feeds）必须和 YAML 同步，否则提示贡献者运行 npm run build
+      - name: Check generated files are in sync (PR)
+        if: github.event_name == 'pull_request'
+        run: |
+          git diff --exit-code data.js feeds || {
+            echo "::error::data.js / feeds 与 YAML 不同步，请在本地运行 npm run build 后一并提交"
+            exit 1
+          }
+
+      # master：数据变更后自动提交重建的生成物（贡献者只需要改 YAML）
+      - name: Auto-commit generated files (master)
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data.js feeds
+          git diff --cached --quiet || {
+            git commit -m "chore: rebuild data.js and feeds from YAML [skip ci]"
+            git push
+          }

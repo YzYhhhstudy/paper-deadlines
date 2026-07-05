@@ -1,0 +1,12 @@
+# ICSE — 修改后请提 PR，CI 会自动校验格式并重建站点
+name: "ICSE"
+fullName: "International Conference on Software Engineering"
+area: "SE"
+ccf: "CCF-A"   # CCF-A / CCF-B / CCF-C / Non-CCF
+core: "A*"   # CORE: A* / A / B / C / Unranked
+link: "https://conf.researchr.org/series/icse"
+editions:
+  - id: "ICSE 2028"
+    deadline: "2027-03-15T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    confDate: "2028-05"
+    place: "TBD"

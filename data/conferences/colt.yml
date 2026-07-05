@@ -1,0 +1,12 @@
+# COLT — 修改后请提 PR，CI 会自动校验格式并重建站点
+name: "COLT"
+fullName: "Conference on Learning Theory"
+area: "AI/ML"
+ccf: "CCF-B"   # CCF-A / CCF-B / CCF-C / Non-CCF
+core: "A*"   # CORE: A* / A / B / C / Unranked
+link: "https://learningtheory.org"
+editions:
+  - id: "COLT 2027"
+    deadline: "2027-02-10T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    confDate: "2027-06"
+    place: "TBD"

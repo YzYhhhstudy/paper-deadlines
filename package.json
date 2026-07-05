@@ -1,0 +1,13 @@
+{
+  "name": "paper-deadlines",
+  "version": "1.0.0",
+  "description": "DDL Radar - CS conference deadline tracker",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.js",
+    "validate": "node scripts/build.js --validate"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

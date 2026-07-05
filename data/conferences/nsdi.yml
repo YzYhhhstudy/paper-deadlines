@@ -1,0 +1,12 @@
+# NSDI — 修改后请提 PR，CI 会自动校验格式并重建站点
+name: "NSDI"
+fullName: "USENIX Symposium on Networked Systems Design and Implementation"
+area: "Systems"
+ccf: "CCF-A"   # CCF-A / CCF-B / CCF-C / Non-CCF
+core: "A*"   # CORE: A* / A / B / C / Unranked
+link: "https://usenix.org/conference/nsdi27"
+editions:
+  - id: "NSDI 2027 (Fall)"
+    deadline: "2026-09-10T23:59:59-08:00"   # 带时区偏移，AoE 写 -12:00
+    confDate: "2027-04"
+    place: "TBD"

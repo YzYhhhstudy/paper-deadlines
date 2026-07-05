@@ -1,0 +1,17 @@
+# ICRA — 修改后请提 PR，CI 会自动校验格式并重建站点
+name: "ICRA"
+fullName: "IEEE International Conference on Robotics and Automation"
+area: "Robotics"
+ccf: "CCF-B"   # CCF-A / CCF-B / CCF-C / Non-CCF
+core: "A*"   # CORE: A* / A / B / C / Unranked
+link: "https://www.icra2027.org"
+editions:
+  - id: "ICRA 2027"
+    deadline: "2026-09-15T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    confDate: "2027-06"
+    place: "TBD"
+history:   # 往年全文截稿日（大致日期）
+  - "2022-09-15"
+  - "2023-09-15"
+  - "2024-09-15"
+  - "2025-09-15"

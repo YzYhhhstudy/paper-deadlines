@@ -1,0 +1,17 @@
+# ICASSP — 修改后请提 PR，CI 会自动校验格式并重建站点
+name: "ICASSP"
+fullName: "IEEE International Conference on Acoustics, Speech and Signal Processing"
+area: "Speech"
+ccf: "CCF-B"   # CCF-A / CCF-B / CCF-C / Non-CCF
+core: "B"   # CORE: A* / A / B / C / Unranked
+link: "https://2027.ieeeicassp.org"
+editions:
+  - id: "ICASSP 2027"
+    deadline: "2026-09-17T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    confDate: "2027-04"
+    place: "TBD"
+history:   # 往年全文截稿日（大致日期）
+  - "2022-10-26"
+  - "2023-09-06"
+  - "2024-09-10"
+  - "2025-09-17"

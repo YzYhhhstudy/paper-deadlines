@@ -1,0 +1,12 @@
+# EuroSys — 修改后请提 PR，CI 会自动校验格式并重建站点
+name: "EuroSys"
+fullName: "European Conference on Computer Systems"
+area: "Systems"
+ccf: "CCF-A"   # CCF-A / CCF-B / CCF-C / Non-CCF
+core: "A"   # CORE: A* / A / B / C / Unranked
+link: "https://eurosys.org"
+editions:
+  - id: "EuroSys 2027 (Fall)"
+    deadline: "2026-09-24T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    confDate: "2027-04"
+    place: "TBD (Europe)"

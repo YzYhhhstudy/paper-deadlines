@@ -1,0 +1,12 @@
+# ASPLOS — 修改后请提 PR，CI 会自动校验格式并重建站点
+name: "ASPLOS"
+fullName: "ACM International Conference on Architectural Support for Programming Languages and Operating Systems"
+area: "Systems"
+ccf: "CCF-A"   # CCF-A / CCF-B / CCF-C / Non-CCF
+core: "A*"   # CORE: A* / A / B / C / Unranked
+link: "https://asplos-conference.org"
+editions:
+  - id: "ASPLOS 2027"
+    deadline: "2026-10-15T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    confDate: "2027-03"
+    place: "TBD"

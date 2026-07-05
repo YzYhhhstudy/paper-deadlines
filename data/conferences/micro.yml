@@ -1,0 +1,12 @@
+# MICRO — 修改后请提 PR，CI 会自动校验格式并重建站点
+name: "MICRO"
+fullName: "IEEE/ACM International Symposium on Microarchitecture"
+area: "Arch/HPC"
+ccf: "CCF-A"   # CCF-A / CCF-B / CCF-C / Non-CCF
+core: "A*"   # CORE: A* / A / B / C / Unranked
+link: "https://microarch.org"
+editions:
+  - id: "MICRO 2027"
+    deadline: "2027-04-15T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    confDate: "2027-10"
+    place: "TBD"
