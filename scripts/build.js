@@ -68,6 +68,12 @@ for (const f of files) {
     else doc.history.forEach((h, i) => { if (!DATE_RE.test(String(h))) err(f, `history[${i}] 需为 YYYY-MM-DD，收到 "${h}"`); });
   }
 
+  if (doc.aliases != null) {
+    if (!Array.isArray(doc.aliases) || doc.aliases.some((a) => typeof a !== "string" || !a.trim())) {
+      err(f, "aliases 需为非空字符串数组");
+    }
+  }
+
   if (errors.some((e) => e.startsWith(f + ":"))) continue;
 
   for (const ed of doc.editions) {
@@ -83,6 +89,7 @@ for (const f of files) {
       place: ed.place,
       link: doc.link,
       ...(doc.history ? { history: doc.history.map(String) } : {}),
+      ...(doc.aliases ? { aliases: doc.aliases } : {}),
     });
   }
 }

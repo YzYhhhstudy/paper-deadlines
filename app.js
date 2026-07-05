@@ -308,7 +308,8 @@ function fmtHist(d) {
 function visibleConfs() {
   const q = state.search.toLowerCase();
   return CONFERENCES
-    .filter((c) => !q || c.name.toLowerCase().includes(q) || c.fullName.toLowerCase().includes(q))
+    .filter((c) => !q || c.name.toLowerCase().includes(q) || c.fullName.toLowerCase().includes(q)
+      || (c.aliases || []).some((a) => a.toLowerCase().includes(q)))
     .filter((c) => !state.areas.size || state.areas.has(c.area))
     .filter((c) => !state.ranks.size || state.ranks.has(rankOf(c)))
     .filter((c) => !state.starredOnly || state.starred.has(c.name))

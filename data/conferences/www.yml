@@ -17,3 +17,6 @@ history:   # 往年全文截稿日（大致日期）
   - "2023-10-13"
   - "2024-10-14"
   - "2025-10-15"
+aliases:   # 搜索别名
+  - "TheWebConf"
+  - "The Web Conference"

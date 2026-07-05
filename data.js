@@ -56,7 +56,10 @@ const CONFERENCES = [
     "deadline": "2027-01-14T23:59:59-12:00",
     "confDate": "2027-11",
     "place": "TBD",
-    "link": "https://sigsac.org/ccs.html"
+    "link": "https://sigsac.org/ccs.html",
+    "aliases": [
+      "CCS"
+    ]
   },
   {
     "name": "ACM MM 2027",
@@ -67,7 +70,11 @@ const CONFERENCES = [
     "deadline": "2027-04-10T23:59:59-12:00",
     "confDate": "2027-10",
     "place": "TBD",
-    "link": "https://acmmm.org"
+    "link": "https://acmmm.org",
+    "aliases": [
+      "MM",
+      "MultiMedia"
+    ]
   },
   {
     "name": "AISTATS 2027",
@@ -286,7 +293,10 @@ const CONFERENCES = [
     "deadline": "2026-09-10T23:59:59-12:00",
     "confDate": "2027-06",
     "place": "TBD",
-    "link": "https://conf.researchr.org/series/fse"
+    "link": "https://conf.researchr.org/series/fse",
+    "aliases": [
+      "ESEC/FSE"
+    ]
   },
   {
     "name": "HPCA 2027",
@@ -427,7 +437,12 @@ const CONFERENCES = [
     "deadline": "2026-11-14T23:59:59-12:00",
     "confDate": "2027-05",
     "place": "San Francisco",
-    "link": "https://sp2027.ieee-security.org"
+    "link": "https://sp2027.ieee-security.org",
+    "aliases": [
+      "Oakland",
+      "S&P",
+      "SP"
+    ]
   },
   {
     "name": "IJCAI 2027",
@@ -483,6 +498,9 @@ const CONFERENCES = [
       "2023-03-01",
       "2024-03-02",
       "2025-03-03"
+    ],
+    "aliases": [
+      "IS"
     ]
   },
   {
@@ -603,6 +621,9 @@ const CONFERENCES = [
       "2024-05-22",
       "2025-05-15",
       "2026-05-15"
+    ],
+    "aliases": [
+      "NIPS"
     ]
   },
   {
@@ -703,6 +724,9 @@ const CONFERENCES = [
       "2023-01-24",
       "2024-01-24",
       "2025-01-23"
+    ],
+    "aliases": [
+      "SG"
     ]
   },
   {
@@ -802,7 +826,11 @@ const CONFERENCES = [
     "deadline": "2026-08-01T23:59:59-12:00",
     "confDate": "2027-10",
     "place": "TBD",
-    "link": "https://ubicomp.org"
+    "link": "https://ubicomp.org",
+    "aliases": [
+      "IMWUT",
+      "UbiComp"
+    ]
   },
   {
     "name": "UIST 2027",
@@ -835,7 +863,11 @@ const CONFERENCES = [
     "deadline": "2027-02-05T23:59:59-12:00",
     "confDate": "2027-08",
     "place": "TBD",
-    "link": "https://usenix.org/conference/usenixsecurity27"
+    "link": "https://usenix.org/conference/usenixsecurity27",
+    "aliases": [
+      "USENIX Sec",
+      "Security Symposium"
+    ]
   },
   {
     "name": "VLDB 2027",
@@ -887,6 +919,10 @@ const CONFERENCES = [
       "2023-10-13",
       "2024-10-14",
       "2025-10-15"
+    ],
+    "aliases": [
+      "TheWebConf",
+      "The Web Conference"
     ]
   }
 ];

@@ -10,3 +10,6 @@ editions:
     deadline: "2027-02-05T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-08"
     place: "TBD"
+aliases:   # 搜索别名
+  - "USENIX Sec"
+  - "Security Symposium"
