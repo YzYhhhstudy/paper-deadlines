@@ -35,6 +35,18 @@ jobs:
       - name: Cross-check with OpenReview (official)
         run: node scripts/openreview.js --fix >> report.md || echo "OpenReview 核对失败，跳过" >> report.md
 
+      # 官网爬取 + LLM 提取：页面哈希变化才调用 LLM；需要 ANTHROPIC_API_KEY secret
+      - name: Crawl official sites (LLM extraction)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "" >> report.md
+            echo "（未配置 ANTHROPIC_API_KEY secret，跳过官网 LLM 提取）" >> report.md
+          else
+            node scripts/crawl.js --fix >> report.md || echo "官网爬取失败，跳过" >> report.md
+          fi
+
       - name: Rebuild generated files after fixes
         run: |
           if ! git diff --quiet data/; then npm run build; fi

@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "DDL Radar - CS conference deadline tracker",
   "private": true,
-  "bin": { "ddl-radar": "cli/ddl-radar.js" },
+  "bin": {
+    "ddl-radar": "cli/ddl-radar.js"
+  },
   "scripts": {
     "build": "node scripts/build.js",
     "validate": "node scripts/build.js --validate"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.110.0",
     "js-yaml": "^4.1.0"
   }
 }
