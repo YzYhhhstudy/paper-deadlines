@@ -1,0 +1,12 @@
+{
+  "name": "ddl-radar",
+  "version": "1.0.0",
+  "description": "CS conference deadline countdowns in your terminal — data from DDL Radar",
+  "bin": { "ddl-radar": "./ddl-radar.js" },
+  "files": ["ddl-radar.js", "README.md"],
+  "engines": { "node": ">=18" },
+  "keywords": ["conference", "deadline", "cfp", "academic", "research", "cli"],
+  "repository": { "type": "git", "url": "git+https://github.com/YzYhhhstudy/paper-deadlines.git", "directory": "cli" },
+  "homepage": "https://yzyhhhstudy.github.io/paper-deadlines/",
+  "license": "MIT"
+}
