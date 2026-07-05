@@ -11,8 +11,11 @@
 
 - ⏳ 实时倒计时（天/时/分），<7 天红色、<30 天橙色预警
 - 🗂 覆盖 15 个领域近 70 个会议：AI/ML、CV、NLP、Speech、Robotics（IROS/ICRA/RSS/CoRL）、Data Mining、DB、Systems、Arch/HPC、Networking、Security、SE、HCI、Graphics、Theory、Multimedia
-- 🎨 暗色 / 亮色 / 跟随系统三态主题切换（记忆偏好）
-- 🏷 按领域和 CCF 等级（A/B/C/非CCF）筛选，支持搜索
+- 🎨 暗色 / 亮色 / 自动（跟随系统）三态主题切换（记忆偏好）
+- 🌏 **中英双语界面**：按浏览器语言自动选择，一键切换并记忆偏好
+- 🏷 按领域和等级**多选**筛选，支持搜索
+- 🎓 **双等级体系**：中文界面显示 CCF 等级（A/B/C/非CCF），英文界面显示国际通用的
+  [CORE 等级](https://portal.core.edu.au)（A*/A/B/C）
 - 📈 20 个主流会议附**近 5 年历史 DDL**，一眼看出该会议每年几月截稿的规律（大致日期 ±数天，精确请查官网或 [ccfddl 数据仓库](https://github.com/ccfddl/ccf-deadlines)）
 - ⭐ 收藏关注的会议（localStorage 持久化），可只看收藏
 - 📅 一键把收藏的 DDL 导出为 `.ics`（含摘要+全文截止、提前 7 天提醒），导入 Google/Apple Calendar
@@ -32,6 +35,9 @@
   confDate: "2027-04", place: "TBD", link: "https://iclr.cc",
 }
 ```
+
+英文界面使用的 CORE 等级维护在 `data.js` 底部的 `CORE_RANKS` 映射表中，按会议名前缀匹配，
+未收录的会议显示为 "Unranked"。
 
 ## 运行
 

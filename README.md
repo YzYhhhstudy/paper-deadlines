@@ -19,11 +19,14 @@ differentiated by personalization and calendar integration.
 - ⚠️ **Abstract-deadline aware**: when a conference has an earlier abstract deadline, the countdown
   targets it and warns you — never mistake the full-paper date for your real DDL
 - 📈 5-year historical deadlines for 20 major venues — see each conference's annual pattern at a glance
-- 🏷 Filter by area and CCF rank (A/B/C/non-CCF), full-text search
+- 🌏 **Bilingual UI (English / 中文)** — auto-detected from browser language, one-click toggle, remembered locally
+- 🏷 **Multi-select** filters by area and rank, plus full-text search
+- 🎓 **Dual rank system**: the English UI shows [CORE ranks](https://portal.core.edu.au) (A*/A/B/C —
+  the international standard), while the Chinese UI shows CCF ranks (China's official venue tiers)
 - ⭐ Star conferences (persisted locally), one-click **.ics export** of starred deadlines
   (abstract + full paper, with 7-day-before alarms) for Google/Apple Calendar
 - 🌐 Deadlines auto-converted to your local time (source data stores official timezone, mostly AoE)
-- 🎨 Dark / light / system theme
+- 🎨 Dark / light / auto (system) theme
 
 ## ⚠️ Data disclaimer
 
@@ -38,6 +41,9 @@ official site before submitting. Data format:
   confDate: "2027-04", place: "TBD", link: "https://iclr.cc",
 }
 ```
+
+CORE ranks (used by the English UI) are maintained in the `CORE_RANKS` map at the bottom of
+`data.js`, matched by conference-name prefix; unlisted venues fall back to "Unranked".
 
 ## Run
 

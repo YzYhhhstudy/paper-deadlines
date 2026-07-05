@@ -202,8 +202,36 @@ const DDL_HISTORY = {
   "SOSP":         ["2023-04-17", "2024-04-17", "2025-04-17"],
 };
 
-// 按会议名前缀把历史 DDL 挂到对应会议上
+// ================= CORE 等级（国际会议分级，英文界面使用） =================
+// ⚠️ 基于 CORE2023 整理的近似数据，请以 portal.core.edu.au 最新结果为准
+const CORE_RANKS = {
+  "NeurIPS": "A*", "ICLR": "A*", "ICML": "A*", "AAAI": "A*", "IJCAI": "A*",
+  "AISTATS": "A", "COLT": "A*", "UAI": "A", "AAMAS": "A*", "ECAI": "A",
+  "IROS": "A", "ICRA": "A*", "RSS": "A*", "CoRL": "A",
+  "CVPR": "A*", "ICCV": "A*", "ECCV": "A*", "WACV": "A", "BMVC": "A",
+  "ACL": "A*", "EMNLP": "A*", "NAACL": "A", "COLING": "B",
+  "INTERSPEECH": "A", "ICASSP": "B",
+  "KDD": "A*", "WWW": "A*", "SIGIR": "A*", "WSDM": "A*", "CIKM": "A",
+  "RecSys": "A", "ICDM": "A*",
+  "SIGMOD": "A*", "VLDB": "A*", "ICDE": "A*",
+  "SOSP": "A*", "OSDI": "A*", "NSDI": "A*", "USENIX ATC": "A",
+  "EuroSys": "A", "ASPLOS": "A*",
+  "ISCA": "A*", "MICRO": "A*", "HPCA": "A*", "SC": "A", "PPoPP": "A",
+  "SIGCOMM": "A*", "INFOCOM": "A*", "MobiCom": "A*", "IMC": "A",
+  "IEEE S&P": "A*", "USENIX Security": "A*", "ACM CCS": "A*", "NDSS": "A*",
+  "ICSE": "A*", "FSE": "A*", "ASE": "A*", "ISSTA": "A",
+  "CHI": "A*", "UIST": "A*", "CSCW": "A", "UbiComp/IMWUT": "A*",
+  "SIGGRAPH": "A*", "SIGGRAPH Asia": "A", "Eurographics": "A",
+  "STOC": "A*", "FOCS": "A*", "SODA": "A*",
+  "ACM MM": "A*",
+};
+
+// 按会议名前缀把历史 DDL / CORE 等级挂到对应会议上（取最长匹配前缀）
 CONFERENCES.forEach((c) => {
   const key = Object.keys(DDL_HISTORY).find((k) => c.name.startsWith(k));
   if (key) c.history = DDL_HISTORY[key];
+  const coreKey = Object.keys(CORE_RANKS)
+    .filter((k) => c.name.startsWith(k))
+    .sort((a, b) => b.length - a.length)[0];
+  c.core = coreKey ? CORE_RANKS[coreKey] : "Unranked";
 });
