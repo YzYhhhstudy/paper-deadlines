@@ -9,10 +9,9 @@ const I18N = {
     dateLocale: "zh-CN",
     docTitle: "DDL Radar · 会议/期刊截稿日追踪",
     subtitle: "学术会议 / 期刊截稿日追踪 — 倒计时 · 收藏 · 日历订阅",
-    theme: { auto: "🖥 自动", light: "☀️ 亮色", dark: "🌙 暗色" },
-    themeTitle: "切换 暗色 / 亮色 / 自动（跟随系统）",
-    langBtn: "🌐 EN",
-    langTitle: "Switch to English",
+    themeTitles: { auto: "主题：自动（跟随系统）", light: "主题：亮色", dark: "主题：暗色" },
+    selAll: "全选",
+    selNone: "清空",
     exportBtn: "📅 导出收藏到日历",
     exportTitle: "把收藏的会议 DDL 导出为 .ics 日历文件",
     searchPh: "🔍 搜索会议名称（如 NeurIPS / CVPR…）",
@@ -53,10 +52,9 @@ const I18N = {
     dateLocale: "en-US",
     docTitle: "DDL Radar · Conference Deadline Tracker",
     subtitle: "Academic conference / journal deadline tracker — countdown · stars · calendar feed",
-    theme: { auto: "🖥 Auto", light: "☀️ Light", dark: "🌙 Dark" },
-    themeTitle: "Toggle dark / light / auto (follow system)",
-    langBtn: "🌐 中文",
-    langTitle: "切换到中文界面",
+    themeTitles: { auto: "Theme: auto (follow system)", light: "Theme: light", dark: "Theme: dark" },
+    selAll: "Select all",
+    selNone: "Clear",
     exportBtn: "📅 Export stars to calendar",
     exportTitle: "Export starred deadlines as an .ics calendar file",
     searchPh: "🔍 Search conferences (e.g. NeurIPS / CVPR…)",
@@ -104,16 +102,25 @@ const rankOf = (c) => c[t("rankKey")];
 // "A*" 之类的值不能直接作 CSS 类名，转成安全写法（A* → Astar）
 const rankSlug = (v) => v.replace(/\*/g, "star").replace(/[^A-Za-z-]/g, "");
 
-// ---------- 主题切换：暗色 / 亮色 / 自动（跟随系统） ----------
+// 带文字的控件用"影子标签"：中英两份文案叠放在同一格，非当前语言的隐藏，
+// 控件宽度 = 两者较大值 → 切换语言时尺寸/位置完全不变（免手调像素，任何字体下都成立）
+function biLabel(el, key) {
+  const other = lang === "zh" ? "en" : "zh";
+  el.innerHTML = `<span class="bi-wrap"><span>${I18N[lang][key]}</span><span class="ghost" aria-hidden="true">${I18N[other][key]}</span></span>`;
+}
+
+// ---------- 主题切换：暗色 / 亮色 / 自动（跟随系统），图标按钮无文字宽度差 ----------
 const THEME_MODES = ["auto", "light", "dark"];
+const THEME_ICONS = { auto: "🖥", light: "☀️", dark: "🌙" };
 let themeMode = localStorage.getItem("ddlradar-theme");
 if (!THEME_MODES.includes(themeMode)) themeMode = "auto";
 
 function applyTheme() {
   if (themeMode === "auto") document.documentElement.removeAttribute("data-theme");
   else document.documentElement.dataset.theme = themeMode;
-  $("#themeBtn").textContent = t("theme")[themeMode];
-  $("#themeBtn").title = t("themeTitle");
+  $("#themeBtn").textContent = THEME_ICONS[themeMode];
+  $("#themeBtn").title = t("themeTitles")[themeMode];
+  $("#themeBtn").setAttribute("aria-label", t("themeTitles")[themeMode]);
   localStorage.setItem("ddlradar-theme", themeMode);
 }
 $("#themeBtn").onclick = () => {
@@ -152,13 +159,24 @@ function setupMsel(rootSel, selected, getOptions, getAllLabel, getOptionLabel) {
   }
 
   function rebuild() {
-    panel.innerHTML = getOptions().map((v) => `<label>
+    panel.innerHTML = `<div class="msel-actions">
+        <button type="button" data-act="all">${t("selAll")}</button>
+        <button type="button" data-act="none">${t("selNone")}</button>
+      </div>` + getOptions().map((v) => `<label>
         <input type="checkbox" value="${v}" ${selected.has(v) ? "checked" : ""}> ${getOptionLabel(v)}
       </label>`).join("");
     panel.querySelectorAll("input").forEach((cb) => {
       cb.onchange = () => {
         cb.checked ? selected.add(cb.value) : selected.delete(cb.value);
         refreshBtn();
+        render();
+      };
+    });
+    panel.querySelectorAll(".msel-actions button").forEach((b) => {
+      b.onclick = () => {
+        if (b.dataset.act === "all") getOptions().forEach((v) => selected.add(v));
+        else selected.clear();
+        rebuild();
         render();
       };
     });
@@ -197,7 +215,7 @@ function buildSubPanel() {
   const areas = [...new Set(CONFERENCES.map((c) => c.area))].sort();
   $("#subPanel").innerHTML =
     link("all", t("subAll")) + areas.map((a) => link(feedSlug(a), a)).join("");
-  $("#subBtn").textContent = t("subBtn");
+  biLabel($("#subBtn"), "subBtn");
   $("#subBtn").title = t("subTitle");
 }
 
@@ -327,13 +345,13 @@ function applyLang() {
   document.documentElement.lang = t("htmlLang");
   document.title = t("docTitle");
   $("#subtitle").textContent = t("subtitle");
-  $("#langBtn").textContent = t("langBtn");
-  $("#langBtn").title = t("langTitle");
-  $("#exportIcs").textContent = t("exportBtn");
+  $("#langSeg").querySelectorAll("button").forEach((b) =>
+    b.classList.toggle("on", b.dataset.lang === lang));
+  biLabel($("#exportIcs"), "exportBtn");
   $("#exportIcs").title = t("exportTitle");
   $("#search").placeholder = t("searchPh");
-  $("#starredLabel").textContent = t("starredOnly");
-  $("#hidePastLabel").textContent = t("hidePast");
+  biLabel($("#starredLabel"), "starredOnly");
+  biLabel($("#hidePastLabel"), "hidePast");
   $("#foot1").innerHTML = t("foot1");
   $("#foot2").textContent = t("foot2");
   applyTheme();
@@ -344,11 +362,14 @@ function applyLang() {
   localStorage.setItem("ddlradar-lang", lang);
 }
 
-$("#langBtn").onclick = () => {
-  lang = lang === "zh" ? "en" : "zh";
-  state.ranks.clear(); // CCF 与 CORE 的等级值不同，切语言时清空等级筛选
-  applyLang();
-};
+$("#langSeg").querySelectorAll("button").forEach((b) => {
+  b.onclick = () => {
+    if (lang === b.dataset.lang) return;
+    lang = b.dataset.lang;
+    state.ranks.clear(); // CCF 与 CORE 的等级值不同，切语言时清空等级筛选
+    applyLang();
+  };
+});
 
 // ---------- .ics 导出 ----------
 
