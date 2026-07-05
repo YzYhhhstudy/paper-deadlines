@@ -103,7 +103,9 @@ const banner = `// ⚠️ 本文件由 scripts/build.js 自动生成，请勿手
 // 数据源在 data/conferences/*.yml —— 改完运行 npm run build（CI 也会自动重建）
 const CONFERENCES = `;
 fs.writeFileSync(path.join(ROOT, "data.js"), banner + JSON.stringify(conferences, null, 2) + ";\n");
-console.log(`✔ data.js（${conferences.length} 届）`);
+// 对外只读 API：其他端（插件 / CLI / bot…）直接 fetch 这份 JSON
+fs.writeFileSync(path.join(ROOT, "data.json"), JSON.stringify(conferences, null, 2) + "\n");
+console.log(`✔ data.js + data.json（${conferences.length} 届）`);
 
 // ---------- 生成 feeds/*.ics ----------
 // 注意：输出必须是确定性的（不用 Date.now），否则 CI 的"生成物是否同步"检查会误报
