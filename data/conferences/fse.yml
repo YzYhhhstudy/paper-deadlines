@@ -7,7 +7,7 @@ core: "A*"   # CORE: A* / A / B / C / Unranked
 link: "https://conf.researchr.org/series/fse"
 editions:
   - id: "FSE 2027"
-    deadline: "2026-09-10T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    deadline: "2026-10-02T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-06"
     place: "TBD"
 aliases:   # 搜索别名

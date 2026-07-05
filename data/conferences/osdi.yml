@@ -7,7 +7,7 @@ core: "A*"   # CORE: A* / A / B / C / Unranked
 link: "https://usenix.org/conference/osdi27"
 editions:
   - id: "OSDI 2027"
-    deadline: "2026-12-10T23:59:59-08:00"   # 带时区偏移，AoE 写 -12:00
+    deadline: "2026-12-08T23:59:59-08:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-07"
     place: "TBD"
 history:   # 往年全文截稿日（大致日期）
