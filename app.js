@@ -576,3 +576,8 @@ $("#exportIcs").onclick = exportIcs;
 
 applyLang();
 setInterval(render, 60 * 1000); // 每分钟刷新倒计时
+
+// ---------- PWA：注册 Service Worker（需要 https 或 localhost） ----------
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  navigator.serviceWorker.register("sw.js").catch(() => { /* 注册失败不影响页面 */ });
+}
