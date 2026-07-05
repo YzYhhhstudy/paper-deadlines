@@ -93,7 +93,9 @@ const I18N = {
   },
 };
 
-let lang = localStorage.getItem("ddlradar-lang");
+// URL 参数优先（分享链接可完整复现视图），其次本地偏好，最后浏览器语言
+const urlParams = new URLSearchParams(location.search);
+let lang = urlParams.get("lang") || localStorage.getItem("ddlradar-lang");
 if (!I18N[lang]) lang = (navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
 const t = (key) => I18N[lang][key];
 
@@ -129,13 +131,30 @@ $("#themeBtn").onclick = () => {
 };
 
 const state = {
-  search: "",
-  areas: new Set(),   // 空 = 全部
-  ranks: new Set(),   // 空 = 全部（值属于当前语言的等级体系）
-  starredOnly: false,
-  hidePast: true,
+  search: urlParams.get("q") || "",
+  areas: new Set((urlParams.get("areas") || "").split(",").filter(Boolean)),   // 空 = 全部
+  ranks: new Set((urlParams.get("ranks") || "").split(",").filter(Boolean)),   // 空 = 全部（值属于当前语言的等级体系）
+  starredOnly: urlParams.get("star") === "1",
+  hidePast: urlParams.get("past") !== "show",
   starred: new Set(JSON.parse(localStorage.getItem("ddlradar-starred") || "[]")),
 };
+
+// 筛选状态实时写回 URL（replaceState 不产生历史记录），复制地址栏即可分享当前视图
+let lastUrl = null;
+function syncUrl() {
+  const p = new URLSearchParams();
+  p.set("lang", lang);
+  if (state.search) p.set("q", state.search);
+  if (state.areas.size) p.set("areas", [...state.areas].join(","));
+  if (state.ranks.size) p.set("ranks", [...state.ranks].join(","));
+  if (state.starredOnly) p.set("star", "1");
+  if (!state.hidePast) p.set("past", "show");
+  const url = location.pathname + "?" + p.toString();
+  if (url !== lastUrl) {
+    lastUrl = url;
+    try { history.replaceState(null, "", url); } catch (e) { /* file:// 下部分浏览器禁止 */ }
+  }
+}
 
 function saveStars() {
   localStorage.setItem("ddlradar-starred", JSON.stringify([...state.starred]));
@@ -297,6 +316,7 @@ function visibleConfs() {
 }
 
 function render() {
+  syncUrl();
   const wrap = $("#cards");
   const confs = visibleConfs();
   if (!confs.length) {
@@ -418,6 +438,9 @@ function exportIcs() {
 
 // ---------- 控件 ----------
 
+$("#search").value = state.search;
+$("#starredOnly").checked = state.starredOnly;
+$("#hidePast").checked = state.hidePast;
 $("#search").oninput = (e) => { state.search = e.target.value.trim(); render(); };
 $("#starredOnly").onchange = (e) => { state.starredOnly = e.target.checked; render(); };
 $("#hidePast").onchange = (e) => { state.hidePast = e.target.checked; render(); };
