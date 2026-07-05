@@ -12,3 +12,9 @@ editions:
     confDate: "2027-04"
     place: "TBD"
     submitLink: "https://openreview.net/group?id=aistats.org/AISTATS/2027/Conference"
+acceptHistory:   # 历年录取率 %（约数）
+  - { year: 2021, rate: 30 }
+  - { year: 2022, rate: 29 }
+  - { year: 2023, rate: 29 }
+  - { year: 2024, rate: 28 }
+  - { year: 2025, rate: 28 }

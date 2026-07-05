@@ -10,3 +10,9 @@ editions:
     deadline: "2026-08-24T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-02"
     place: "TBD"
+acceptHistory:   # 历年录取率 %（约数）
+  - { year: 2021, rate: 18 }
+  - { year: 2022, rate: 20 }
+  - { year: 2023, rate: 17 }
+  - { year: 2024, rate: 18 }
+  - { year: 2025, rate: 17 }

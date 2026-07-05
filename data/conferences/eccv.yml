@@ -12,3 +12,7 @@ editions:
     place: "TBD"
 h5: 190   # Google Scholar h5-index（约数）
 acceptRate: "~25%"   # 近年录取率（约数）
+acceptHistory:   # 历年录取率 %（约数）
+  - { year: 2020, rate: 27 }
+  - { year: 2022, rate: 28 }
+  - { year: 2024, rate: 28 }

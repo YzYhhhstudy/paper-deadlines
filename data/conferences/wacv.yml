@@ -10,3 +10,9 @@ editions:
     deadline: "2026-08-28T23:59:59-08:00"   # 官网未上线，ccfddl Round 2   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-03"
     place: "TBD (USA)"
+acceptHistory:   # 历年录取率 %（约数）
+  - { year: 2021, rate: 35 }
+  - { year: 2022, rate: 35 }
+  - { year: 2023, rate: 41 }
+  - { year: 2024, rate: 40 }
+  - { year: 2025, rate: 38 }

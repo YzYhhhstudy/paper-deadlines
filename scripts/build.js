@@ -135,7 +135,10 @@ for (const f of files) {
       ...(doc.history ? { history: doc.history.map(String) } : {}),
       ...(doc.aliases ? { aliases: doc.aliases } : {}),
       ...(doc.h5 ? { h5: doc.h5 } : {}),
-      ...(doc.acceptRate ? { acceptRate: String(doc.acceptRate) } : {}),
+      // acceptRate 未写时从 acceptHistory 末值派生（卡片标签与曲线自动一致）
+      ...(doc.acceptRate || doc.acceptHistory
+        ? { acceptRate: doc.acceptRate ? String(doc.acceptRate) : `~${doc.acceptHistory[doc.acceptHistory.length - 1].rate}%` }
+        : {}),
       ...(doc.acceptHistory ? { acceptHistory: doc.acceptHistory } : {}),
     });
   }

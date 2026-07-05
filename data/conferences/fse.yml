@@ -12,3 +12,9 @@ editions:
     place: "TBD"
 aliases:   # 搜索别名
   - "ESEC/FSE"
+acceptHistory:   # 历年录取率 %（约数）
+  - { year: 2021, rate: 24 }
+  - { year: 2022, rate: 22 }
+  - { year: 2023, rate: 26 }
+  - { year: 2024, rate: 22 }
+  - { year: 2025, rate: 23 }

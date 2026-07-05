@@ -13,3 +13,8 @@ editions:
     submitLink: "https://openreview.net/group?id=aclweb.org/ACL/ARR"
 h5: 130   # Google Scholar h5-index（约数）
 acceptRate: "~22%"   # 近年录取率（约数）
+acceptHistory:   # 历年录取率 %（约数）
+  - { year: 2021, rate: 26 }
+  - { year: 2022, rate: 26 }
+  - { year: 2024, rate: 23 }
+  - { year: 2025, rate: 22 }

@@ -54,7 +54,30 @@ const CONFERENCES = [
     "deadline": "2026-10-09T23:59:59-12:00",
     "confDate": "2027-05",
     "place": "TBD",
-    "link": "https://aamas-conference.org"
+    "link": "https://aamas-conference.org",
+    "acceptRate": "~24%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 25
+      },
+      {
+        "year": 2022,
+        "rate": 26
+      },
+      {
+        "year": 2023,
+        "rate": 23
+      },
+      {
+        "year": 2024,
+        "rate": 25
+      },
+      {
+        "year": 2025,
+        "rate": 24
+      }
+    ]
   },
   {
     "name": "ACL 2027 (ARR)",
@@ -112,7 +135,29 @@ const CONFERENCES = [
       "CCS"
     ],
     "h5": 110,
-    "acceptRate": "~18%"
+    "acceptRate": "~18%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 22
+      },
+      {
+        "year": 2022,
+        "rate": 22
+      },
+      {
+        "year": 2023,
+        "rate": 19
+      },
+      {
+        "year": 2024,
+        "rate": 17
+      },
+      {
+        "year": 2025,
+        "rate": 18
+      }
+    ]
   },
   {
     "name": "ACM MM 2027",
@@ -127,6 +172,29 @@ const CONFERENCES = [
     "aliases": [
       "MM",
       "MultiMedia"
+    ],
+    "acceptRate": "~26%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 28
+      },
+      {
+        "year": 2022,
+        "rate": 27
+      },
+      {
+        "year": 2023,
+        "rate": 29
+      },
+      {
+        "year": 2024,
+        "rate": 26
+      },
+      {
+        "year": 2025,
+        "rate": 26
+      }
     ]
   },
   {
@@ -140,7 +208,30 @@ const CONFERENCES = [
     "submitLink": "https://openreview.net/group?id=aistats.org/AISTATS/2027/Conference",
     "confDate": "2027-04",
     "place": "TBD",
-    "link": "https://aistats.org"
+    "link": "https://aistats.org",
+    "acceptRate": "~28%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 30
+      },
+      {
+        "year": 2022,
+        "rate": 29
+      },
+      {
+        "year": 2023,
+        "rate": 29
+      },
+      {
+        "year": 2024,
+        "rate": 28
+      },
+      {
+        "year": 2025,
+        "rate": 28
+      }
+    ]
   },
   {
     "name": "ASE 2027",
@@ -151,7 +242,30 @@ const CONFERENCES = [
     "deadline": "2027-05-28T23:59:59-12:00",
     "confDate": "2027-11",
     "place": "TBD",
-    "link": "https://conf.researchr.org/series/ase"
+    "link": "https://conf.researchr.org/series/ase",
+    "acceptRate": "~21%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 19
+      },
+      {
+        "year": 2022,
+        "rate": 22
+      },
+      {
+        "year": 2023,
+        "rate": 21
+      },
+      {
+        "year": 2024,
+        "rate": 20
+      },
+      {
+        "year": 2025,
+        "rate": 21
+      }
+    ]
   },
   {
     "name": "ASPLOS 2027",
@@ -164,7 +278,30 @@ const CONFERENCES = [
     "notification": "2026-12-21",
     "confDate": "2027-03",
     "place": "TBD",
-    "link": "https://asplos-conference.org"
+    "link": "https://asplos-conference.org",
+    "acceptRate": "~18%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 19
+      },
+      {
+        "year": 2022,
+        "rate": 20
+      },
+      {
+        "year": 2023,
+        "rate": 22
+      },
+      {
+        "year": 2024,
+        "rate": 17
+      },
+      {
+        "year": 2025,
+        "rate": 18
+      }
+    ]
   },
   {
     "name": "BMVC 2027",
@@ -175,7 +312,30 @@ const CONFERENCES = [
     "deadline": "2027-05-20T23:59:59-12:00",
     "confDate": "2027-11",
     "place": "TBD (UK)",
-    "link": "https://bmvc2027.org"
+    "link": "https://bmvc2027.org",
+    "acceptRate": "~27%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 36
+      },
+      {
+        "year": 2022,
+        "rate": 28
+      },
+      {
+        "year": 2023,
+        "rate": 25
+      },
+      {
+        "year": 2024,
+        "rate": 26
+      },
+      {
+        "year": 2025,
+        "rate": 27
+      }
+    ]
   },
   {
     "name": "CHI 2027",
@@ -228,7 +388,30 @@ const CONFERENCES = [
     "deadline": "2027-05-25T23:59:59-12:00",
     "confDate": "2027-11",
     "place": "TBD",
-    "link": "https://cikmconference.org"
+    "link": "https://cikmconference.org",
+    "acceptRate": "~23%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 22
+      },
+      {
+        "year": 2022,
+        "rate": 22
+      },
+      {
+        "year": 2023,
+        "rate": 23
+      },
+      {
+        "year": 2024,
+        "rate": 22
+      },
+      {
+        "year": 2025,
+        "rate": 23
+      }
+    ]
   },
   {
     "name": "COLING 2027",
@@ -239,7 +422,26 @@ const CONFERENCES = [
     "deadline": "2026-09-15T23:59:59-12:00",
     "confDate": "2027-01",
     "place": "TBD",
-    "link": "https://coling2027.org"
+    "link": "https://coling2027.org",
+    "acceptRate": "~31%",
+    "acceptHistory": [
+      {
+        "year": 2020,
+        "rate": 33
+      },
+      {
+        "year": 2022,
+        "rate": 35
+      },
+      {
+        "year": 2024,
+        "rate": 32
+      },
+      {
+        "year": 2025,
+        "rate": 31
+      }
+    ]
   },
   {
     "name": "COLT 2027",
@@ -250,7 +452,30 @@ const CONFERENCES = [
     "deadline": "2027-02-10T23:59:59-12:00",
     "confDate": "2027-06",
     "place": "TBD",
-    "link": "https://learningtheory.org"
+    "link": "https://learningtheory.org",
+    "acceptRate": "~29%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 28
+      },
+      {
+        "year": 2022,
+        "rate": 30
+      },
+      {
+        "year": 2023,
+        "rate": 29
+      },
+      {
+        "year": 2024,
+        "rate": 30
+      },
+      {
+        "year": 2025,
+        "rate": 29
+      }
+    ]
   },
   {
     "name": "CoRL 2027",
@@ -262,7 +487,30 @@ const CONFERENCES = [
     "submitLink": "https://openreview.net/group?id=robot-learning.org/CoRL/2027/Conference",
     "confDate": "2027-11",
     "place": "TBD",
-    "link": "https://corl.org"
+    "link": "https://corl.org",
+    "acceptRate": "~33%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 34
+      },
+      {
+        "year": 2022,
+        "rate": 38
+      },
+      {
+        "year": 2023,
+        "rate": 36
+      },
+      {
+        "year": 2024,
+        "rate": 35
+      },
+      {
+        "year": 2025,
+        "rate": 33
+      }
+    ]
   },
   {
     "name": "CSCW 2027",
@@ -273,7 +521,30 @@ const CONFERENCES = [
     "deadline": "2027-01-15T23:59:59-12:00",
     "confDate": "2027-11",
     "place": "TBD",
-    "link": "https://cscw.acm.org"
+    "link": "https://cscw.acm.org",
+    "acceptRate": "~24%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 25
+      },
+      {
+        "year": 2022,
+        "rate": 26
+      },
+      {
+        "year": 2023,
+        "rate": 26
+      },
+      {
+        "year": 2024,
+        "rate": 25
+      },
+      {
+        "year": 2025,
+        "rate": 24
+      }
+    ]
   },
   {
     "name": "CVPR 2027",
@@ -339,7 +610,26 @@ const CONFERENCES = [
     "deadline": "2027-01-20T23:59:59-12:00",
     "confDate": "2027-10",
     "place": "TBD",
-    "link": "https://ecai2027.eu"
+    "link": "https://ecai2027.eu",
+    "acceptRate": "~24%",
+    "acceptHistory": [
+      {
+        "year": 2020,
+        "rate": 25
+      },
+      {
+        "year": 2023,
+        "rate": 26
+      },
+      {
+        "year": 2024,
+        "rate": 23
+      },
+      {
+        "year": 2025,
+        "rate": 24
+      }
+    ]
   },
   {
     "name": "ECCV 2028",
@@ -352,7 +642,21 @@ const CONFERENCES = [
     "place": "TBD",
     "link": "https://eccv.ecva.net",
     "h5": 190,
-    "acceptRate": "~25%"
+    "acceptRate": "~25%",
+    "acceptHistory": [
+      {
+        "year": 2020,
+        "rate": 27
+      },
+      {
+        "year": 2022,
+        "rate": 28
+      },
+      {
+        "year": 2024,
+        "rate": 28
+      }
+    ]
   },
   {
     "name": "EMNLP 2026 (ARR)",
@@ -373,7 +677,29 @@ const CONFERENCES = [
       "2026-05-19"
     ],
     "h5": 180,
-    "acceptRate": "~21%"
+    "acceptRate": "~21%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 23
+      },
+      {
+        "year": 2022,
+        "rate": 22
+      },
+      {
+        "year": 2023,
+        "rate": 22
+      },
+      {
+        "year": 2024,
+        "rate": 21
+      },
+      {
+        "year": 2025,
+        "rate": 22
+      }
+    ]
   },
   {
     "name": "Eurographics 2027",
@@ -384,7 +710,30 @@ const CONFERENCES = [
     "deadline": "2026-10-09T23:59:59-12:00",
     "confDate": "2027-05",
     "place": "TBD (Europe)",
-    "link": "https://eg2027.eu"
+    "link": "https://eg2027.eu",
+    "acceptRate": "~26%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 25
+      },
+      {
+        "year": 2022,
+        "rate": 27
+      },
+      {
+        "year": 2023,
+        "rate": 26
+      },
+      {
+        "year": 2024,
+        "rate": 25
+      },
+      {
+        "year": 2025,
+        "rate": 26
+      }
+    ]
   },
   {
     "name": "EuroSys 2027 (Fall)",
@@ -395,7 +744,30 @@ const CONFERENCES = [
     "deadline": "2026-09-24T23:59:59-12:00",
     "confDate": "2027-04",
     "place": "TBD (Europe)",
-    "link": "https://eurosys.org"
+    "link": "https://eurosys.org",
+    "acceptRate": "~17%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 18
+      },
+      {
+        "year": 2022,
+        "rate": 16
+      },
+      {
+        "year": 2023,
+        "rate": 17
+      },
+      {
+        "year": 2024,
+        "rate": 16
+      },
+      {
+        "year": 2025,
+        "rate": 17
+      }
+    ]
   },
   {
     "name": "FOCS 2027",
@@ -406,7 +778,30 @@ const CONFERENCES = [
     "deadline": "2027-04-10T23:59:59-12:00",
     "confDate": "2027-10",
     "place": "TBD",
-    "link": "https://focs.computer.org"
+    "link": "https://focs.computer.org",
+    "acceptRate": "~29%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 30
+      },
+      {
+        "year": 2022,
+        "rate": 28
+      },
+      {
+        "year": 2023,
+        "rate": 29
+      },
+      {
+        "year": 2024,
+        "rate": 28
+      },
+      {
+        "year": 2025,
+        "rate": 29
+      }
+    ]
   },
   {
     "name": "FSE 2027",
@@ -420,6 +815,29 @@ const CONFERENCES = [
     "link": "https://conf.researchr.org/series/fse",
     "aliases": [
       "ESEC/FSE"
+    ],
+    "acceptRate": "~23%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 24
+      },
+      {
+        "year": 2022,
+        "rate": 22
+      },
+      {
+        "year": 2023,
+        "rate": 26
+      },
+      {
+        "year": 2024,
+        "rate": 22
+      },
+      {
+        "year": 2025,
+        "rate": 23
+      }
     ]
   },
   {
@@ -431,7 +849,30 @@ const CONFERENCES = [
     "deadline": "2026-07-31T23:59:59-12:00",
     "confDate": "2027-02",
     "place": "TBD",
-    "link": "https://hpca-conf.org"
+    "link": "https://hpca-conf.org",
+    "acceptRate": "~22%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 24
+      },
+      {
+        "year": 2022,
+        "rate": 25
+      },
+      {
+        "year": 2023,
+        "rate": 26
+      },
+      {
+        "year": 2024,
+        "rate": 21
+      },
+      {
+        "year": 2025,
+        "rate": 22
+      }
+    ]
   },
   {
     "name": "ICASSP 2027",
@@ -450,7 +891,29 @@ const CONFERENCES = [
       "2025-09-17"
     ],
     "h5": 120,
-    "acceptRate": "~45%"
+    "acceptRate": "~45%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 48
+      },
+      {
+        "year": 2022,
+        "rate": 45
+      },
+      {
+        "year": 2023,
+        "rate": 46
+      },
+      {
+        "year": 2024,
+        "rate": 45
+      },
+      {
+        "year": 2025,
+        "rate": 45
+      }
+    ]
   },
   {
     "name": "ICCV 2027",
@@ -495,7 +958,29 @@ const CONFERENCES = [
     "place": "TBD",
     "link": "https://icde2027.org",
     "h5": 80,
-    "acceptRate": "~25%"
+    "acceptRate": "~25%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 23
+      },
+      {
+        "year": 2022,
+        "rate": 26
+      },
+      {
+        "year": 2023,
+        "rate": 25
+      },
+      {
+        "year": 2024,
+        "rate": 24
+      },
+      {
+        "year": 2025,
+        "rate": 25
+      }
+    ]
   },
   {
     "name": "ICDM 2027",
@@ -506,7 +991,30 @@ const CONFERENCES = [
     "deadline": "2027-06-10T23:59:59-12:00",
     "confDate": "2027-12",
     "place": "TBD",
-    "link": "https://icdm2027.org"
+    "link": "https://icdm2027.org",
+    "acceptRate": "~10%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 10
+      },
+      {
+        "year": 2022,
+        "rate": 10
+      },
+      {
+        "year": 2023,
+        "rate": 9
+      },
+      {
+        "year": 2024,
+        "rate": 10
+      },
+      {
+        "year": 2025,
+        "rate": 10
+      }
+    ]
   },
   {
     "name": "ICLR 2027",
@@ -615,7 +1123,29 @@ const CONFERENCES = [
       "2025-09-15"
     ],
     "h5": 100,
-    "acceptRate": "~40%"
+    "acceptRate": "~40%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 48
+      },
+      {
+        "year": 2022,
+        "rate": 43
+      },
+      {
+        "year": 2023,
+        "rate": 43
+      },
+      {
+        "year": 2024,
+        "rate": 42
+      },
+      {
+        "year": 2025,
+        "rate": 41
+      }
+    ]
   },
   {
     "name": "ICSE 2028",
@@ -628,7 +1158,29 @@ const CONFERENCES = [
     "place": "TBD",
     "link": "https://conf.researchr.org/series/icse",
     "h5": 90,
-    "acceptRate": "~22%"
+    "acceptRate": "~22%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 22
+      },
+      {
+        "year": 2022,
+        "rate": 26
+      },
+      {
+        "year": 2023,
+        "rate": 26
+      },
+      {
+        "year": 2024,
+        "rate": 21
+      },
+      {
+        "year": 2025,
+        "rate": 22
+      }
+    ]
   },
   {
     "name": "IEEE S&P 2027",
@@ -689,7 +1241,29 @@ const CONFERENCES = [
       "2026-01-15"
     ],
     "h5": 120,
-    "acceptRate": "~14%"
+    "acceptRate": "~14%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 14
+      },
+      {
+        "year": 2022,
+        "rate": 15
+      },
+      {
+        "year": 2023,
+        "rate": 15
+      },
+      {
+        "year": 2024,
+        "rate": 14
+      },
+      {
+        "year": 2025,
+        "rate": 14
+      }
+    ]
   },
   {
     "name": "IJCV",
@@ -710,7 +1284,30 @@ const CONFERENCES = [
     "deadline": "2027-05-10T23:59:59-12:00",
     "confDate": "2027-11",
     "place": "TBD",
-    "link": "https://conferences.sigcomm.org/imc"
+    "link": "https://conferences.sigcomm.org/imc",
+    "acceptRate": "~25%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 25
+      },
+      {
+        "year": 2022,
+        "rate": 26
+      },
+      {
+        "year": 2023,
+        "rate": 24
+      },
+      {
+        "year": 2024,
+        "rate": 25
+      },
+      {
+        "year": 2025,
+        "rate": 25
+      }
+    ]
   },
   {
     "name": "INFOCOM 2027",
@@ -723,7 +1320,29 @@ const CONFERENCES = [
     "place": "TBD",
     "link": "https://infocom2027.ieee-infocom.org",
     "h5": 90,
-    "acceptRate": "~19%"
+    "acceptRate": "~19%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 20
+      },
+      {
+        "year": 2022,
+        "rate": 20
+      },
+      {
+        "year": 2023,
+        "rate": 19
+      },
+      {
+        "year": 2024,
+        "rate": 19
+      },
+      {
+        "year": 2025,
+        "rate": 19
+      }
+    ]
   },
   {
     "name": "INTERSPEECH 2027",
@@ -745,7 +1364,29 @@ const CONFERENCES = [
       "IS"
     ],
     "h5": 110,
-    "acceptRate": "~48%"
+    "acceptRate": "~48%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 49
+      },
+      {
+        "year": 2022,
+        "rate": 48
+      },
+      {
+        "year": 2023,
+        "rate": 47
+      },
+      {
+        "year": 2024,
+        "rate": 48
+      },
+      {
+        "year": 2025,
+        "rate": 47
+      }
+    ]
   },
   {
     "name": "IROS 2027",
@@ -765,7 +1406,29 @@ const CONFERENCES = [
       "2026-03-02"
     ],
     "h5": 70,
-    "acceptRate": "~45%"
+    "acceptRate": "~45%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 45
+      },
+      {
+        "year": 2022,
+        "rate": 47
+      },
+      {
+        "year": 2023,
+        "rate": 46
+      },
+      {
+        "year": 2024,
+        "rate": 45
+      },
+      {
+        "year": 2025,
+        "rate": 44
+      }
+    ]
   },
   {
     "name": "ISCA 2027",
@@ -776,7 +1439,30 @@ const CONFERENCES = [
     "deadline": "2026-11-20T23:59:59-12:00",
     "confDate": "2027-06",
     "place": "TBD",
-    "link": "https://iscaconf.org"
+    "link": "https://iscaconf.org",
+    "acceptRate": "~19%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 18
+      },
+      {
+        "year": 2022,
+        "rate": 17
+      },
+      {
+        "year": 2023,
+        "rate": 21
+      },
+      {
+        "year": 2024,
+        "rate": 18
+      },
+      {
+        "year": 2025,
+        "rate": 19
+      }
+    ]
   },
   {
     "name": "ISSTA 2027",
@@ -787,7 +1473,30 @@ const CONFERENCES = [
     "deadline": "2027-01-28T23:59:59-12:00",
     "confDate": "2027-07",
     "place": "TBD",
-    "link": "https://conf.researchr.org/series/issta"
+    "link": "https://conf.researchr.org/series/issta",
+    "acceptRate": "~23%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 22
+      },
+      {
+        "year": 2022,
+        "rate": 23
+      },
+      {
+        "year": 2023,
+        "rate": 25
+      },
+      {
+        "year": 2024,
+        "rate": 24
+      },
+      {
+        "year": 2025,
+        "rate": 23
+      }
+    ]
   },
   {
     "name": "JMLR",
@@ -851,7 +1560,30 @@ const CONFERENCES = [
     "deadline": "2027-04-15T23:59:59-12:00",
     "confDate": "2027-10",
     "place": "TBD",
-    "link": "https://microarch.org"
+    "link": "https://microarch.org",
+    "acceptRate": "~21%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 21
+      },
+      {
+        "year": 2022,
+        "rate": 22
+      },
+      {
+        "year": 2023,
+        "rate": 23
+      },
+      {
+        "year": 2024,
+        "rate": 20
+      },
+      {
+        "year": 2025,
+        "rate": 21
+      }
+    ]
   },
   {
     "name": "MobiCom 2027",
@@ -862,7 +1594,30 @@ const CONFERENCES = [
     "deadline": "2026-08-15T23:59:59-12:00",
     "confDate": "2027-10",
     "place": "TBD",
-    "link": "https://sigmobile.org/mobicom"
+    "link": "https://sigmobile.org/mobicom",
+    "acceptRate": "~18%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 15
+      },
+      {
+        "year": 2022,
+        "rate": 17
+      },
+      {
+        "year": 2023,
+        "rate": 18
+      },
+      {
+        "year": 2024,
+        "rate": 17
+      },
+      {
+        "year": 2025,
+        "rate": 18
+      }
+    ]
   },
   {
     "name": "NAACL 2027 (ARR)",
@@ -876,7 +1631,25 @@ const CONFERENCES = [
     "place": "TBD",
     "link": "https://aclrollingreview.org",
     "h5": 130,
-    "acceptRate": "~22%"
+    "acceptRate": "~22%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 26
+      },
+      {
+        "year": 2022,
+        "rate": 26
+      },
+      {
+        "year": 2024,
+        "rate": 23
+      },
+      {
+        "year": 2025,
+        "rate": 22
+      }
+    ]
   },
   {
     "name": "NDSS 2027 (Fall)",
@@ -890,7 +1663,29 @@ const CONFERENCES = [
     "place": "San Diego",
     "link": "https://ndss-symposium.org",
     "h5": 90,
-    "acceptRate": "~17%"
+    "acceptRate": "~17%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 15
+      },
+      {
+        "year": 2022,
+        "rate": 16
+      },
+      {
+        "year": 2023,
+        "rate": 17
+      },
+      {
+        "year": 2024,
+        "rate": 17
+      },
+      {
+        "year": 2025,
+        "rate": 16
+      }
+    ]
   },
   {
     "name": "NeurIPS 2026",
@@ -968,7 +1763,29 @@ const CONFERENCES = [
     "place": "TBD",
     "link": "https://usenix.org/conference/nsdi27",
     "h5": 70,
-    "acceptRate": "~18%"
+    "acceptRate": "~18%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 16
+      },
+      {
+        "year": 2022,
+        "rate": 19
+      },
+      {
+        "year": 2023,
+        "rate": 18
+      },
+      {
+        "year": 2024,
+        "rate": 18
+      },
+      {
+        "year": 2025,
+        "rate": 18
+      }
+    ]
   },
   {
     "name": "OSDI 2027",
@@ -1020,7 +1837,30 @@ const CONFERENCES = [
     "deadline": "2026-08-10T23:59:59-12:00",
     "confDate": "2027-02",
     "place": "TBD",
-    "link": "https://ppopp27.sigplan.org"
+    "link": "https://ppopp27.sigplan.org",
+    "acceptRate": "~21%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 21
+      },
+      {
+        "year": 2022,
+        "rate": 20
+      },
+      {
+        "year": 2023,
+        "rate": 22
+      },
+      {
+        "year": 2024,
+        "rate": 21
+      },
+      {
+        "year": 2025,
+        "rate": 21
+      }
+    ]
   },
   {
     "name": "RecSys 2027",
@@ -1031,7 +1871,30 @@ const CONFERENCES = [
     "deadline": "2027-04-10T23:59:59-12:00",
     "confDate": "2027-09",
     "place": "TBD",
-    "link": "https://recsys.acm.org"
+    "link": "https://recsys.acm.org",
+    "acceptRate": "~19%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 18
+      },
+      {
+        "year": 2022,
+        "rate": 17
+      },
+      {
+        "year": 2023,
+        "rate": 19
+      },
+      {
+        "year": 2024,
+        "rate": 18
+      },
+      {
+        "year": 2025,
+        "rate": 19
+      }
+    ]
   },
   {
     "name": "RSS 2027",
@@ -1042,7 +1905,30 @@ const CONFERENCES = [
     "deadline": "2027-01-29T23:59:59-12:00",
     "confDate": "2027-07",
     "place": "TBD",
-    "link": "https://roboticsconference.org"
+    "link": "https://roboticsconference.org",
+    "acceptRate": "~29%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 25
+      },
+      {
+        "year": 2022,
+        "rate": 30
+      },
+      {
+        "year": 2023,
+        "rate": 32
+      },
+      {
+        "year": 2024,
+        "rate": 30
+      },
+      {
+        "year": 2025,
+        "rate": 29
+      }
+    ]
   },
   {
     "name": "SC 2027",
@@ -1053,7 +1939,30 @@ const CONFERENCES = [
     "deadline": "2027-04-05T23:59:59-12:00",
     "confDate": "2027-11",
     "place": "TBD (USA)",
-    "link": "https://supercomputing.org"
+    "link": "https://supercomputing.org",
+    "acceptRate": "~24%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 24
+      },
+      {
+        "year": 2022,
+        "rate": 25
+      },
+      {
+        "year": 2023,
+        "rate": 24
+      },
+      {
+        "year": 2024,
+        "rate": 23
+      },
+      {
+        "year": 2025,
+        "rate": 24
+      }
+    ]
   },
   {
     "name": "SIGCOMM 2027",
@@ -1066,7 +1975,29 @@ const CONFERENCES = [
     "place": "TBD",
     "link": "https://sigcomm.org",
     "h5": 75,
-    "acceptRate": "~19%"
+    "acceptRate": "~19%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 21
+      },
+      {
+        "year": 2022,
+        "rate": 20
+      },
+      {
+        "year": 2023,
+        "rate": 19
+      },
+      {
+        "year": 2024,
+        "rate": 18
+      },
+      {
+        "year": 2025,
+        "rate": 19
+      }
+    ]
   },
   {
     "name": "SIGGRAPH 2027",
@@ -1088,7 +2019,29 @@ const CONFERENCES = [
       "SG"
     ],
     "h5": 100,
-    "acceptRate": "~25%"
+    "acceptRate": "~25%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 26
+      },
+      {
+        "year": 2022,
+        "rate": 24
+      },
+      {
+        "year": 2023,
+        "rate": 25
+      },
+      {
+        "year": 2024,
+        "rate": 25
+      },
+      {
+        "year": 2025,
+        "rate": 26
+      }
+    ]
   },
   {
     "name": "SIGGRAPH Asia 2027",
@@ -1099,7 +2052,30 @@ const CONFERENCES = [
     "deadline": "2027-05-19T23:59:59-12:00",
     "confDate": "2027-12",
     "place": "TBD (Asia)",
-    "link": "https://asia.siggraph.org"
+    "link": "https://asia.siggraph.org",
+    "acceptRate": "~25%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 25
+      },
+      {
+        "year": 2022,
+        "rate": 26
+      },
+      {
+        "year": 2023,
+        "rate": 27
+      },
+      {
+        "year": 2024,
+        "rate": 26
+      },
+      {
+        "year": 2025,
+        "rate": 25
+      }
+    ]
   },
   {
     "name": "SIGIR 2027",
@@ -1118,7 +2094,29 @@ const CONFERENCES = [
       "2025-01-23"
     ],
     "h5": 100,
-    "acceptRate": "~20%"
+    "acceptRate": "~20%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 21
+      },
+      {
+        "year": 2022,
+        "rate": 20
+      },
+      {
+        "year": 2023,
+        "rate": 20
+      },
+      {
+        "year": 2024,
+        "rate": 20
+      },
+      {
+        "year": 2025,
+        "rate": 21
+      }
+    ]
   },
   {
     "name": "SIGMOD 2027",
@@ -1167,7 +2165,30 @@ const CONFERENCES = [
     "deadline": "2026-07-09T23:59:59-12:00",
     "confDate": "2027-01",
     "place": "TBD",
-    "link": "https://siam.org/conferences/cm/conference/soda27"
+    "link": "https://siam.org/conferences/cm/conference/soda27",
+    "acceptRate": "~29%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 29
+      },
+      {
+        "year": 2022,
+        "rate": 30
+      },
+      {
+        "year": 2023,
+        "rate": 29
+      },
+      {
+        "year": 2024,
+        "rate": 30
+      },
+      {
+        "year": 2025,
+        "rate": 29
+      }
+    ]
   },
   {
     "name": "SOSP 2027",
@@ -1185,7 +2206,25 @@ const CONFERENCES = [
       "2025-04-17"
     ],
     "h5": 50,
-    "acceptRate": "~17%"
+    "acceptRate": "~17%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 15
+      },
+      {
+        "year": 2023,
+        "rate": 17
+      },
+      {
+        "year": 2024,
+        "rate": 17
+      },
+      {
+        "year": 2025,
+        "rate": 18
+      }
+    ]
   },
   {
     "name": "STOC 2027",
@@ -1196,7 +2235,30 @@ const CONFERENCES = [
     "deadline": "2026-11-03T23:59:59-12:00",
     "confDate": "2027-06",
     "place": "TBD",
-    "link": "https://acm-stoc.org"
+    "link": "https://acm-stoc.org",
+    "acceptRate": "~30%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 30
+      },
+      {
+        "year": 2022,
+        "rate": 29
+      },
+      {
+        "year": 2023,
+        "rate": 31
+      },
+      {
+        "year": 2024,
+        "rate": 30
+      },
+      {
+        "year": 2025,
+        "rate": 30
+      }
+    ]
   },
   {
     "name": "TACL",
@@ -1229,7 +2291,30 @@ const CONFERENCES = [
     "submitLink": "https://openreview.net/group?id=auai.org/UAI/2027/Conference",
     "confDate": "2027-07",
     "place": "TBD",
-    "link": "https://auai.org"
+    "link": "https://auai.org",
+    "acceptRate": "~26%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 26
+      },
+      {
+        "year": 2022,
+        "rate": 27
+      },
+      {
+        "year": 2023,
+        "rate": 26
+      },
+      {
+        "year": 2024,
+        "rate": 27
+      },
+      {
+        "year": 2025,
+        "rate": 26
+      }
+    ]
   },
   {
     "name": "UbiComp/IMWUT 2027",
@@ -1244,6 +2329,29 @@ const CONFERENCES = [
     "aliases": [
       "IMWUT",
       "UbiComp"
+    ],
+    "acceptRate": "~23%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 23
+      },
+      {
+        "year": 2022,
+        "rate": 24
+      },
+      {
+        "year": 2023,
+        "rate": 23
+      },
+      {
+        "year": 2024,
+        "rate": 24
+      },
+      {
+        "year": 2025,
+        "rate": 23
+      }
     ]
   },
   {
@@ -1257,7 +2365,29 @@ const CONFERENCES = [
     "place": "TBD",
     "link": "https://uist.acm.org",
     "h5": 60,
-    "acceptRate": "~22%"
+    "acceptRate": "~22%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 26
+      },
+      {
+        "year": 2022,
+        "rate": 26
+      },
+      {
+        "year": 2023,
+        "rate": 25
+      },
+      {
+        "year": 2024,
+        "rate": 24
+      },
+      {
+        "year": 2025,
+        "rate": 25
+      }
+    ]
   },
   {
     "name": "USENIX ATC 2027",
@@ -1268,7 +2398,30 @@ const CONFERENCES = [
     "deadline": "2027-01-12T23:59:59-08:00",
     "confDate": "2027-07",
     "place": "TBD",
-    "link": "https://usenix.org/conference/atc27"
+    "link": "https://usenix.org/conference/atc27",
+    "acceptRate": "~16%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 18
+      },
+      {
+        "year": 2022,
+        "rate": 16
+      },
+      {
+        "year": 2023,
+        "rate": 18
+      },
+      {
+        "year": 2024,
+        "rate": 17
+      },
+      {
+        "year": 2025,
+        "rate": 16
+      }
+    ]
   },
   {
     "name": "USENIX Security 2027",
@@ -1287,7 +2440,29 @@ const CONFERENCES = [
       "Security Symposium"
     ],
     "h5": 120,
-    "acceptRate": "~18%"
+    "acceptRate": "~18%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 19
+      },
+      {
+        "year": 2022,
+        "rate": 18
+      },
+      {
+        "year": 2023,
+        "rate": 18
+      },
+      {
+        "year": 2024,
+        "rate": 18
+      },
+      {
+        "year": 2025,
+        "rate": 17
+      }
+    ]
   },
   {
     "name": "VLDB 2027",
@@ -1300,7 +2475,29 @@ const CONFERENCES = [
     "place": "TBD",
     "link": "https://vldb.org",
     "h5": 90,
-    "acceptRate": "~25%"
+    "acceptRate": "~25%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 20
+      },
+      {
+        "year": 2022,
+        "rate": 18
+      },
+      {
+        "year": 2023,
+        "rate": 19
+      },
+      {
+        "year": 2024,
+        "rate": 19
+      },
+      {
+        "year": 2025,
+        "rate": 20
+      }
+    ]
   },
   {
     "name": "WACV 2027",
@@ -1311,7 +2508,30 @@ const CONFERENCES = [
     "deadline": "2026-08-28T23:59:59-08:00",
     "confDate": "2027-03",
     "place": "TBD (USA)",
-    "link": "https://wacv2027.thecvf.com"
+    "link": "https://wacv2027.thecvf.com",
+    "acceptRate": "~38%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 35
+      },
+      {
+        "year": 2022,
+        "rate": 35
+      },
+      {
+        "year": 2023,
+        "rate": 41
+      },
+      {
+        "year": 2024,
+        "rate": 40
+      },
+      {
+        "year": 2025,
+        "rate": 38
+      }
+    ]
   },
   {
     "name": "WSDM 2027",
@@ -1322,7 +2542,30 @@ const CONFERENCES = [
     "deadline": "2026-08-24T23:59:59-12:00",
     "confDate": "2027-02",
     "place": "TBD",
-    "link": "https://wsdm-conference.org"
+    "link": "https://wsdm-conference.org",
+    "acceptRate": "~17%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 18
+      },
+      {
+        "year": 2022,
+        "rate": 20
+      },
+      {
+        "year": 2023,
+        "rate": 17
+      },
+      {
+        "year": 2024,
+        "rate": 18
+      },
+      {
+        "year": 2025,
+        "rate": 17
+      }
+    ]
   },
   {
     "name": "WWW 2027",
@@ -1347,6 +2590,28 @@ const CONFERENCES = [
       "The Web Conference"
     ],
     "h5": 130,
-    "acceptRate": "~20%"
+    "acceptRate": "~20%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 21
+      },
+      {
+        "year": 2022,
+        "rate": 19
+      },
+      {
+        "year": 2023,
+        "rate": 20
+      },
+      {
+        "year": 2024,
+        "rate": 20
+      },
+      {
+        "year": 2025,
+        "rate": 20
+      }
+    ]
   }
 ];

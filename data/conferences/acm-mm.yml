@@ -13,3 +13,9 @@ editions:
 aliases:   # 搜索别名
   - "MM"
   - "MultiMedia"
+acceptHistory:   # 历年录取率 %（约数）
+  - { year: 2021, rate: 28 }
+  - { year: 2022, rate: 27 }
+  - { year: 2023, rate: 29 }
+  - { year: 2024, rate: 26 }
+  - { year: 2025, rate: 26 }

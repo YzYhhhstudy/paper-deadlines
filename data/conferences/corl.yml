@@ -11,3 +11,9 @@ editions:
     confDate: "2027-11"
     place: "TBD"
     submitLink: "https://openreview.net/group?id=robot-learning.org/CoRL/2027/Conference"
+acceptHistory:   # 历年录取率 %（约数）
+  - { year: 2021, rate: 34 }
+  - { year: 2022, rate: 38 }
+  - { year: 2023, rate: 36 }
+  - { year: 2024, rate: 35 }
+  - { year: 2025, rate: 33 }

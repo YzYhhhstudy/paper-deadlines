@@ -12,3 +12,9 @@ editions:
     confDate: "2027-03"
     place: "TBD"
     notification: "2026-12-21"   # 官网
+acceptHistory:   # 历年录取率 %（约数）
+  - { year: 2021, rate: 19 }
+  - { year: 2022, rate: 20 }
+  - { year: 2023, rate: 22 }
+  - { year: 2024, rate: 17 }
+  - { year: 2025, rate: 18 }
