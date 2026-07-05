@@ -40,6 +40,11 @@ const I18N = {
     subTitle: "在 Google/Apple 日历中订阅 DDL，数据更新自动同步",
     subAll: "📅 全部会议",
     sortOptions: { deadline: "按截止时间", h5: "按 h5 指数", accept: "按录取率" },
+    viewCards: "▦ 卡片",
+    viewTimeline: "☰ 时间线",
+    tlRolling: "🔄 期刊 · 随时可投",
+    absTag: "摘要截止",
+    daysLeft: (d) => `${d} 天`,
     h5Tag: (v) => `h5 ${v}`,
     acceptTag: (v) => `录取率 ${v}`,
     rolling: "🔄 随时可投",
@@ -95,6 +100,11 @@ const I18N = {
     subTitle: "Subscribe to DDLs in Google/Apple Calendar — updates sync automatically",
     subAll: "📅 All conferences",
     sortOptions: { deadline: "By deadline", h5: "By h5-index", accept: "By accept rate" },
+    viewCards: "▦ Cards",
+    viewTimeline: "☰ Timeline",
+    tlRolling: "🔄 Journals · rolling",
+    absTag: "abstract",
+    daysLeft: (d) => `${d}d`,
     h5Tag: (v) => `h5 ${v}`,
     acceptTag: (v) => `acc. ${v}`,
     rolling: "🔄 Open for submission",
@@ -159,6 +169,7 @@ const state = {
   starredOnly: urlParams.get("star") === "1",
   hidePast: urlParams.get("past") !== "show",
   sort: ["deadline", "h5", "accept"].includes(urlParams.get("sort")) ? urlParams.get("sort") : "deadline",
+  view: urlParams.get("view") === "timeline" ? "timeline" : "cards",
   starred: new Set(JSON.parse(localStorage.getItem("ddlradar-starred") || "[]")),
 };
 
@@ -173,6 +184,7 @@ function syncUrl() {
   if (state.starredOnly) p.set("star", "1");
   if (!state.hidePast) p.set("past", "show");
   if (state.sort !== "deadline") p.set("sort", state.sort);
+  if (state.view !== "cards") p.set("view", state.view);
   const url = location.pathname + "?" + p.toString();
   if (url !== lastUrl) {
     lastUrl = url;
@@ -350,6 +362,43 @@ function visibleConfs() {
     });
 }
 
+// ---------- 时间线视图：按月分组，一眼看清各月 DDL 密度 ----------
+
+function renderTimeline(wrap, confs) {
+  // 时间线固定按截稿时间升序（h5/录取率排序在月份分组下没有意义），滚动期刊单独一组
+  const dated = confs.filter((c) => !c.rolling)
+    .sort((a, b) => new Date(nextDeadline(a).iso) - new Date(nextDeadline(b).iso));
+  const rolling = confs.filter((c) => c.rolling);
+
+  const monthOf = (iso) => new Date(iso).toLocaleString(t("dateLocale"), { year: "numeric", month: "long" });
+  const dayOf = (iso) => new Date(iso).toLocaleString(t("dateLocale"), { month: "2-digit", day: "2-digit" });
+
+  const row = (c) => {
+    const nd = c.rolling ? null : nextDeadline(c);
+    const past = fullMsLeft(c) <= 0;
+    const d = past || c.rolling ? null : Math.floor(msLeft(c) / 86400000);
+    const cls = d == null ? "" : d < 7 ? "urgent" : d < 30 ? "soon" : "safe";
+    return `<div class="tl-row ${past ? "past" : ""}">
+      <span class="tl-date">${nd ? dayOf(nd.iso) : "—"}</span>
+      <a href="${c.link}" target="_blank" rel="noopener">${c.name}</a>
+      <span class="tag rank-${rankSlug(rankOf(c))}">${t("rankTag")(rankOf(c))}</span>
+      ${nd && nd.type === "abstract" ? `<span class="tag">⚠️ ${t("absTag")}</span>` : ""}
+      <span class="tl-left ${cls}">${past ? t("done") : c.rolling ? t("rolling") : t("daysLeft")(d)}</span>
+    </div>`;
+  };
+
+  let html = "", curMonth = null;
+  for (const c of dated) {
+    const m = monthOf(nextDeadline(c).iso);
+    if (m !== curMonth) { html += `<div class="tl-month">${m}</div>`; curMonth = m; }
+    html += row(c);
+  }
+  if (rolling.length) {
+    html += `<div class="tl-month">${t("tlRolling")}</div>` + rolling.map(row).join("");
+  }
+  wrap.innerHTML = `<div class="timeline">${html}</div>`;
+}
+
 function render() {
   syncUrl();
   const wrap = $("#cards");
@@ -358,6 +407,7 @@ function render() {
     wrap.innerHTML = `<div class="empty">${t("empty")}</div>`;
     return;
   }
+  if (state.view === "timeline") { renderTimeline(wrap, confs); return; }
   wrap.innerHTML = confs.map((c) => {
     const past = fullMsLeft(c) <= 0;
     const star = state.starred.has(c.name);
@@ -429,6 +479,10 @@ function applyLang() {
   $("#subtitle").textContent = t("subtitle");
   $("#langSeg").querySelectorAll("button").forEach((b) =>
     b.classList.toggle("on", b.dataset.lang === lang));
+  $("#viewSeg").querySelectorAll("button").forEach((b) => {
+    biLabel(b, b.dataset.view === "cards" ? "viewCards" : "viewTimeline");
+    b.classList.toggle("on", b.dataset.view === state.view);
+  });
   biLabel($("#exportIcs"), "exportBtn");
   $("#exportIcs").title = t("exportTitle");
   $("#search").placeholder = t("searchPh");
@@ -507,6 +561,13 @@ function exportIcs() {
 $("#search").value = state.search;
 $("#starredOnly").checked = state.starredOnly;
 $("#hidePast").checked = state.hidePast;
+$("#viewSeg").querySelectorAll("button").forEach((b) => {
+  b.onclick = () => {
+    state.view = b.dataset.view;
+    $("#viewSeg").querySelectorAll("button").forEach((x) => x.classList.toggle("on", x === b));
+    render();
+  };
+});
 $("#sortSel").onchange = (e) => { state.sort = e.target.value; render(); };
 $("#search").oninput = (e) => { state.search = e.target.value.trim(); render(); };
 $("#starredOnly").onchange = (e) => { state.starredOnly = e.target.checked; render(); };
