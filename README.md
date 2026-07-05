@@ -26,8 +26,11 @@ differentiated by personalization and calendar integration.
 - ⚠️ **Abstract-deadline aware**: when a conference has an earlier abstract deadline, the countdown
   targets it and warns you — never mistake the full-paper date for your real DDL
 - 📈 5-year historical deadlines for 20 major venues — see each conference's annual pattern at a glance
-- 🌏 **Trilingual UI (English / 中文 / 日本語)** — auto-detected from browser language, one-click toggle, remembered locally
+- 🌏 **7-language UI** (English / 中文 / 日本語 / 한국어 / Deutsch / Français / Español) — auto-detected, remembered locally
 - 🏷 **Multi-select** filters by area and rank, plus full-text search
+- 📋 **Submission pipeline**: tag venues as Planned / Writing / Submitted / Rebuttal and track them on a kanban **Board** view
+- 📈 **Detail view**: click any card for key dates (incl. rebuttal & notification countdowns) and an acceptance-rate trend chart
+- ⇥ **Timeline view**: horizontal time axis (overlapping deadlines stack into lanes) with a list-mode toggle
 - 🎓 **Dual rank system**: the English UI shows [CORE ranks](https://portal.core.edu.au) (A*/A/B/C —
   the international standard), while the Chinese UI shows CCF ranks (China's official venue tiers)
 - ⭐ Star conferences (persisted locally), one-click **.ics export** of starred deadlines
