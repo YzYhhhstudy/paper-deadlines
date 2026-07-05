@@ -48,7 +48,7 @@ for (const f of files) {
   if (doc.link && !/^https?:\/\//.test(doc.link)) err(f, `link 必须是 http(s) URL`);
 
   const type = doc.type || "conference";
-  if (!["conference", "journal"].includes(type)) { err(f, `type 必须是 conference / journal，收到 "${doc.type}"`); continue; }
+  if (!["conference", "journal", "workshop"].includes(type)) { err(f, `type 必须是 conference / journal / workshop，收到 "${doc.type}"`); continue; }
 
   // 期刊：滚动投稿，无固定截稿日
   if (type === "journal") {
@@ -108,6 +108,7 @@ for (const f of files) {
   for (const ed of doc.editions) {
     conferences.push({
       name: ed.id,
+      ...(type !== "conference" ? { type } : {}),
       fullName: doc.fullName,
       area: doc.area,
       rank: doc.ccf,

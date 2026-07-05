@@ -32,6 +32,20 @@ DESCRIPTION:CVPR 2027 full paper deadline — 7 days left
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:cvpr-workshops-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270320T115959Z
+DTSTART:20270320T115959Z
+DTEND:20270320T115959Z
+SUMMARY:📡 CVPR Workshops 2027 full paper deadline
+DESCRIPTION:CVPR 2027 Workshops (paper submission\, varies by workshop)\n
+ https://cvpr.thecvf.com
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:CVPR Workshops 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:eccv-2028-full-paper-deadline@ddlradar
 DTSTAMP:20280306T115959Z
 DTSTART:20280306T115959Z

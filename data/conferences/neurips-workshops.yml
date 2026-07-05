@@ -1,0 +1,13 @@
+# NeurIPS Workshops — 各 workshop 论文截稿（大致日期，以各 workshop 官网为准）
+name: "NeurIPS Workshops"
+type: workshop
+fullName: "NeurIPS 2026 Workshops (paper submission, varies by workshop)"
+area: "AI/ML"
+ccf: "Non-CCF"
+core: "Unranked"
+link: "https://neurips.cc"
+editions:
+  - id: "NeurIPS Workshops 2026"
+    deadline: "2026-08-28T23:59:59-12:00"
+    confDate: "2026-12"
+    place: "TBD"

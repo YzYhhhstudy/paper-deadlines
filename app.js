@@ -428,6 +428,7 @@ function render() {
       <div class="tags">
         <span class="tag rank-${rankSlug(rank)}">${t("rankTag")(rank)}</span>
         ${c.type === "journal" ? `<span class="tag type-journal">📖 ${t("journalTag")}</span>` : ""}
+        ${c.type === "workshop" ? `<span class="tag type-workshop">🛠 Workshop</span>` : ""}
         <span class="tag">${c.area}</span>
         ${c.place ? `<span class="tag">📍 ${c.place}</span>` : ""}
         ${c.confDate ? `<span class="tag">🗓 ${c.confDate}</span>` : ""}

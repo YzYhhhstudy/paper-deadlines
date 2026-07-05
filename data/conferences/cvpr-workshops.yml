@@ -1,0 +1,13 @@
+# CVPR Workshops — 各 workshop 论文截稿（大致日期，以各 workshop 官网为准）
+name: "CVPR Workshops"
+type: workshop
+fullName: "CVPR 2027 Workshops (paper submission, varies by workshop)"
+area: "CV"
+ccf: "Non-CCF"
+core: "Unranked"
+link: "https://cvpr.thecvf.com"
+editions:
+  - id: "CVPR Workshops 2027"
+    deadline: "2027-03-19T23:59:59-12:00"
+    confDate: "2027-06"
+    place: "TBD (USA)"

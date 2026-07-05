@@ -197,6 +197,20 @@ DESCRIPTION:NeurIPS 2026 full paper deadline — 7 days left
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:neurips-workshops-2026-full-paper-deadline@ddlradar
+DTSTAMP:20260829T115959Z
+DTSTART:20260829T115959Z
+DTEND:20260829T115959Z
+SUMMARY:📡 NeurIPS Workshops 2026 full paper deadline
+DESCRIPTION:NeurIPS 2026 Workshops (paper submission\, varies by workshop
+ )\nhttps://neurips.cc
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:NeurIPS Workshops 2026 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:uai-2027-full-paper-deadline@ddlradar
 DTSTAMP:20270221T115959Z
 DTSTART:20270221T115959Z

@@ -222,6 +222,18 @@ const CONFERENCES = [
     "acceptRate": "~24%"
   },
   {
+    "name": "CVPR Workshops 2027",
+    "type": "workshop",
+    "fullName": "CVPR 2027 Workshops (paper submission, varies by workshop)",
+    "area": "CV",
+    "rank": "Non-CCF",
+    "core": "Unranked",
+    "deadline": "2027-03-19T23:59:59-12:00",
+    "confDate": "2027-06",
+    "place": "TBD (USA)",
+    "link": "https://cvpr.thecvf.com"
+  },
+  {
     "name": "ECAI 2027",
     "fullName": "European Conference on Artificial Intelligence",
     "area": "AI/ML",
@@ -692,6 +704,18 @@ const CONFERENCES = [
     ],
     "h5": 300,
     "acceptRate": "~26%"
+  },
+  {
+    "name": "NeurIPS Workshops 2026",
+    "type": "workshop",
+    "fullName": "NeurIPS 2026 Workshops (paper submission, varies by workshop)",
+    "area": "AI/ML",
+    "rank": "Non-CCF",
+    "core": "Unranked",
+    "deadline": "2026-08-28T23:59:59-12:00",
+    "confDate": "2026-12",
+    "place": "TBD",
+    "link": "https://neurips.cc"
   },
   {
     "name": "NSDI 2027 (Fall)",

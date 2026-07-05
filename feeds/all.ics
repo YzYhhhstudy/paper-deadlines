@@ -265,6 +265,20 @@ DESCRIPTION:CVPR 2027 full paper deadline — 7 days left
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:cvpr-workshops-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270320T115959Z
+DTSTART:20270320T115959Z
+DTEND:20270320T115959Z
+SUMMARY:📡 CVPR Workshops 2027 full paper deadline
+DESCRIPTION:CVPR 2027 Workshops (paper submission\, varies by workshop)\n
+ https://cvpr.thecvf.com
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:CVPR Workshops 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:ecai-2027-full-paper-deadline@ddlradar
 DTSTAMP:20270121T115959Z
 DTSTART:20270121T115959Z
@@ -707,6 +721,20 @@ BEGIN:VALARM
 TRIGGER:-P7D
 ACTION:DISPLAY
 DESCRIPTION:NeurIPS 2026 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:neurips-workshops-2026-full-paper-deadline@ddlradar
+DTSTAMP:20260829T115959Z
+DTSTART:20260829T115959Z
+DTEND:20260829T115959Z
+SUMMARY:📡 NeurIPS Workshops 2026 full paper deadline
+DESCRIPTION:NeurIPS 2026 Workshops (paper submission\, varies by workshop
+ )\nhttps://neurips.cc
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:NeurIPS Workshops 2026 full paper deadline — 7 days left
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
