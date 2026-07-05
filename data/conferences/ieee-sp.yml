@@ -14,3 +14,5 @@ aliases:   # 搜索别名
   - "Oakland"
   - "S&P"
   - "SP"
+h5: 110   # Google Scholar h5-index（约数）
+acceptRate: "~15%"   # 近年录取率（约数）

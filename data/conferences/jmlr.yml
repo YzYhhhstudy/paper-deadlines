@@ -7,3 +7,4 @@ area: "AI/ML"
 ccf: "CCF-A"
 core: "Unranked"
 link: "https://jmlr.org"
+h5: 70   # Google Scholar h5-index（约数）

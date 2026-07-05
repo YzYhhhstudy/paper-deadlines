@@ -19,3 +19,5 @@ history:   # 往年全文截稿日（大致日期）
   - "2026-05-15"
 aliases:   # 搜索别名
   - "NIPS"
+h5: 300   # Google Scholar h5-index（约数）
+acceptRate: "~26%"   # 近年录取率（约数）

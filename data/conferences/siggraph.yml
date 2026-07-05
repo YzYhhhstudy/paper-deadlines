@@ -17,3 +17,5 @@ history:   # 往年全文截稿日（大致日期）
   - "2025-01-23"
 aliases:   # 搜索别名
   - "SG"
+h5: 100   # Google Scholar h5-index（约数）
+acceptRate: "~25%"   # 近年录取率（约数）

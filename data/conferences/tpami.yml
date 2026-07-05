@@ -7,3 +7,4 @@ area: "CV"
 ccf: "CCF-A"
 core: "Unranked"
 link: "https://www.computer.org/csdl/journal/tp"
+h5: 160   # Google Scholar h5-index（约数）

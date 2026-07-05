@@ -12,3 +12,5 @@ editions:
     place: "TBD"
 aliases:   # 搜索别名
   - "CCS"
+h5: 110   # Google Scholar h5-index（约数）
+acceptRate: "~18%"   # 近年录取率（约数）

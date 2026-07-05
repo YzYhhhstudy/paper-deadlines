@@ -39,6 +39,9 @@ const I18N = {
     subBtn: "📡 订阅日历",
     subTitle: "在 Google/Apple 日历中订阅 DDL，数据更新自动同步",
     subAll: "📅 全部会议",
+    sortOptions: { deadline: "按截止时间", h5: "按 h5 指数", accept: "按录取率" },
+    h5Tag: (v) => `h5 ${v}`,
+    acceptTag: (v) => `录取率 ${v}`,
     rolling: "🔄 随时可投",
     rollingLabel: "滚动审稿",
     rollingMeta: "期刊滚动收稿，无固定截止日期",
@@ -91,6 +94,9 @@ const I18N = {
     subBtn: "📡 Subscribe",
     subTitle: "Subscribe to DDLs in Google/Apple Calendar — updates sync automatically",
     subAll: "📅 All conferences",
+    sortOptions: { deadline: "By deadline", h5: "By h5-index", accept: "By accept rate" },
+    h5Tag: (v) => `h5 ${v}`,
+    acceptTag: (v) => `acc. ${v}`,
     rolling: "🔄 Open for submission",
     rollingLabel: "Rolling review",
     rollingMeta: "Journal with rolling submissions — no fixed deadline",
@@ -152,6 +158,7 @@ const state = {
   ranks: new Set((urlParams.get("ranks") || "").split(",").filter(Boolean)),   // 空 = 全部（值属于当前语言的等级体系）
   starredOnly: urlParams.get("star") === "1",
   hidePast: urlParams.get("past") !== "show",
+  sort: ["deadline", "h5", "accept"].includes(urlParams.get("sort")) ? urlParams.get("sort") : "deadline",
   starred: new Set(JSON.parse(localStorage.getItem("ddlradar-starred") || "[]")),
 };
 
@@ -165,6 +172,7 @@ function syncUrl() {
   if (state.ranks.size) p.set("ranks", [...state.ranks].join(","));
   if (state.starredOnly) p.set("star", "1");
   if (!state.hidePast) p.set("past", "show");
+  if (state.sort !== "deadline") p.set("sort", state.sort);
   const url = location.pathname + "?" + p.toString();
   if (url !== lastUrl) {
     lastUrl = url;
@@ -326,6 +334,10 @@ function visibleConfs() {
     .filter((c) => !state.starredOnly || state.starred.has(c.name))
     .filter((c) => !state.hidePast || fullMsLeft(c) > 0)
     .sort((a, b) => {
+      // h5 降序 / 录取率升序（越低越难中），缺数据的排最后
+      if (state.sort === "h5") return (b.h5 || -1) - (a.h5 || -1);
+      if (state.sort === "accept") return (parseFloat(String(a.acceptRate || "").replace("~", "")) || 999)
+        - (parseFloat(String(b.acceptRate || "").replace("~", "")) || 999);
       const aAlive = fullMsLeft(a) > 0, bAlive = fullMsLeft(b) > 0;
       // 未截止的按「下一个截点」（摘要或全文）升序，滚动期刊排其后，已截止的排最后
       if (aAlive && bAlive) {
@@ -363,6 +375,8 @@ function render() {
         <span class="tag">${c.area}</span>
         ${c.place ? `<span class="tag">📍 ${c.place}</span>` : ""}
         ${c.confDate ? `<span class="tag">🗓 ${c.confDate}</span>` : ""}
+        ${c.h5 ? `<span class="tag tag-metric">${t("h5Tag")(c.h5)}</span>` : ""}
+        ${c.acceptRate ? `<span class="tag tag-metric">${t("acceptTag")(c.acceptRate)}</span>` : ""}
       </div>
       ${countdownHtml(c)}
       <div class="meta">
@@ -418,6 +432,9 @@ function applyLang() {
   biLabel($("#exportIcs"), "exportBtn");
   $("#exportIcs").title = t("exportTitle");
   $("#search").placeholder = t("searchPh");
+  const sortSel = $("#sortSel");
+  sortSel.innerHTML = Object.entries(t("sortOptions"))
+    .map(([v, label]) => `<option value="${v}" ${state.sort === v ? "selected" : ""}>${label}</option>`).join("");
   biLabel($("#starredLabel"), "starredOnly");
   biLabel($("#hidePastLabel"), "hidePast");
   $("#foot1").innerHTML = t("foot1");
@@ -490,6 +507,7 @@ function exportIcs() {
 $("#search").value = state.search;
 $("#starredOnly").checked = state.starredOnly;
 $("#hidePast").checked = state.hidePast;
+$("#sortSel").onchange = (e) => { state.sort = e.target.value; render(); };
 $("#search").oninput = (e) => { state.search = e.target.value.trim(); render(); };
 $("#starredOnly").onchange = (e) => { state.starredOnly = e.target.checked; render(); };
 $("#hidePast").onchange = (e) => { state.hidePast = e.target.checked; render(); };

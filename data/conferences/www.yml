@@ -20,3 +20,5 @@ history:   # 往年全文截稿日（大致日期）
 aliases:   # 搜索别名
   - "TheWebConf"
   - "The Web Conference"
+h5: 130   # Google Scholar h5-index（约数）
+acceptRate: "~20%"   # 近年录取率（约数）

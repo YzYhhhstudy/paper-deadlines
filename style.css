@@ -109,7 +109,9 @@ main { max-width: 1100px; margin: 0 auto; padding: 20px 24px 40px; }
 .filters select {
   background: var(--panel-2); color: var(--text);
   border: 1px solid var(--border); border-radius: 8px; padding: 9px 10px; font-size: 13px;
+  width: 128px; /* 固定宽度，切换语言时不跳动 */
 }
+.tag.tag-metric { background: #33261f; color: #e0a97f; border-color: #5a3f2f; }
 .chk { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); cursor: pointer; }
 .chk .bi-wrap { justify-items: start; }
 

@@ -13,3 +13,5 @@ editions:
 aliases:   # 搜索别名
   - "USENIX Sec"
   - "Security Symposium"
+h5: 120   # Google Scholar h5-index（约数）
+acceptRate: "~18%"   # 近年录取率（约数）

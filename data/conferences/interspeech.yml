@@ -17,3 +17,5 @@ history:   # 往年全文截稿日（大致日期）
   - "2025-03-03"
 aliases:   # 搜索别名
   - "IS"
+h5: 110   # Google Scholar h5-index（约数）
+acceptRate: "~48%"   # 近年录取率（约数）

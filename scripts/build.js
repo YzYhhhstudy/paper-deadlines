@@ -64,6 +64,8 @@ for (const f of files) {
       core: doc.core,
       link: doc.link,
       ...(doc.aliases ? { aliases: doc.aliases } : {}),
+      ...(doc.h5 ? { h5: doc.h5 } : {}),
+      ...(doc.acceptRate ? { acceptRate: String(doc.acceptRate) } : {}),
     });
     continue;
   }
@@ -96,6 +98,11 @@ for (const f of files) {
     }
   }
 
+  if (doc.h5 != null && (!Number.isInteger(doc.h5) || doc.h5 <= 0)) err(f, `h5 需为正整数，收到 "${doc.h5}"`);
+  if (doc.acceptRate != null && !/^~?\d+(\.\d+)?%$/.test(String(doc.acceptRate))) {
+    err(f, `acceptRate 需形如 "~25%"，收到 "${doc.acceptRate}"`);
+  }
+
   if (errors.some((e) => e.startsWith(f + ":"))) continue;
 
   for (const ed of doc.editions) {
@@ -112,6 +119,8 @@ for (const f of files) {
       link: doc.link,
       ...(doc.history ? { history: doc.history.map(String) } : {}),
       ...(doc.aliases ? { aliases: doc.aliases } : {}),
+      ...(doc.h5 ? { h5: doc.h5 } : {}),
+      ...(doc.acceptRate ? { acceptRate: String(doc.acceptRate) } : {}),
     });
   }
 }

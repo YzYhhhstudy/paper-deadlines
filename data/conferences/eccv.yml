@@ -10,3 +10,5 @@ editions:
     deadline: "2028-03-05T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2028-09"
     place: "TBD"
+h5: 190   # Google Scholar h5-index（约数）
+acceptRate: "~25%"   # 近年录取率（约数）

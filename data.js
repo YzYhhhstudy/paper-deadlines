@@ -17,7 +17,9 @@ const CONFERENCES = [
       "2023-08-15",
       "2024-08-15",
       "2025-08-01"
-    ]
+    ],
+    "h5": 210,
+    "acceptRate": "~23%"
   },
   {
     "name": "AAMAS 2027",
@@ -45,7 +47,9 @@ const CONFERENCES = [
       "2024-02-15",
       "2025-02-15",
       "2026-02-15"
-    ]
+    ],
+    "h5": 200,
+    "acceptRate": "~22%"
   },
   {
     "name": "ACM CCS 2027",
@@ -59,7 +63,9 @@ const CONFERENCES = [
     "link": "https://sigsac.org/ccs.html",
     "aliases": [
       "CCS"
-    ]
+    ],
+    "h5": 110,
+    "acceptRate": "~18%"
   },
   {
     "name": "ACM MM 2027",
@@ -137,7 +143,9 @@ const CONFERENCES = [
       "2023-09-13",
       "2024-09-12",
       "2025-09-11"
-    ]
+    ],
+    "h5": 130,
+    "acceptRate": "~25%"
   },
   {
     "name": "CIKM 2027",
@@ -209,7 +217,9 @@ const CONFERENCES = [
       "2023-11-17",
       "2024-11-15",
       "2025-11-14"
-    ]
+    ],
+    "h5": 440,
+    "acceptRate": "~24%"
   },
   {
     "name": "ECAI 2027",
@@ -231,7 +241,9 @@ const CONFERENCES = [
     "deadline": "2028-03-05T23:59:59-12:00",
     "confDate": "2028-09",
     "place": "TBD",
-    "link": "https://eccv.ecva.net"
+    "link": "https://eccv.ecva.net",
+    "h5": 190,
+    "acceptRate": "~25%"
   },
   {
     "name": "EMNLP 2026 (ARR)",
@@ -249,7 +261,9 @@ const CONFERENCES = [
       "2024-06-15",
       "2025-05-19",
       "2026-05-19"
-    ]
+    ],
+    "h5": 180,
+    "acceptRate": "~21%"
   },
   {
     "name": "Eurographics 2027",
@@ -324,7 +338,9 @@ const CONFERENCES = [
       "2023-09-06",
       "2024-09-10",
       "2025-09-17"
-    ]
+    ],
+    "h5": 120,
+    "acceptRate": "~45%"
   },
   {
     "name": "ICCV 2027",
@@ -340,7 +356,9 @@ const CONFERENCES = [
       "2021-03-17",
       "2023-03-08",
       "2025-03-08"
-    ]
+    ],
+    "h5": 230,
+    "acceptRate": "~26%"
   },
   {
     "name": "ICDE 2027",
@@ -351,7 +369,9 @@ const CONFERENCES = [
     "deadline": "2026-10-08T23:59:59-12:00",
     "confDate": "2027-05",
     "place": "TBD",
-    "link": "https://icde2027.org"
+    "link": "https://icde2027.org",
+    "h5": 80,
+    "acceptRate": "~25%"
   },
   {
     "name": "ICDM 2027",
@@ -380,7 +400,9 @@ const CONFERENCES = [
       "2023-09-28",
       "2024-10-01",
       "2025-09-19"
-    ]
+    ],
+    "h5": 300,
+    "acceptRate": "~31%"
   },
   {
     "name": "ICML 2027",
@@ -398,7 +420,9 @@ const CONFERENCES = [
       "2024-02-01",
       "2025-01-30",
       "2026-01-28"
-    ]
+    ],
+    "h5": 270,
+    "acceptRate": "~27%"
   },
   {
     "name": "ICRA 2027",
@@ -415,7 +439,9 @@ const CONFERENCES = [
       "2023-09-15",
       "2024-09-15",
       "2025-09-15"
-    ]
+    ],
+    "h5": 100,
+    "acceptRate": "~40%"
   },
   {
     "name": "ICSE 2028",
@@ -426,7 +452,9 @@ const CONFERENCES = [
     "deadline": "2027-03-15T23:59:59-12:00",
     "confDate": "2028-05",
     "place": "TBD",
-    "link": "https://conf.researchr.org/series/icse"
+    "link": "https://conf.researchr.org/series/icse",
+    "h5": 90,
+    "acceptRate": "~22%"
   },
   {
     "name": "IEEE S&P 2027",
@@ -442,7 +470,9 @@ const CONFERENCES = [
       "Oakland",
       "S&P",
       "SP"
-    ]
+    ],
+    "h5": 110,
+    "acceptRate": "~15%"
   },
   {
     "name": "IJCAI 2027",
@@ -459,7 +489,9 @@ const CONFERENCES = [
       "2024-01-17",
       "2025-01-16",
       "2026-01-15"
-    ]
+    ],
+    "h5": 120,
+    "acceptRate": "~14%"
   },
   {
     "name": "IJCV",
@@ -491,7 +523,9 @@ const CONFERENCES = [
     "deadline": "2026-08-01T23:59:59-12:00",
     "confDate": "2027-05",
     "place": "TBD",
-    "link": "https://infocom2027.ieee-infocom.org"
+    "link": "https://infocom2027.ieee-infocom.org",
+    "h5": 90,
+    "acceptRate": "~19%"
   },
   {
     "name": "INTERSPEECH 2027",
@@ -511,7 +545,9 @@ const CONFERENCES = [
     ],
     "aliases": [
       "IS"
-    ]
+    ],
+    "h5": 110,
+    "acceptRate": "~48%"
   },
   {
     "name": "IROS 2027",
@@ -529,7 +565,9 @@ const CONFERENCES = [
       "2024-03-01",
       "2025-03-01",
       "2026-03-02"
-    ]
+    ],
+    "h5": 70,
+    "acceptRate": "~45%"
   },
   {
     "name": "ISCA 2027",
@@ -561,7 +599,8 @@ const CONFERENCES = [
     "area": "AI/ML",
     "rank": "CCF-A",
     "core": "Unranked",
-    "link": "https://jmlr.org"
+    "link": "https://jmlr.org",
+    "h5": 70
   },
   {
     "name": "KDD 2027 (Cycle 1)",
@@ -578,7 +617,9 @@ const CONFERENCES = [
       "2023-02-02",
       "2024-02-08",
       "2025-02-10"
-    ]
+    ],
+    "h5": 130,
+    "acceptRate": "~20%"
   },
   {
     "name": "MICRO 2027",
@@ -611,7 +652,9 @@ const CONFERENCES = [
     "deadline": "2026-10-05T23:59:59-12:00",
     "confDate": "2027-04",
     "place": "TBD",
-    "link": "https://aclrollingreview.org"
+    "link": "https://aclrollingreview.org",
+    "h5": 130,
+    "acceptRate": "~22%"
   },
   {
     "name": "NDSS 2027 (Summer)",
@@ -622,7 +665,9 @@ const CONFERENCES = [
     "deadline": "2026-07-23T23:59:59-12:00",
     "confDate": "2027-02",
     "place": "San Diego",
-    "link": "https://ndss-symposium.org"
+    "link": "https://ndss-symposium.org",
+    "h5": 90,
+    "acceptRate": "~17%"
   },
   {
     "name": "NeurIPS 2026",
@@ -644,7 +689,9 @@ const CONFERENCES = [
     ],
     "aliases": [
       "NIPS"
-    ]
+    ],
+    "h5": 300,
+    "acceptRate": "~26%"
   },
   {
     "name": "NSDI 2027 (Fall)",
@@ -655,7 +702,9 @@ const CONFERENCES = [
     "deadline": "2026-09-10T23:59:59-08:00",
     "confDate": "2027-04",
     "place": "TBD",
-    "link": "https://usenix.org/conference/nsdi27"
+    "link": "https://usenix.org/conference/nsdi27",
+    "h5": 70,
+    "acceptRate": "~18%"
   },
   {
     "name": "OSDI 2027",
@@ -672,7 +721,9 @@ const CONFERENCES = [
       "2023-12-07",
       "2024-12-10",
       "2025-12-10"
-    ]
+    ],
+    "h5": 60,
+    "acceptRate": "~18%"
   },
   {
     "name": "PPoPP 2027",
@@ -727,7 +778,9 @@ const CONFERENCES = [
     "deadline": "2027-01-30T23:59:59-12:00",
     "confDate": "2027-08",
     "place": "TBD",
-    "link": "https://sigcomm.org"
+    "link": "https://sigcomm.org",
+    "h5": 75,
+    "acceptRate": "~19%"
   },
   {
     "name": "SIGGRAPH 2027",
@@ -747,7 +800,9 @@ const CONFERENCES = [
     ],
     "aliases": [
       "SG"
-    ]
+    ],
+    "h5": 100,
+    "acceptRate": "~25%"
   },
   {
     "name": "SIGGRAPH Asia 2027",
@@ -775,7 +830,9 @@ const CONFERENCES = [
       "2023-02-01",
       "2024-01-25",
       "2025-01-23"
-    ]
+    ],
+    "h5": 100,
+    "acceptRate": "~20%"
   },
   {
     "name": "SIGMOD 2027",
@@ -786,7 +843,9 @@ const CONFERENCES = [
     "deadline": "2026-07-15T23:59:59-12:00",
     "confDate": "2027-06",
     "place": "TBD",
-    "link": "https://sigmod.org"
+    "link": "https://sigmod.org",
+    "h5": 90,
+    "acceptRate": "~25%"
   },
   {
     "name": "SODA 2027",
@@ -813,7 +872,9 @@ const CONFERENCES = [
       "2023-04-17",
       "2024-04-17",
       "2025-04-17"
-    ]
+    ],
+    "h5": 50,
+    "acceptRate": "~17%"
   },
   {
     "name": "STOC 2027",
@@ -844,7 +905,8 @@ const CONFERENCES = [
     "area": "CV",
     "rank": "CCF-A",
     "core": "Unranked",
-    "link": "https://www.computer.org/csdl/journal/tp"
+    "link": "https://www.computer.org/csdl/journal/tp",
+    "h5": 160
   },
   {
     "name": "UAI 2027",
@@ -881,7 +943,9 @@ const CONFERENCES = [
     "deadline": "2027-04-02T23:59:59-12:00",
     "confDate": "2027-10",
     "place": "TBD",
-    "link": "https://uist.acm.org"
+    "link": "https://uist.acm.org",
+    "h5": 60,
+    "acceptRate": "~22%"
   },
   {
     "name": "USENIX ATC 2027",
@@ -907,7 +971,9 @@ const CONFERENCES = [
     "aliases": [
       "USENIX Sec",
       "Security Symposium"
-    ]
+    ],
+    "h5": 120,
+    "acceptRate": "~18%"
   },
   {
     "name": "VLDB 2027",
@@ -918,7 +984,9 @@ const CONFERENCES = [
     "deadline": "2027-03-01T23:59:59-12:00",
     "confDate": "2027-09",
     "place": "TBD",
-    "link": "https://vldb.org"
+    "link": "https://vldb.org",
+    "h5": 90,
+    "acceptRate": "~25%"
   },
   {
     "name": "WACV 2027",
@@ -963,6 +1031,8 @@ const CONFERENCES = [
     "aliases": [
       "TheWebConf",
       "The Web Conference"
-    ]
+    ],
+    "h5": 130,
+    "acceptRate": "~20%"
   }
 ];
