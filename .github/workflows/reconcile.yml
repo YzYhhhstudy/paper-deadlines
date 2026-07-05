@@ -1,0 +1,49 @@
+name: Reconcile with ccfddl
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # 每周一 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - name: Download ccfddl data
+        run: |
+          curl -sL https://codeload.github.com/ccfddl/ccf-deadlines/tar.gz/refs/heads/main -o /tmp/ccfddl.tgz
+          mkdir -p /tmp/ccfddl
+          tar xzf /tmp/ccfddl.tgz -C /tmp/ccfddl --strip-components=1
+
+      - name: Run reconciliation
+        run: node scripts/reconcile.js /tmp/ccfddl/conference > report.md && cat report.md
+
+      - name: Open or update issue when differences found
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! grep -q "⚠️" report.md; then
+            echo "无差异，跳过 issue"
+            exit 0
+          fi
+          gh label create data-reconcile --force --color FBCA04 \
+            --description "与 ccfddl 的数据对账差异" -R "$GITHUB_REPOSITORY" || true
+          existing=$(gh issue list -R "$GITHUB_REPOSITORY" --label data-reconcile --state open --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            gh issue edit "$existing" -R "$GITHUB_REPOSITORY" --body-file report.md
+          else
+            gh issue create -R "$GITHUB_REPOSITORY" --title "数据对账：与 ccfddl 存在差异" \
+              --label data-reconcile --body-file report.md
+          fi
