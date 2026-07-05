@@ -7,8 +7,9 @@ const path = require("path");
 const yaml = require("js-yaml");
 
 const ccfddlDir = process.argv[2];
+const FIX = process.argv.includes("--fix"); // 单一候选日期的差异直接改写 YAML（配合 CI 开 PR）
 if (!ccfddlDir || !fs.existsSync(ccfddlDir)) {
-  console.error("用法: node scripts/reconcile.js <ccfddl/conference 目录>");
+  console.error("用法: node scripts/reconcile.js <ccfddl/conference 目录> [--fix]");
   process.exit(1);
 }
 
@@ -47,7 +48,7 @@ function findTheirs(base, aliases) {
 }
 
 const lines = ["# 与 ccfddl 的数据对账报告", "", `双方均为社区维护数据，差异仅供人工核对官网。共比对 ${ours.length} 条。`, ""];
-let diff = 0, ok = 0, notFound = 0;
+let diff = 0, ok = 0, notFound = 0, fixed = 0;
 
 for (const c of ours) {
   if (c.rolling) continue; // 期刊无固定 DDL，跳过
@@ -68,9 +69,31 @@ for (const c of ours) {
     .filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d));
   if (!theirDates.length) { lines.push(`- ❓ **${c.name}**：ccfddl 的 ${year} 年截稿日为 TBD`); notFound++; continue; }
 
-  if (theirDates.includes(ourDate)) ok++;
-  else { diff++; lines.push(`- ⚠️ **${c.name}**：我们 \`${ourDate}\`，ccfddl \`${theirDates.join(" / ")}\` — 请核对官网后修正 \`data/conferences/\``); }
+  if (theirDates.includes(ourDate)) { ok++; continue; }
+
+  // --fix：ccfddl 只有一个候选日期时，直接改写对应 YAML 的 deadline 日期部分（保留时间与时区）。
+  // 若修正会导致摘要截止 >= 全文截止（说明摘要日期也变了），转人工处理
+  const wouldBreakAbstract = c.abstractDeadline
+    && theirDates.length === 1 && c.abstractDeadline.slice(0, 10) >= theirDates[0];
+  if (FIX && theirDates.length === 1 && !wouldBreakAbstract) {
+    const slug = base.toLowerCase().replace(/&/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    const file = path.join(__dirname, "..", "data", "conferences", slug + ".yml");
+    if (fs.existsSync(file)) {
+      const txt = fs.readFileSync(file, "utf8");
+      const patched = txt.split("\n").map((line) =>
+        /^\s*deadline:/.test(line) && line.includes(ourDate) ? line.replace(ourDate, theirDates[0]) : line
+      ).join("\n");
+      if (patched !== txt) {
+        fs.writeFileSync(file, patched);
+        fixed++;
+        lines.push(`- 🔧 **${c.name}**：\`${ourDate}\` → \`${theirDates[0]}\`（已按 ccfddl 自动修正，请审核）`);
+        continue;
+      }
+    }
+  }
+  diff++;
+  lines.push(`- ⚠️ **${c.name}**：我们 \`${ourDate}\`，ccfddl \`${theirDates.join(" / ")}\` — 请核对官网后修正 \`data/conferences/\``);
 }
 
-lines.push("", `**结果**：✅ 一致 ${ok} · ⚠️ 日期不一致 ${diff} · ❓ 无法比对 ${notFound}`);
+lines.push("", `**结果**：✅ 一致 ${ok}${FIX ? ` · 🔧 已自动修正 ${fixed}` : ""} · ⚠️ 待人工处理 ${diff} · ❓ 无法比对 ${notFound}`);
 console.log(lines.join("\n"));

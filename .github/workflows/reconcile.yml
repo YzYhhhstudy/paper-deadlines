@@ -6,8 +6,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   issues: write
+  pull-requests: write
 
 jobs:
   reconcile:
@@ -27,8 +28,27 @@ jobs:
           mkdir -p /tmp/ccfddl
           tar xzf /tmp/ccfddl.tgz -C /tmp/ccfddl --strip-components=1
 
-      - name: Run reconciliation
-        run: node scripts/reconcile.js /tmp/ccfddl/conference > report.md && cat report.md
+      - name: Run reconciliation with auto-fix
+        run: node scripts/reconcile.js /tmp/ccfddl/conference --fix > report.md && cat report.md
+
+      - name: Rebuild generated files after fixes
+        run: |
+          if ! git diff --quiet data/; then npm run build; fi
+
+      # 单一候选日期的差异 → 自动改 YAML 并开 PR（人工审核合并）
+      - name: Open auto-fix PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: bot/data-autofix
+          title: "bot: 按 ccfddl 对账结果自动修正截稿日期"
+          commit-message: "bot: auto-fix deadlines from ccfddl reconciliation"
+          body-path: report.md
+          labels: data-reconcile
+          add-paths: |
+            data/
+            data.js
+            data.json
+            feeds/
 
       - name: Open or update issue when differences found
         env:
