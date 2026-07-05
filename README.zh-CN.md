@@ -2,6 +2,13 @@
 
 # 📡 DDL Radar · 学术会议/期刊截稿日追踪
 
+[![Data validate & build](https://github.com/YzYhhhstudy/paper-deadlines/actions/workflows/data.yml/badge.svg)](https://github.com/YzYhhhstudy/paper-deadlines/actions/workflows/data.yml)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fyzyhhhstudy.github.io%2Fpaper-deadlines%2F&label=site)](https://yzyhhhstudy.github.io/paper-deadlines/)
+[![PWA](https://img.shields.io/badge/PWA-installable-5b4be0)](https://yzyhhhstudy.github.io/paper-deadlines/)
+[![i18n](https://img.shields.io/badge/i18n-7_languages-1baf7a)](#功能)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/YzYhhhstudy/paper-deadlines/tree/master/data/conferences)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://github.com/YzYhhhstudy/paper-deadlines)
+
 追踪 AI/ML、CV、NLP、Systems、Security 等领域顶会截稿日，主打**个性化**：
 倒计时、按领域/CCF 等级筛选、收藏、一键导出 .ics 到 Google/Apple 日历。
 
@@ -21,9 +28,11 @@
 - 🎨 暗色 / 亮色 / 自动（跟随系统）三态主题切换（记忆偏好）
 - 🌏 **7 语言界面**（中 / 英 / 日 / 韩 / 德 / 法 / 西）：按浏览器语言自动选择，记忆偏好
 - 🏷 按领域和等级**多选**筛选，支持搜索
-- 📋 **投稿进度看板**：给会议标记「想投 / 在写 / 已投 / Rebuttal」，看板视图四列管理
+- 📋 **投稿进度看板**：「想投 / 在写 / 已投 / Rebuttal / 已录用 / 被拒」六列，支持**拖拽**移动，自动统计**个人命中率**
 - 📈 **会议详情页**：点卡片查看关键日期（含 rebuttal / 结果通知倒计时）与历年录取率曲线
-- ⇥ **时间线视图**：默认横轴时间轴（重叠会议自动分行），可切换列表模式
+- ⇥ **时间线视图**：默认横轴时间轴（3/6/12 个月缩放、重叠会议自动分行），可切换列表模式
+- 🚀 **投稿入口直达**：OpenReview / ARR 托管的会议一键跳转投稿系统
+- 🔔 提醒提前量可自定义（1/3/7/14/30 天）；排序支持截止时间、h5、录取率双向
 - 🎓 **双等级体系**：中文界面显示 CCF 等级（A/B/C/非CCF），英文界面显示国际通用的
   [CORE 等级](https://portal.core.edu.au)（A*/A/B/C）
 - 📈 20 个主流会议附**近 5 年历史 DDL**，一眼看出该会议每年几月截稿的规律（大致日期 ±数天，精确请查官网或 [ccfddl 数据仓库](https://github.com/ccfddl/ccf-deadlines)）

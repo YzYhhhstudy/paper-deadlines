@@ -2,6 +2,13 @@
 
 # 📡 DDL Radar · CS Conference Deadline Tracker
 
+[![Data validate & build](https://github.com/YzYhhhstudy/paper-deadlines/actions/workflows/data.yml/badge.svg)](https://github.com/YzYhhhstudy/paper-deadlines/actions/workflows/data.yml)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fyzyhhhstudy.github.io%2Fpaper-deadlines%2F&label=site)](https://yzyhhhstudy.github.io/paper-deadlines/)
+[![PWA](https://img.shields.io/badge/PWA-installable-5b4be0)](https://yzyhhhstudy.github.io/paper-deadlines/)
+[![i18n](https://img.shields.io/badge/i18n-7_languages-1baf7a)](#features)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/YzYhhhstudy/paper-deadlines/tree/master/data/conferences)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](#license)
+
 Track submission deadlines for ~70 conferences across 16 CS areas — with the personal features
 the big trackers lack: favorites, calendar export, historical deadline patterns and
 **abstract-deadline warnings**.
@@ -28,9 +35,12 @@ differentiated by personalization and calendar integration.
 - 📈 5-year historical deadlines for 20 major venues — see each conference's annual pattern at a glance
 - 🌏 **7-language UI** (English / 中文 / 日本語 / 한국어 / Deutsch / Français / Español) — auto-detected, remembered locally
 - 🏷 **Multi-select** filters by area and rank, plus full-text search
-- 📋 **Submission pipeline**: tag venues as Planned / Writing / Submitted / Rebuttal and track them on a kanban **Board** view
+- 📋 **Submission pipeline**: drag cards across Planned / Writing / Submitted / Rebuttal / Accepted / Rejected
+  on the kanban **Board**, with your personal **hit-rate** stat
 - 📈 **Detail view**: click any card for key dates (incl. rebuttal & notification countdowns) and an acceptance-rate trend chart
-- ⇥ **Timeline view**: horizontal time axis (overlapping deadlines stack into lanes) with a list-mode toggle
+- ⇥ **Timeline view**: horizontal time axis with 3/6/12-month zoom (overlapping deadlines stack into lanes) plus a list mode
+- 🚀 **Submit-portal links** straight to OpenReview/ARR where available
+- 🔔 Reminders with **custom lead times** (1/3/7/14/30 days); sort by deadline, h5, or acceptance rate in either direction
 - 🎓 **Dual rank system**: the English UI shows [CORE ranks](https://portal.core.edu.au) (A*/A/B/C —
   the international standard), while the Chinese UI shows CCF ranks (China's official venue tiers)
 - ⭐ Star conferences (persisted locally), one-click **.ics export** of starred deadlines
