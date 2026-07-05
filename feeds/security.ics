@@ -19,10 +19,24 @@ DESCRIPTION:ACM CCS 2027 full paper deadline — 7 days left
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:ieee-sp-2027-abstract-deadline@ddlradar
+DTSTAMP:20261111T115959Z
+DTSTART:20261111T115959Z
+DTEND:20261111T115959Z
+SUMMARY:📡 IEEE S&P 2027 abstract deadline
+DESCRIPTION:IEEE Symposium on Security and Privacy\nhttps://sp2027.ieee-s
+ ecurity.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:IEEE S&P 2027 abstract deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:ieee-sp-2027-full-paper-deadline@ddlradar
-DTSTAMP:20261115T115959Z
-DTSTART:20261115T115959Z
-DTEND:20261115T115959Z
+DTSTAMP:20261118T115959Z
+DTSTART:20261118T115959Z
+DTEND:20261118T115959Z
 SUMMARY:📡 IEEE S&P 2027 full paper deadline
 DESCRIPTION:IEEE Symposium on Security and Privacy\nhttps://sp2027.ieee-s
  ecurity.org
@@ -33,24 +47,38 @@ DESCRIPTION:IEEE S&P 2027 full paper deadline — 7 days left
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:ndss-2027-summer-full-paper-deadline@ddlradar
-DTSTAMP:20260724T115959Z
-DTSTART:20260724T115959Z
-DTEND:20260724T115959Z
-SUMMARY:📡 NDSS 2027 (Summer) full paper deadline
+UID:ndss-2027-fall-full-paper-deadline@ddlradar
+DTSTAMP:20260820T115959Z
+DTSTART:20260820T115959Z
+DTEND:20260820T115959Z
+SUMMARY:📡 NDSS 2027 (Fall) full paper deadline
 DESCRIPTION:Network and Distributed System Security Symposium\nhttps://nd
  ss-symposium.org
 BEGIN:VALARM
 TRIGGER:-P7D
 ACTION:DISPLAY
-DESCRIPTION:NDSS 2027 (Summer) full paper deadline — 7 days left
+DESCRIPTION:NDSS 2027 (Fall) full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:usenix-security-2027-abstract-deadline@ddlradar
+DTSTAMP:20260819T115959Z
+DTSTART:20260819T115959Z
+DTEND:20260819T115959Z
+SUMMARY:📡 USENIX Security 2027 abstract deadline
+DESCRIPTION:USENIX Security Symposium\nhttps://usenix.org/conference/usen
+ ixsecurity27
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:USENIX Security 2027 abstract deadline — 7 days left
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:usenix-security-2027-full-paper-deadline@ddlradar
-DTSTAMP:20270206T115959Z
-DTSTART:20270206T115959Z
-DTEND:20270206T115959Z
+DTSTAMP:20260826T115959Z
+DTSTART:20260826T115959Z
+DTEND:20260826T115959Z
 SUMMARY:📡 USENIX Security 2027 full paper deadline
 DESCRIPTION:USENIX Security Symposium\nhttps://usenix.org/conference/usen
  ixsecurity27

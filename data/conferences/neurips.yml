@@ -7,8 +7,9 @@ core: "A*"   # CORE: A* / A / B / C / Unranked
 link: "https://neurips.cc"
 editions:
   - id: "NeurIPS 2026"
-    abstractDeadline: "2026-05-11T23:59:59-12:00"
-    deadline: "2026-05-15T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    abstractDeadline: "2026-05-04T23:59:59-12:00"   # 官网核实
+    deadline: "2026-05-06T23:59:59-12:00"   # 官网核实 2026-07
+    verified: true   # 带时区偏移，AoE 写 -12:00
     confDate: "2026-12"
     place: "TBD"
     rebuttal: "2026-08-04"   # rebuttal 开始（约数）
@@ -18,7 +19,7 @@ history:   # 往年全文截稿日（大致日期）
   - "2023-05-17"
   - "2024-05-22"
   - "2025-05-15"
-  - "2026-05-15"
+  - "2026-05-06"
 aliases:   # 搜索别名
   - "NIPS"
 h5: 300   # Google Scholar h5-index（约数）

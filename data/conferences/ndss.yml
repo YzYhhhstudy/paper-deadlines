@@ -6,10 +6,10 @@ ccf: "CCF-A"   # CCF-A / CCF-B / CCF-C / Non-CCF
 core: "A*"   # CORE: A* / A / B / C / Unranked
 link: "https://ndss-symposium.org"
 editions:
-  - id: "NDSS 2027 (Summer)"
-    deadline: "2026-07-23T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+  - id: "NDSS 2027 (Fall)"
+    deadline: "2026-08-19T23:59:59-12:00"   # 官网核实 2026-07（秋季轮）
+    verified: true
     confDate: "2027-02"
     place: "San Diego"
-    notification: "2026-09-10"   # 结果通知（约数）
 h5: 90   # Google Scholar h5-index（约数）
 acceptRate: "~17%"   # 近年录取率（约数）

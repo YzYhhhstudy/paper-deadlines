@@ -124,6 +124,7 @@ for (const f of files) {
       core: doc.core,
       ...(ed.abstractDeadline ? { abstractDeadline: ed.abstractDeadline } : {}),
       deadline: ed.deadline,
+      ...(ed.verified ? { verified: true } : {}), // 官网核实过：对账机器人不自动改写
       ...(ed.rebuttal ? { rebuttal: String(ed.rebuttal) } : {}),
       ...(ed.notification ? { notification: String(ed.notification) } : {}),
       confDate: ed.confDate,

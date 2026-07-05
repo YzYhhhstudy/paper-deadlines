@@ -48,7 +48,7 @@ function findTheirs(base, aliases) {
 }
 
 const lines = ["# 与 ccfddl 的数据对账报告", "", `双方均为社区维护数据，差异仅供人工核对官网。共比对 ${ours.length} 条。`, ""];
-let diff = 0, ok = 0, notFound = 0, fixed = 0;
+let diff = 0, ok = 0, notFound = 0, fixed = 0, locked = 0;
 
 for (const c of ours) {
   if (c.rolling) continue; // 期刊无固定 DDL，跳过
@@ -70,6 +70,13 @@ for (const c of ours) {
   if (!theirDates.length) { lines.push(`- ❓ **${c.name}**：ccfddl 的 ${year} 年截稿日为 TBD`); notFound++; continue; }
 
   if (theirDates.includes(ourDate)) { ok++; continue; }
+
+  // 官网核实过的日期：报告差异但不自动改写（官方信息优先于 ccfddl）
+  if (c.verified) {
+    locked++;
+    lines.push(`- 🔒 **${c.name}**：我们 \`${ourDate}\`（官网核实），ccfddl \`${theirDates.join(" / ")}\` — 保持官方数据`);
+    continue;
+  }
 
   // --fix：ccfddl 只有一个候选日期时，直接改写对应 YAML 的 deadline 日期部分（保留时间与时区）。
   // 若修正会导致摘要截止 >= 全文截止（说明摘要日期也变了），转人工处理
@@ -95,5 +102,5 @@ for (const c of ours) {
   lines.push(`- ⚠️ **${c.name}**：我们 \`${ourDate}\`，ccfddl \`${theirDates.join(" / ")}\` — 请核对官网后修正 \`data/conferences/\``);
 }
 
-lines.push("", `**结果**：✅ 一致 ${ok}${FIX ? ` · 🔧 已自动修正 ${fixed}` : ""} · ⚠️ 待人工处理 ${diff} · ❓ 无法比对 ${notFound}`);
+lines.push("", `**结果**：✅ 一致 ${ok}${FIX ? ` · 🔧 已自动修正 ${fixed}` : ""}${locked ? ` · 🔒 官网核实保持 ${locked}` : ""} · ⚠️ 待人工处理 ${diff} · ❓ 无法比对 ${notFound}`);
 console.log(lines.join("\n"));

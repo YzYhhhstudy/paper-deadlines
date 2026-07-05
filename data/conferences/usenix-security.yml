@@ -7,7 +7,9 @@ core: "A*"   # CORE: A* / A / B / C / Unranked
 link: "https://usenix.org/conference/usenixsecurity27"
 editions:
   - id: "USENIX Security 2027"
-    deadline: "2027-02-05T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    abstractDeadline: "2026-08-18T23:59:59-12:00"   # 官网：paper registration
+    deadline: "2026-08-25T23:59:59-12:00"   # 官网核实 2026-07（Cycle 1）
+    verified: true   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-08"
     place: "TBD"
 aliases:   # 搜索别名

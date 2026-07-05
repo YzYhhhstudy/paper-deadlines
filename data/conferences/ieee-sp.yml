@@ -7,7 +7,9 @@ core: "A*"   # CORE: A* / A / B / C / Unranked
 link: "https://sp2027.ieee-security.org"
 editions:
   - id: "IEEE S&P 2027"
-    deadline: "2026-11-14T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    abstractDeadline: "2026-11-10T23:59:59-12:00"   # 官网：摘要注册
+    deadline: "2026-11-17T23:59:59-12:00"   # 官网核实 2026-07
+    verified: true   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-05"
     place: "San Francisco"
 aliases:   # 搜索别名
