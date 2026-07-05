@@ -51,7 +51,9 @@
 }
 
 body {
-  font-family: -apple-system, "PingFang SC", "Segoe UI", sans-serif;
+  /* 显式固定 CJK 字体顺序：避免 lang 属性切换系统默认字体导致文字宽度微变、控件跳动 */
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans",
+    "Segoe UI", "Microsoft YaHei", "Yu Gothic UI", sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;

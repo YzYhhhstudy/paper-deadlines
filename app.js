@@ -129,12 +129,77 @@ const I18N = {
     rankOptionLabel: (v) => (v === "Unranked" ? "Unranked" : `CORE ${v}`),
     rankTag: (v) => (v === "Unranked" ? "Unranked" : `CORE ${v}`),
   },
+  ja: {
+    htmlLang: "ja",
+    dateLocale: "ja-JP",
+    docTitle: "DDL Radar · 学会締切トラッカー",
+    subtitle: "学会・ジャーナル投稿締切トラッカー — カウントダウン · お気に入り · カレンダー連携",
+    themeTitles: { auto: "テーマ：自動（システムに従う）", light: "テーマ：ライト", dark: "テーマ：ダーク" },
+    selAll: "すべて選択",
+    selNone: "クリア",
+    exportBtn: "📅 お気に入りをカレンダーへ",
+    exportTitle: "お気に入りの締切を .ics ファイルとして書き出す",
+    searchPh: "🔍 学会名で検索（例：NeurIPS / CVPR…）",
+    allAreas: "全分野",
+    allRanks: "全ランク",
+    nSelected: (n) => `${n} 件選択中`,
+    starredOnly: "お気に入りのみ ⭐",
+    hidePast: "締切済みを隠す",
+    empty: "該当する学会がありません — フィルタを緩めるか、YAML で追加してください",
+    done: "締切済み",
+    d: "日", h: "時間", m: "分",
+    absFirst: "⚠️ まずアブストラクト！<b>アブスト</b>締切まで",
+    absClosed: "アブスト締切済み · 本文締切まで",
+    fullLeft: "本文締切まで",
+    absLabel: "アブスト締切：",
+    fullLabel: "本文締切：",
+    localTime: "（ローカル時間）",
+    absNote: " ← 本文より早いので注意",
+    hist: "📈 過去の締切：",
+    histTitle: "過去数年の本文締切（目安）。毎年の傾向の把握に",
+    starTitle: "お気に入り",
+    foot1: `⚠️ 締切はサンプル／過去の傾向からの推定です。投稿前に必ず公式サイトでご確認ください。
+      データは <code>data/conferences/*.yml</code> で管理（PR 歓迎、CI が自動検証）。`,
+    foot2: "カウントダウンは各学会の公式タイムゾーン（多くは AoE = UTC-12）基準。お気に入りはブラウザに保存。ランクは CORE ランキング（portal.core.edu.au）に基づきます。",
+    sortOptions: { deadline: "締切順", h5: "h5 指数順", accept: "採択率順" },
+    viewCards: "▦ カード",
+    viewTimeline: "☰ タイムライン",
+    tlRolling: "🔄 ジャーナル · 随時投稿可",
+    absTag: "アブスト",
+    daysLeft: (d) => `${d} 日`,
+    h5Tag: (v) => `h5 ${v}`,
+    acceptTag: (v) => `採択率 ${v}`,
+    rolling: "🔄 随時投稿可",
+    rollingLabel: "ローリング査読",
+    rollingMeta: "ジャーナルは随時投稿可、固定締切なし",
+    journalTag: "ジャーナル",
+    notifyTitle: (name, d) => `📡 ${name} 締切まであと ${d} 日`,
+    notifyOn: "締切リマインダー ON：お気に入りの締切 7 日前 / 1 日前に通知 · クリックで OFF",
+    notifyOff: "締切リマインダーを有効にする（ブラウザ通知）",
+    contribLead: "締切が古い、または学会が見つからない？",
+    contribAdd: "➕ 学会を追加",
+    contribFix: "✏️ データを修正",
+    contribTail: "（GitHub 上で YAML を編集して PR — CI が自動検証）",
+    subBtn: "📡 購読",
+    subTitle: "Google/Apple カレンダーで締切を購読 — 更新は自動同期",
+    subAll: "📅 すべての学会",
+    alertStar: "まず ⭐ でお気に入りに登録してからエクスポートしてください。",
+    icsAbs: "abstract deadline", icsFull: "full paper deadline",
+    icsAlarm: (name, label) => `${name} ${label} — 7 days left`,
+    rankKey: "core",
+    rankOptions: ["A*", "A", "B", "C", "Unranked"],
+    rankOptionLabel: (v) => (v === "Unranked" ? "ランク外" : `CORE ${v}`),
+    rankTag: (v) => (v === "Unranked" ? "ランク外" : `CORE ${v}`),
+  },
 };
 
 // URL 参数优先（分享链接可完整复现视图），其次本地偏好，最后浏览器语言
 const urlParams = new URLSearchParams(location.search);
 let lang = urlParams.get("lang") || localStorage.getItem("ddlradar-lang");
-if (!I18N[lang]) lang = (navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
+if (!I18N[lang]) {
+  const nav = (navigator.language || "").toLowerCase();
+  lang = nav.startsWith("zh") ? "zh" : nav.startsWith("ja") ? "ja" : "en";
+}
 const t = (key) => I18N[lang][key];
 
 // 会议在当前等级体系下的等级值
@@ -142,11 +207,14 @@ const rankOf = (c) => c[t("rankKey")];
 // "A*" 之类的值不能直接作 CSS 类名，转成安全写法（A* → Astar）
 const rankSlug = (v) => v.replace(/\*/g, "star").replace(/[^A-Za-z-]/g, "");
 
-// 带文字的控件用"影子标签"：中英两份文案叠放在同一格，非当前语言的隐藏，
-// 控件宽度 = 两者较大值 → 切换语言时尺寸/位置完全不变（免手调像素，任何字体下都成立）
+// 带文字的控件用"影子标签"：所有语言的文案叠放在同一格，非当前语言的隐藏，
+// 控件宽度 = 各语言中的最大值 → 切换语言时尺寸/位置完全不变（免手调像素，任何字体下都成立）
 function biLabel(el, key) {
-  const other = lang === "zh" ? "en" : "zh";
-  el.innerHTML = `<span class="bi-wrap"><span>${I18N[lang][key]}</span><span class="ghost" aria-hidden="true">${I18N[other][key]}</span></span>`;
+  // 每个 span 固定标注自身语言：OpenType locl 特性会按 lang 选择地区字形，
+  // 若跟随页面语言会导致同一字符串在不同界面语言下宽度微差
+  el.innerHTML = `<span class="bi-wrap">` + Object.keys(I18N).map((l) =>
+    `<span lang="${I18N[l].htmlLang}" class="${l === lang ? "" : "ghost"}"${l === lang ? "" : ' aria-hidden="true"'}>${I18N[l][key]}</span>`
+  ).join("") + `</span>`;
 }
 
 // ---------- 主题切换：暗色 / 亮色 / 自动（跟随系统），图标按钮无文字宽度差 ----------
