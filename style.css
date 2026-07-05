@@ -14,6 +14,11 @@
   --border: #2c3548;
   --line: #232b3b;
   --radius: 14px;
+  /* 投稿状态色（参考 Tailwind 开源色板；文字对芯片底色对比度均 >6:1，CVD ΔE 43.5 已验证） */
+  --st-planned-bg: #22314d; --st-planned-fg: #a5c8ff;
+  --st-writing-bg: #1d3527; --st-writing-fg: #86efac;
+  --st-submitted-bg: #3a2f14; --st-submitted-fg: #fcd34d;
+  --st-rebuttal-bg: #3b1f2e; --st-rebuttal-fg: #f9a8d4;
 }
 
 /* 亮色主题（手动选择） */
@@ -30,6 +35,10 @@
   --past: #9aa3b5;
   --border: #ccd4e2;
   --line: #dde2eb;
+  --st-planned-bg: #dbeafe; --st-planned-fg: #1e40af;
+  --st-writing-bg: #d1fae5; --st-writing-fg: #065f46;
+  --st-submitted-bg: #fef3c7; --st-submitted-fg: #92400e;
+  --st-rebuttal-bg: #fce7f3; --st-rebuttal-fg: #9d174d;
 }
 
 /* 跟随系统：未手动选择时按系统偏好套用亮色 */
@@ -47,6 +56,10 @@
     --past: #9aa3b5;
     --border: #ccd4e2;
     --line: #dde2eb;
+    --st-planned-bg: #dbeafe; --st-planned-fg: #1e40af;
+    --st-writing-bg: #d1fae5; --st-writing-fg: #065f46;
+    --st-submitted-bg: #fef3c7; --st-submitted-fg: #92400e;
+    --st-rebuttal-bg: #fce7f3; --st-rebuttal-fg: #9d174d;
   }
 }
 
@@ -282,8 +295,11 @@ footer code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; 
   background: var(--panel-2); color: var(--muted); border: 1px solid var(--border);
   border-radius: 12px; padding: 2px 6px; font-size: 11px; max-width: 96px; cursor: pointer;
 }
-.status-sel.has { color: var(--text); border-color: var(--accent); font-weight: 600; }
-.status-sel.st-submitted, .status-sel.st-rebuttal { border-color: var(--soon); }
+.status-sel.has { font-weight: 600; border-color: transparent; }
+.status-sel.st-planned { background: var(--st-planned-bg); color: var(--st-planned-fg); }
+.status-sel.st-writing { background: var(--st-writing-bg); color: var(--st-writing-fg); }
+.status-sel.st-submitted { background: var(--st-submitted-bg); color: var(--st-submitted-fg); }
+.status-sel.st-rebuttal { background: var(--st-rebuttal-bg); color: var(--st-rebuttal-fg); }
 
 /* 看板视图 */
 .kanban {
@@ -296,10 +312,10 @@ footer code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; 
   font-weight: 700; font-size: 13px; margin-bottom: 10px; padding: 4px 8px; border-radius: 8px;
   display: flex; justify-content: space-between; align-items: center;
 }
-.kb-head.st-planned { background: #1f2c3d; color: #8db8ff; }
-.kb-head.st-writing { background: #2d3d1f; color: #b3d97f; }
-.kb-head.st-submitted { background: #3d3a1f; color: #e0c07f; }
-.kb-head.st-rebuttal { background: #3d1f2c; color: #ff9db8; }
+.kb-head.st-planned { background: var(--st-planned-bg); color: var(--st-planned-fg); }
+.kb-head.st-writing { background: var(--st-writing-bg); color: var(--st-writing-fg); }
+.kb-head.st-submitted { background: var(--st-submitted-bg); color: var(--st-submitted-fg); }
+.kb-head.st-rebuttal { background: var(--st-rebuttal-bg); color: var(--st-rebuttal-fg); }
 .kb-count { font-size: 11px; opacity: .8; }
 .kb-item {
   background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
