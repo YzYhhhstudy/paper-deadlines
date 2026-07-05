@@ -7,7 +7,7 @@ core: "A*"   # CORE: A* / A / B / C / Unranked
 link: "https://aclrollingreview.org"
 editions:
   - id: "EMNLP 2026 (ARR)"
-    deadline: "2026-05-19T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    deadline: "2026-05-25T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2026-11"
     place: "TBD"
 history:   # 往年全文截稿日（大致日期）
