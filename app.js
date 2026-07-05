@@ -517,27 +517,27 @@ function setupMsel(rootSel, selected, getOptions, getAllLabel, getOptionLabel) {
   }
 
   function rebuild() {
+    // 全选/清空合并为一个切换按钮：未全选时点击=全选，已全选时点击=清空
+    const opts = getOptions();
+    const allSelected = opts.length > 0 && opts.every((v) => selected.has(v));
     panel.innerHTML = `<div class="msel-actions">
-        <button type="button" data-act="all">${t("selAll")}</button>
-        <button type="button" data-act="none">${t("selNone")}</button>
-      </div>` + getOptions().map((v) => `<label>
+        <button type="button" data-act="${allSelected ? "none" : "all"}">${allSelected ? t("selNone") : t("selAll")}</button>
+      </div>` + opts.map((v) => `<label>
         <input type="checkbox" value="${v}" ${selected.has(v) ? "checked" : ""}> ${getOptionLabel(v)}
       </label>`).join("");
     panel.querySelectorAll("input").forEach((cb) => {
       cb.onchange = () => {
         cb.checked ? selected.add(cb.value) : selected.delete(cb.value);
-        refreshBtn();
+        rebuild(); // 全选状态可能变化，刷新切换按钮文案
         render();
       };
     });
-    panel.querySelectorAll(".msel-actions button").forEach((b) => {
-      b.onclick = () => {
-        if (b.dataset.act === "all") getOptions().forEach((v) => selected.add(v));
-        else selected.clear();
-        rebuild();
-        render();
-      };
-    });
+    panel.querySelector(".msel-actions button").onclick = (e) => {
+      if (e.target.dataset.act === "all") opts.forEach((v) => selected.add(v));
+      else selected.clear();
+      rebuild();
+      render();
+    };
     refreshBtn();
   }
 
@@ -782,12 +782,14 @@ function renderKanban(wrap) {
 // ---------- 时间线视图：横轴时间轴（默认）/ 按月分组列表 ----------
 
 // 横轴模式：x 轴为时间，重叠的会议自动分行（泳道），可横向滚动
-function tlAxisHtml(confs) {
+// 比例尺按"可视区约等于 6 个月"动态计算，更远的时间左右滑动查看
+function tlAxisHtml(confs, viewportW) {
   const dated = confs.filter((c) => !c.rolling)
     .sort((a, b) => new Date(nextDeadline(a).iso) - new Date(nextDeadline(b).iso));
   if (!dated.length) return `<div class="empty">${t("empty")}</div>`;
 
-  const DAY = 86400000, PX_PER_DAY = 3.4, LANE_H = 36;
+  const DAY = 86400000, LANE_H = 36;
+  const PX_PER_DAY = Math.max(2.2, (viewportW - 28) / 183); // 183 天 ≈ 6 个月填满可视区
   const start = Date.now() - 6 * DAY;
   const end = Math.max(...dated.map((c) => new Date(nextDeadline(c).iso).getTime())) + 24 * DAY;
   const width = Math.ceil((end - start) / DAY * PX_PER_DAY);
@@ -838,7 +840,7 @@ function renderTimeline(wrap, confs) {
     <button type="button" data-m="axis" class="${state.tlMode === "axis" ? "on" : ""}">${t("tlAxisBtn")}</button>
     <button type="button" data-m="list" class="${state.tlMode === "list" ? "on" : ""}">${t("tlListBtn")}</button>
   </div></div>`;
-  const body = state.tlMode === "axis" ? tlAxisHtml(confs) : tlListHtml(confs);
+  const body = state.tlMode === "axis" ? tlAxisHtml(confs, wrap.clientWidth || 1200) : tlListHtml(confs);
   wrap.innerHTML = `<div class="timeline-wrap">${toolbar}${body}</div>`;
   wrap.querySelectorAll(".tl-modeseg button").forEach((b) => {
     b.onclick = () => { state.tlMode = b.dataset.m; render(); };
@@ -1162,6 +1164,15 @@ $("#notifyBtn").onclick = async () => {
 applyLang();
 checkNotifications();
 setInterval(render, 60 * 1000); // 每分钟刷新倒计时
+
+// 窗口尺寸变化时重算时间轴比例尺（6 个月窗口跟随可视区宽度）
+let resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (state.view === "timeline" && state.tlMode === "axis") render();
+  }, 200);
+});
 setInterval(checkNotifications, 3600 * 1000); // 每小时检查一次提醒
 
 // ---------- PWA：注册 Service Worker（需要 https 或 localhost） ----------
