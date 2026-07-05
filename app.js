@@ -39,6 +39,10 @@ const I18N = {
     subBtn: "📡 订阅日历",
     subTitle: "在 Google/Apple 日历中订阅 DDL，数据更新自动同步",
     subAll: "📅 全部会议",
+    contribLead: "发现 DDL 过期或缺了你关注的会议？",
+    contribAdd: "➕ 添加新会议",
+    contribFix: "✏️ 修正现有数据",
+    contribTail: "（在 GitHub 上直接编辑 YAML 并提 PR，CI 自动校验）",
     alertStar: "先点 ⭐ 收藏几个会议，再导出到日历。",
     icsAbs: "摘要截止", icsFull: "全文截止",
     icsAlarm: (name, label) => `${name} ${label}仅剩 7 天`,
@@ -83,6 +87,10 @@ const I18N = {
     subBtn: "📡 Subscribe",
     subTitle: "Subscribe to DDLs in Google/Apple Calendar — updates sync automatically",
     subAll: "📅 All conferences",
+    contribLead: "Spotted an outdated DDL, or missing your venue?",
+    contribAdd: "➕ Add a conference",
+    contribFix: "✏️ Fix existing data",
+    contribTail: "(edit the YAML on GitHub and open a PR — CI validates it)",
     alertStar: "Star ⭐ a few conferences first, then export.",
     icsAbs: "abstract deadline", icsFull: "full paper deadline",
     icsAlarm: (name, label) => `${name} ${label} — 7 days left`,
@@ -361,6 +369,30 @@ function render() {
 
 // ---------- 语言切换 ----------
 
+// "添加会议"：跳到 GitHub 新建文件页并预填 YAML 模板，不熟 git 的人也能三步提 PR
+const REPO_URL = "https://github.com/YzYhhhstudy/paper-deadlines";
+const YAML_TEMPLATE = `name: "MyConf"
+fullName: "Full Conference Name"
+area: "AI/ML"
+ccf: "Non-CCF"    # CCF-A / CCF-B / CCF-C / Non-CCF
+core: "Unranked"  # A* / A / B / C / Unranked
+link: "https://example.org"
+editions:
+  - id: "MyConf 2027"
+    deadline: "2027-01-01T23:59:59-12:00"   # AoE = -12:00
+    confDate: "2027-06"
+    place: "TBD"
+`;
+
+function renderContrib() {
+  const addUrl = `${REPO_URL}/new/master?filename=data/conferences/my-conf.yml&value=${encodeURIComponent(YAML_TEMPLATE)}`;
+  const fixUrl = `${REPO_URL}/tree/master/data/conferences`;
+  $("#contrib").innerHTML = `${t("contribLead")}
+    <a href="${addUrl}" target="_blank" rel="noopener">${t("contribAdd")}</a> ·
+    <a href="${fixUrl}" target="_blank" rel="noopener">${t("contribFix")}</a>
+    ${t("contribTail")}`;
+}
+
 function applyLang() {
   document.documentElement.lang = t("htmlLang");
   document.title = t("docTitle");
@@ -374,6 +406,7 @@ function applyLang() {
   biLabel($("#hidePastLabel"), "hidePast");
   $("#foot1").innerHTML = t("foot1");
   $("#foot2").textContent = t("foot2");
+  renderContrib();
   applyTheme();
   buildSubPanel();
   areaSel.rebuild();
