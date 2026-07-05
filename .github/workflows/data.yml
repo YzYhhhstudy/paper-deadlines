@@ -27,7 +27,7 @@ jobs:
       - name: Check generated files are in sync (PR)
         if: github.event_name == 'pull_request'
         run: |
-          git diff --exit-code data.js data.json feeds || {
+          git diff --exit-code data.js data.json deadlines.md feeds || {
             echo "::error::data.js / feeds 与 YAML 不同步，请在本地运行 npm run build 后一并提交"
             exit 1
           }
@@ -38,7 +38,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data.js data.json feeds
+          git add data.js data.json deadlines.md feeds
           git diff --cached --quiet || {
             git commit -m "chore: rebuild data.js and feeds from YAML [skip ci]"
             git push

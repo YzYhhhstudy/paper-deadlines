@@ -64,6 +64,7 @@ jobs:
             data/
             data.js
             data.json
+            deadlines.md
             feeds/
 
       - name: Open or update issue when differences found

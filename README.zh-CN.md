@@ -96,6 +96,7 @@ history:        # 往年全文截稿日（可选）
 | 📟 **macOS 菜单栏** | 把 [`clients/menubar/ddlradar.1h.sh`](clients/menubar/ddlradar.1h.sh) 拷入 SwiftBar/xbar 插件目录 |
 | 💻 **命令行** | `npx github:YzYhhhstudy/paper-deadlines --days 30 --area AI/ML` |
 | 📬 **邮件 / Slack / Discord / 飞书** | GitHub Actions 每周一推送摘要——按 [`.github/workflows/digest.yml`](.github/workflows/digest.yml) 里的说明配置 Secrets 即可 |
+| 📓 **Obsidian** | DataviewJS 在笔记里嵌实时截稿表，或使用构建生成的 [`deadlines.md`](https://yzyhhhstudy.github.io/paper-deadlines/deadlines.md)——见 [`clients/obsidian/`](clients/obsidian/) |
 | 🔌 **自己开发** | 直接 `GET` [`/data.json`](https://yzyhhhstudy.github.io/paper-deadlines/data.json) |
 
 ## 本地运行

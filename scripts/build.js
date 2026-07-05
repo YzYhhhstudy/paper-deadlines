@@ -162,7 +162,22 @@ const CONFERENCES = `;
 fs.writeFileSync(path.join(ROOT, "data.js"), banner + JSON.stringify(conferences, null, 2) + ";\n");
 // 对外只读 API：其他端（插件 / CLI / bot…）直接 fetch 这份 JSON
 fs.writeFileSync(path.join(ROOT, "data.json"), JSON.stringify(conferences, null, 2) + "\n");
-console.log(`✔ data.js + data.json（${conferences.length} 届）`);
+
+// Obsidian / Markdown 消费端：全量截稿表（确定性输出，不含倒计时）
+const mdRows = conferences.filter((c) => !c.rolling)
+  .sort((a, b) => a.deadline.localeCompare(b.deadline))
+  .map((c) => `| ${c.name} | ${c.deadline.slice(0, 10)} | ${c.abstractDeadline ? c.abstractDeadline.slice(0, 10) : "—"} | ${c.rank} | ${c.area} |`);
+fs.writeFileSync(path.join(ROOT, "deadlines.md"), [
+  "# DDL Radar — 会议截稿总表",
+  "",
+  "> 由 scripts/build.js 自动生成 · 数据以 [官网/DDL Radar](https://yzyhhhstudy.github.io/paper-deadlines/) 为准",
+  "",
+  "| 会议 | 全文截止 | 摘要截止 | CCF | 领域 |",
+  "|---|---|---|---|---|",
+  ...mdRows,
+  "",
+].join("\n"));
+console.log(`✔ data.js + data.json + deadlines.md（${conferences.length} 届）`);
 
 // ---------- 生成 feeds/*.ics ----------
 // 注意：输出必须是确定性的（不用 Date.now），否则 CI 的"生成物是否同步"检查会误报

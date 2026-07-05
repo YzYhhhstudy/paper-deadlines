@@ -107,6 +107,7 @@ One data source (`data.json`), many clients:
 | 📟 **macOS menu bar** | Copy [`clients/menubar/ddlradar.1h.sh`](clients/menubar/ddlradar.1h.sh) into your SwiftBar/xbar plugins folder |
 | 💻 **CLI** | `npx github:YzYhhhstudy/paper-deadlines --days 30 --area AI/ML` |
 | 📬 **Email / Slack / Discord / Feishu** | Weekly digest via GitHub Actions — set the secrets documented in [`.github/workflows/digest.yml`](.github/workflows/digest.yml) |
+| 📓 **Obsidian** | Live deadline table inside your notes via DataviewJS, or the generated [`deadlines.md`](https://yzyhhhstudy.github.io/paper-deadlines/deadlines.md) — see [`clients/obsidian/`](clients/obsidian/) |
 | 🔌 **Your own client** | `GET` [`/data.json`](https://yzyhhhstudy.github.io/paper-deadlines/data.json) |
 
 ## Run locally
