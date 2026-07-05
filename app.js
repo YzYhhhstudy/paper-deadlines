@@ -500,6 +500,7 @@ const state = {
   sort: ["deadline", "h5", "acceptAsc", "acceptDesc"].includes(urlParams.get("sort")) ? urlParams.get("sort") : "deadline",
   view: ["timeline", "kanban"].includes(urlParams.get("view")) ? urlParams.get("view") : "cards",
   tlMode: urlParams.get("tlmode") === "list" ? "list" : "axis", // 时间线默认横轴模式
+  tlZoom: [3, 6, 12].includes(+urlParams.get("zoom")) ? +urlParams.get("zoom") : 6, // 可视窗口月数
   starred: new Set(JSON.parse(localStorage.getItem("ddlradar-starred") || "[]")),
   // 投稿流程状态：会议名 → planned / writing / submitted / rebuttal
   statusMap: JSON.parse(localStorage.getItem("ddlradar-status") || "{}"),
@@ -523,6 +524,7 @@ function syncUrl() {
   if (state.sort !== "deadline") p.set("sort", state.sort);
   if (state.view !== "cards") p.set("view", state.view);
   if (state.tlMode !== "axis") p.set("tlmode", state.tlMode);
+  if (state.tlZoom !== 6) p.set("zoom", String(state.tlZoom));
   const url = location.pathname + "?" + p.toString();
   if (url !== lastUrl) {
     lastUrl = url;
@@ -849,7 +851,8 @@ function tlAxisHtml(confs, viewportW) {
   if (!dated.length) return `<div class="empty">${t("empty")}</div>`;
 
   const DAY = 86400000, LANE_H = 36;
-  const PX_PER_DAY = Math.max(2.2, (viewportW - 28) / 183); // 183 天 ≈ 6 个月填满可视区
+  const windowDays = state.tlZoom * 30.5; // 可视窗口 = 3/6/12 个月
+  const PX_PER_DAY = Math.max(1.4, (viewportW - 28) / windowDays);
   const start = Date.now() - 6 * DAY;
   const end = Math.max(...dated.map((c) => new Date(nextDeadline(c).iso).getTime())) + 24 * DAY;
   const width = Math.ceil((end - start) / DAY * PX_PER_DAY);
@@ -896,7 +899,10 @@ function tlAxisHtml(confs, viewportW) {
 }
 
 function renderTimeline(wrap, confs) {
-  const toolbar = `<div class="tl-toolbar"><div class="seg tl-modeseg">
+  const zoomSeg = state.tlMode === "axis" ? `<div class="seg tl-zoomseg">
+    ${[3, 6, 12].map((mo) => `<button type="button" data-z="${mo}" class="${state.tlZoom === mo ? "on" : ""}">${mo}M</button>`).join("")}
+  </div>` : "";
+  const toolbar = `<div class="tl-toolbar">${zoomSeg}<div class="seg tl-modeseg">
     <button type="button" data-m="axis" class="${state.tlMode === "axis" ? "on" : ""}">${t("tlAxisBtn")}</button>
     <button type="button" data-m="list" class="${state.tlMode === "list" ? "on" : ""}">${t("tlListBtn")}</button>
   </div></div>`;
@@ -904,6 +910,9 @@ function renderTimeline(wrap, confs) {
   wrap.innerHTML = `<div class="timeline-wrap">${toolbar}${body}</div>`;
   wrap.querySelectorAll(".tl-modeseg button").forEach((b) => {
     b.onclick = () => { state.tlMode = b.dataset.m; render(); };
+  });
+  wrap.querySelectorAll(".tl-zoomseg button").forEach((b) => {
+    b.onclick = () => { state.tlZoom = +b.dataset.z; render(); };
   });
   wrap.querySelectorAll(".tl-pin").forEach((el) => {
     el.onclick = () => {

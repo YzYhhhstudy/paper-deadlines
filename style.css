@@ -252,8 +252,8 @@ footer code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; 
 
 /* 时间线视图 */
 .timeline-wrap { grid-column: 1/-1; }
-.tl-toolbar { display: flex; justify-content: flex-end; margin-bottom: 10px; }
-.tl-modeseg button { padding: 6px 12px; font-size: 12px; }
+.tl-toolbar { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 10px; }
+.tl-modeseg button, .tl-zoomseg button { padding: 6px 12px; font-size: 12px; }
 
 /* 横轴模式 */
 .tl-axis-scroll {
