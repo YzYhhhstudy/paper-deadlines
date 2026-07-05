@@ -16,9 +16,11 @@
   --radius: 14px;
   /* 投稿状态色（参考 Tailwind 开源色板；文字对芯片底色对比度均 >6:1，CVD ΔE 43.5 已验证） */
   --st-planned-bg: #22314d; --st-planned-fg: #a5c8ff;
-  --st-writing-bg: #1d3527; --st-writing-fg: #86efac;
+  --st-writing-bg: #2b2350; --st-writing-fg: #c4b5fd;
   --st-submitted-bg: #3a2f14; --st-submitted-fg: #fcd34d;
   --st-rebuttal-bg: #3b1f2e; --st-rebuttal-fg: #f9a8d4;
+  --st-accepted-bg: #1d3527; --st-accepted-fg: #86efac;
+  --st-rejected-bg: #2a2d34; --st-rejected-fg: #b3b9c6;
 }
 
 /* 亮色主题（手动选择） */
@@ -36,9 +38,11 @@
   --border: #ccd4e2;
   --line: #dde2eb;
   --st-planned-bg: #dbeafe; --st-planned-fg: #1e40af;
-  --st-writing-bg: #d1fae5; --st-writing-fg: #065f46;
+  --st-writing-bg: #ede9fe; --st-writing-fg: #5b21b6;
   --st-submitted-bg: #fef3c7; --st-submitted-fg: #92400e;
   --st-rebuttal-bg: #fce7f3; --st-rebuttal-fg: #9d174d;
+  --st-accepted-bg: #d1fae5; --st-accepted-fg: #065f46;
+  --st-rejected-bg: #f3f4f6; --st-rejected-fg: #374151;
 }
 
 /* 跟随系统：未手动选择时按系统偏好套用亮色 */
@@ -57,9 +61,11 @@
     --border: #ccd4e2;
     --line: #dde2eb;
     --st-planned-bg: #dbeafe; --st-planned-fg: #1e40af;
-    --st-writing-bg: #d1fae5; --st-writing-fg: #065f46;
+    --st-writing-bg: #ede9fe; --st-writing-fg: #5b21b6;
     --st-submitted-bg: #fef3c7; --st-submitted-fg: #92400e;
     --st-rebuttal-bg: #fce7f3; --st-rebuttal-fg: #9d174d;
+    --st-accepted-bg: #d1fae5; --st-accepted-fg: #065f46;
+    --st-rejected-bg: #f3f4f6; --st-rejected-fg: #374151;
   }
 }
 
@@ -300,13 +306,24 @@ footer code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; 
 .status-sel.st-writing { background: var(--st-writing-bg); color: var(--st-writing-fg); }
 .status-sel.st-submitted { background: var(--st-submitted-bg); color: var(--st-submitted-fg); }
 .status-sel.st-rebuttal { background: var(--st-rebuttal-bg); color: var(--st-rebuttal-fg); }
+.status-sel.st-accepted { background: var(--st-accepted-bg); color: var(--st-accepted-fg); }
+.status-sel.st-rejected { background: var(--st-rejected-bg); color: var(--st-rejected-fg); }
 
 /* 看板视图 */
 .kanban {
   grid-column: 1/-1; display: grid;
-  grid-template-columns: repeat(2, 1fr); gap: 14px; /* 4 个状态 → 2×2，填满页面 */
+  grid-template-columns: repeat(3, 1fr); gap: 14px; /* 6 个状态 → 3×2 */
 }
-@media (max-width: 760px) { .kanban { grid-template-columns: 1fr; } }
+@media (max-width: 1100px) { .kanban { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 720px) { .kanban { grid-template-columns: 1fr; } }
+.kb-stats {
+  grid-column: 1/-1; margin-bottom: 2px; font-size: 14px; font-weight: 700;
+  color: var(--st-accepted-fg); background: var(--st-accepted-bg);
+  padding: 10px 14px; border-radius: 10px;
+}
+.kb-col.drag-over { outline: 2px dashed var(--accent); outline-offset: -2px; }
+.kb-item { cursor: grab; }
+.kb-item:active { cursor: grabbing; }
 .kb-col { background: var(--panel-2); border-radius: var(--radius); padding: 12px; min-height: 200px; }
 .kb-head {
   font-weight: 700; font-size: 13px; margin-bottom: 10px; padding: 4px 8px; border-radius: 8px;
@@ -316,6 +333,8 @@ footer code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; 
 .kb-head.st-writing { background: var(--st-writing-bg); color: var(--st-writing-fg); }
 .kb-head.st-submitted { background: var(--st-submitted-bg); color: var(--st-submitted-fg); }
 .kb-head.st-rebuttal { background: var(--st-rebuttal-bg); color: var(--st-rebuttal-fg); }
+.kb-head.st-accepted { background: var(--st-accepted-bg); color: var(--st-accepted-fg); }
+.kb-head.st-rejected { background: var(--st-rejected-bg); color: var(--st-rejected-fg); }
 .kb-count { font-size: 11px; opacity: .8; }
 .kb-item {
   background: var(--panel); border: 1px solid var(--line); border-radius: 10px;

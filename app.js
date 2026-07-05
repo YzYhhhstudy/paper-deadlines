@@ -504,7 +504,7 @@ const state = {
   // 投稿流程状态：会议名 → planned / writing / submitted / rebuttal
   statusMap: JSON.parse(localStorage.getItem("ddlradar-status") || "{}"),
 };
-const STATUSES = ["planned", "writing", "submitted", "rebuttal"];
+const STATUSES = ["planned", "writing", "submitted", "rebuttal", "accepted", "rejected"];
 
 function saveStatus() {
   localStorage.setItem("ddlradar-status", JSON.stringify(state.statusMap));
@@ -785,6 +785,8 @@ function bindStatusSels(root) {
 function kanbanCountdown(c) {
   // 已投/rebuttal 阶段关心的是结果通知，其余阶段关心投稿截止
   const st = state.statusMap[c.name];
+  if (st === "accepted") return `<span class="kb-cd safe">🎉 ${c.confDate || ""}</span>`;
+  if (st === "rejected") return `<span class="kb-cd done">—</span>`;
   if ((st === "submitted" || st === "rebuttal") && c.notification) {
     const d = Math.ceil((new Date(c.notification + "T23:59:59Z").getTime() - Date.now()) / 86400000);
     if (d >= 0) return `<span class="kb-cd soon">${t("notifLabel")}${c.notification.slice(5)} · ${t("daysLeft")(d)}</span>`;
@@ -800,19 +802,41 @@ function renderKanban(wrap) {
   // 看板是"我的投稿流程"，不受筛选影响，展示所有设置过状态的会议
   const cols = STATUSES.map((s) => {
     const items = CONFERENCES.filter((c) => state.statusMap[c.name] === s);
-    return `<div class="kb-col">
+    return `<div class="kb-col" data-status="${s}">
       <div class="kb-head st-${s}">${t("statusNames")[s]} <span class="kb-count">${items.length}</span></div>
-      ${items.map((c) => `<div class="kb-item">
+      ${items.map((c) => `<div class="kb-item" draggable="true" data-name="${c.name}">
         <a href="${c.link}" target="_blank" rel="noopener">${c.name}</a>
         ${kanbanCountdown(c)}
         ${statusSelHtml(c.name)}
       </div>`).join("")}
     </div>`;
   });
+  // 个人命中率：已录用 / (已录用 + 被拒)
+  const acc = Object.values(state.statusMap).filter((s) => s === "accepted").length;
+  const rej = Object.values(state.statusMap).filter((s) => s === "rejected").length;
+  const stats = acc + rej > 0 ? `<div class="kb-stats">${t("hitRate")(acc, acc + rej)}</div>` : "";
   const any = Object.keys(state.statusMap).length;
-  wrap.innerHTML = `<div class="kanban">${cols.join("")}</div>` +
+  wrap.innerHTML = `<div class="kanban">${stats}${cols.join("")}</div>` +
     (any ? "" : `<div class="empty">${t("kanbanEmpty")}</div>`);
   bindStatusSels(wrap);
+
+  // 拖拽卡片到目标列即改状态（下拉选择仍保留，兼容触屏）
+  wrap.querySelectorAll(".kb-item").forEach((el) => {
+    el.ondragstart = (e) => e.dataTransfer.setData("text/plain", el.dataset.name);
+  });
+  wrap.querySelectorAll(".kb-col").forEach((col) => {
+    col.ondragover = (e) => { e.preventDefault(); col.classList.add("drag-over"); };
+    col.ondragleave = () => col.classList.remove("drag-over");
+    col.ondrop = (e) => {
+      e.preventDefault();
+      col.classList.remove("drag-over");
+      const name = e.dataTransfer.getData("text/plain");
+      if (!name || state.statusMap[name] === col.dataset.status) return;
+      state.statusMap[name] = col.dataset.status;
+      saveStatus();
+      render();
+    };
+  });
 }
 
 // ---------- 时间线视图：横轴时间轴（默认）/ 按月分组列表 ----------
