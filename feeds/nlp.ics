@@ -1,0 +1,63 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//DDLRadar//feeds//EN
+X-WR-CALNAME:DDL Radar · NLP
+X-PUBLISHED-TTL:P1D
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+BEGIN:VEVENT
+UID:acl-2027-arr-full-paper-deadline@ddlradar
+DTSTAMP:20270216T115959Z
+DTSTART:20270216T115959Z
+DTEND:20270216T115959Z
+SUMMARY:📡 ACL 2027 (ARR) full paper deadline
+DESCRIPTION:Annual Meeting of the Association for Computational Linguisti
+ cs\nhttps://aclrollingreview.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:ACL 2027 (ARR) full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:coling-2027-full-paper-deadline@ddlradar
+DTSTAMP:20260916T115959Z
+DTSTART:20260916T115959Z
+DTEND:20260916T115959Z
+SUMMARY:📡 COLING 2027 full paper deadline
+DESCRIPTION:International Conference on Computational Linguistics\nhttps:
+ //coling2027.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:COLING 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:emnlp-2026-arr-full-paper-deadline@ddlradar
+DTSTAMP:20260520T115959Z
+DTSTART:20260520T115959Z
+DTEND:20260520T115959Z
+SUMMARY:📡 EMNLP 2026 (ARR) full paper deadline
+DESCRIPTION:Conference on Empirical Methods in Natural Language Processin
+ g\nhttps://aclrollingreview.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:EMNLP 2026 (ARR) full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:naacl-2027-arr-full-paper-deadline@ddlradar
+DTSTAMP:20261006T115959Z
+DTSTART:20261006T115959Z
+DTEND:20261006T115959Z
+SUMMARY:📡 NAACL 2027 (ARR) full paper deadline
+DESCRIPTION:Conference of the North American Chapter of the ACL\nhttps://
+ aclrollingreview.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:NAACL 2027 (ARR) full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+END:VCALENDAR

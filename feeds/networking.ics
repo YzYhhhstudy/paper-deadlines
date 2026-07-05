@@ -1,0 +1,62 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//DDLRadar//feeds//EN
+X-WR-CALNAME:DDL Radar · Networking
+X-PUBLISHED-TTL:P1D
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+BEGIN:VEVENT
+UID:imc-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270511T115959Z
+DTSTART:20270511T115959Z
+DTEND:20270511T115959Z
+SUMMARY:📡 IMC 2027 full paper deadline
+DESCRIPTION:ACM Internet Measurement Conference\nhttps://conferences.sigc
+ omm.org/imc
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:IMC 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:infocom-2027-full-paper-deadline@ddlradar
+DTSTAMP:20260802T115959Z
+DTSTART:20260802T115959Z
+DTEND:20260802T115959Z
+SUMMARY:📡 INFOCOM 2027 full paper deadline
+DESCRIPTION:IEEE International Conference on Computer Communications\nhtt
+ ps://infocom2027.ieee-infocom.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:INFOCOM 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:mobicom-2027-full-paper-deadline@ddlradar
+DTSTAMP:20260816T115959Z
+DTSTART:20260816T115959Z
+DTEND:20260816T115959Z
+SUMMARY:📡 MobiCom 2027 full paper deadline
+DESCRIPTION:ACM International Conference on Mobile Computing and Networki
+ ng\nhttps://sigmobile.org/mobicom
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:MobiCom 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:sigcomm-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270131T115959Z
+DTSTART:20270131T115959Z
+DTEND:20270131T115959Z
+SUMMARY:📡 SIGCOMM 2027 full paper deadline
+DESCRIPTION:ACM SIGCOMM Conference\nhttps://sigcomm.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:SIGCOMM 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+END:VCALENDAR

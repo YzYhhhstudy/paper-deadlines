@@ -1,0 +1,63 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//DDLRadar//feeds//EN
+X-WR-CALNAME:DDL Radar · HCI
+X-PUBLISHED-TTL:P1D
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+BEGIN:VEVENT
+UID:chi-2027-full-paper-deadline@ddlradar
+DTSTAMP:20260911T115959Z
+DTSTART:20260911T115959Z
+DTEND:20260911T115959Z
+SUMMARY:📡 CHI 2027 full paper deadline
+DESCRIPTION:ACM Conference on Human Factors in Computing Systems\nhttps:/
+ /chi2027.acm.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:CHI 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:cscw-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270116T115959Z
+DTSTART:20270116T115959Z
+DTEND:20270116T115959Z
+SUMMARY:📡 CSCW 2027 full paper deadline
+DESCRIPTION:ACM Conference on Computer-Supported Cooperative Work（季
+ 度滚动）\nhttps://cscw.acm.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:CSCW 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ubicomp-imwut-2027-full-paper-deadline@ddlradar
+DTSTAMP:20260802T115959Z
+DTSTART:20260802T115959Z
+DTEND:20260802T115959Z
+SUMMARY:📡 UbiComp/IMWUT 2027 full paper deadline
+DESCRIPTION:ACM International Joint Conference on Pervasive and Ubiquitou
+ s Computing（季度滚动）\nhttps://ubicomp.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:UbiComp/IMWUT 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:uist-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270403T115959Z
+DTSTART:20270403T115959Z
+DTEND:20270403T115959Z
+SUMMARY:📡 UIST 2027 full paper deadline
+DESCRIPTION:ACM Symposium on User Interface Software and Technology\nhttp
+ s://uist.acm.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:UIST 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+END:VCALENDAR

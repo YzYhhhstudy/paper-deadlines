@@ -1,0 +1,116 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//DDLRadar//feeds//EN
+X-WR-CALNAME:DDL Radar · Data Mining
+X-PUBLISHED-TTL:P1D
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+BEGIN:VEVENT
+UID:cikm-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270526T115959Z
+DTSTART:20270526T115959Z
+DTEND:20270526T115959Z
+SUMMARY:📡 CIKM 2027 full paper deadline
+DESCRIPTION:ACM International Conference on Information and Knowledge Man
+ agement\nhttps://cikmconference.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:CIKM 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:icdm-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270611T115959Z
+DTSTART:20270611T115959Z
+DTEND:20270611T115959Z
+SUMMARY:📡 ICDM 2027 full paper deadline
+DESCRIPTION:IEEE International Conference on Data Mining\nhttps://icdm202
+ 7.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:ICDM 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:kdd-2027-cycle-1-full-paper-deadline@ddlradar
+DTSTAMP:20260806T115959Z
+DTSTART:20260806T115959Z
+DTEND:20260806T115959Z
+SUMMARY:📡 KDD 2027 (Cycle 1) full paper deadline
+DESCRIPTION:ACM SIGKDD Conference on Knowledge Discovery and Data Mining\
+ nhttps://kdd.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:KDD 2027 (Cycle 1) full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:recsys-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270411T115959Z
+DTSTART:20270411T115959Z
+DTEND:20270411T115959Z
+SUMMARY:📡 RecSys 2027 full paper deadline
+DESCRIPTION:ACM Conference on Recommender Systems\nhttps://recsys.acm.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:RecSys 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:sigir-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270121T115959Z
+DTSTART:20270121T115959Z
+DTEND:20270121T115959Z
+SUMMARY:📡 SIGIR 2027 full paper deadline
+DESCRIPTION:International ACM SIGIR Conference on Research and Developmen
+ t in Information Retrieval\nhttps://sigir.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:SIGIR 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wsdm-2027-full-paper-deadline@ddlradar
+DTSTAMP:20260809T115959Z
+DTSTART:20260809T115959Z
+DTEND:20260809T115959Z
+SUMMARY:📡 WSDM 2027 full paper deadline
+DESCRIPTION:ACM International Conference on Web Search and Data Mining\nh
+ ttps://wsdm-conference.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:WSDM 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:www-2027-abstract-deadline@ddlradar
+DTSTAMP:20261008T115959Z
+DTSTART:20261008T115959Z
+DTEND:20261008T115959Z
+SUMMARY:📡 WWW 2027 abstract deadline
+DESCRIPTION:The ACM Web Conference\nhttps://thewebconf.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:WWW 2027 abstract deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:www-2027-full-paper-deadline@ddlradar
+DTSTAMP:20261015T115959Z
+DTSTART:20261015T115959Z
+DTEND:20261015T115959Z
+SUMMARY:📡 WWW 2027 full paper deadline
+DESCRIPTION:The ACM Web Conference\nhttps://thewebconf.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:WWW 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+END:VCALENDAR

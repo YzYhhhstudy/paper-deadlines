@@ -25,35 +25,54 @@ differentiated by personalization and calendar integration.
   the international standard), while the Chinese UI shows CCF ranks (China's official venue tiers)
 - ⭐ Star conferences (persisted locally), one-click **.ics export** of starred deadlines
   (abstract + full paper, with 7-day-before alarms) for Google/Apple Calendar
+- 📡 **webcal:// subscription** — subscribe once (all conferences, or per area) in
+  Google/Apple Calendar and deadline updates sync automatically
 - 🌐 Deadlines auto-converted to your local time (source data stores official timezone, mostly AoE)
 - 🎨 Dark / light / auto (system) theme
 
-## ⚠️ Data disclaimer
+## 📡 Calendar subscription
 
-Dates in `data.js` are **estimates extrapolated from past cycles** — always verify against the
-official site before submitting. Data format:
+Click **Subscribe** in the header, or add a `webcal://` feed directly in Google/Apple Calendar —
+`webcal://yzyhhhstudy.github.io/paper-deadlines/feeds/all.ics` for everything, or a per-area feed
+like `feeds/ai-ml.ics`. Feeds regenerate automatically whenever the data changes, and your
+calendar app re-syncs them on its own — no manual re-export.
 
-```js
-{
-  name: "ICLR 2027", fullName: "…", area: "AI/ML", rank: "CCF-A",
-  abstractDeadline: "2026-09-18T23:59:59-12:00",  // optional
-  deadline: "2026-09-24T23:59:59-12:00",           // AoE = -12:00
-  confDate: "2027-04", place: "TBD", link: "https://iclr.cc",
-}
+## 🗂 Data & contributing
+
+Deadlines are **estimates extrapolated from past cycles** — always verify against the official
+site before submitting. One YAML file per conference under `data/conferences/`:
+
+```yaml
+name: "ICLR"
+fullName: "International Conference on Learning Representations"
+area: "AI/ML"
+ccf: "CCF-A"    # CCF-A / CCF-B / CCF-C / Non-CCF (Chinese UI)
+core: "A*"      # CORE: A* / A / B / C / Unranked (English UI)
+link: "https://iclr.cc"
+editions:
+  - id: "ICLR 2027"
+    abstractDeadline: "2026-09-18T23:59:59-12:00"   # optional
+    deadline: "2026-09-24T23:59:59-12:00"           # AoE = -12:00
+    confDate: "2027-04"
+    place: "TBD"
+history:        # past full-paper deadlines (optional)
+  - "2025-09-19"
 ```
 
-CORE ranks (used by the English UI) are maintained in the `CORE_RANKS` map at the bottom of
-`data.js`, matched by conference-name prefix; unlisted venues fall back to "Unranked".
+Spotted an outdated deadline? **Edit the YAML and open a PR** — CI validates the format,
+and after merge it rebuilds `data.js` and the calendar feeds automatically.
+To build locally: `npm install && npm run build` (the page itself stays a zero-dependency
+static site; `data.js` and `feeds/` are generated, don't edit them by hand).
 
 ## Run
 
-Pure static page, zero dependencies: `open index.html`, or deploy to GitHub Pages / Vercel.
+Pure static page: `open index.html`, or deploy to GitHub Pages / Vercel.
 
 ## Roadmap
 
-- [ ] Move data to YAML + crowdsourced GitHub PRs (the ccfddl model)
+- [x] Move data to YAML + crowdsourced GitHub PRs (the ccfddl model)
+- [x] `webcal://` subscription (auto-sync instead of manual export)
 - [ ] Browser / email notifications
-- [ ] `webcal://` subscription (auto-sync instead of manual export)
 - [ ] Journals (TPAMI, JMLR…) and workshops
 - [ ] Show h5-index and acceptance rates
 

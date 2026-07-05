@@ -1,0 +1,90 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//DDLRadar//feeds//EN
+X-WR-CALNAME:DDL Radar · Systems
+X-PUBLISHED-TTL:P1D
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+BEGIN:VEVENT
+UID:asplos-2027-full-paper-deadline@ddlradar
+DTSTAMP:20261016T115959Z
+DTSTART:20261016T115959Z
+DTEND:20261016T115959Z
+SUMMARY:📡 ASPLOS 2027 full paper deadline
+DESCRIPTION:ACM International Conference on Architectural Support for Pro
+ gramming Languages and Operating Systems\nhttps://asplos-conference.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:ASPLOS 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:eurosys-2027-fall-full-paper-deadline@ddlradar
+DTSTAMP:20260925T115959Z
+DTSTART:20260925T115959Z
+DTEND:20260925T115959Z
+SUMMARY:📡 EuroSys 2027 (Fall) full paper deadline
+DESCRIPTION:European Conference on Computer Systems\nhttps://eurosys.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:EuroSys 2027 (Fall) full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nsdi-2027-fall-full-paper-deadline@ddlradar
+DTSTAMP:20260911T075959Z
+DTSTART:20260911T075959Z
+DTEND:20260911T075959Z
+SUMMARY:📡 NSDI 2027 (Fall) full paper deadline
+DESCRIPTION:USENIX Symposium on Networked Systems Design and Implementati
+ on\nhttps://usenix.org/conference/nsdi27
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:NSDI 2027 (Fall) full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:osdi-2027-full-paper-deadline@ddlradar
+DTSTAMP:20261211T075959Z
+DTSTART:20261211T075959Z
+DTEND:20261211T075959Z
+SUMMARY:📡 OSDI 2027 full paper deadline
+DESCRIPTION:USENIX Symposium on Operating Systems Design and Implementati
+ on\nhttps://usenix.org/conference/osdi27
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:OSDI 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:sosp-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270418T115959Z
+DTSTART:20270418T115959Z
+DTEND:20270418T115959Z
+SUMMARY:📡 SOSP 2027 full paper deadline
+DESCRIPTION:ACM Symposium on Operating Systems Principles\nhttps://sosp.o
+ rg
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:SOSP 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:usenix-atc-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270113T075959Z
+DTSTART:20270113T075959Z
+DTEND:20270113T075959Z
+SUMMARY:📡 USENIX ATC 2027 full paper deadline
+DESCRIPTION:USENIX Annual Technical Conference\nhttps://usenix.org/confer
+ ence/atc27
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:USENIX ATC 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+END:VCALENDAR

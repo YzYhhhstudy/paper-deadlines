@@ -35,8 +35,11 @@ const I18N = {
     histTitle: "往年全文截稿日（大致日期），帮助判断该会议 DDL 的年度规律",
     starTitle: "收藏",
     foot1: `⚠️ 截稿日期为示例/往年推算数据，投稿前请务必核对会议官网。数据维护在
-      <code>data.js</code>，欢迎修改补充（未来可改为 YAML + PR 众包模式）。`,
+      <code>data/conferences/*.yml</code>，欢迎提 PR 修改补充（CI 自动校验并重建站点）。`,
     foot2: "倒计时按会议官方时区计算（多数为 AoE = UTC-12）。收藏保存在浏览器本地。等级依据 CCF 推荐目录。",
+    subBtn: "📡 订阅日历",
+    subTitle: "在 Google/Apple 日历中订阅 DDL，数据更新自动同步",
+    subAll: "📅 全部会议",
     alertStar: "先点 ⭐ 收藏几个会议，再导出到日历。",
     icsAbs: "摘要截止", icsFull: "全文截止",
     icsAlarm: (name, label) => `${name} ${label}仅剩 7 天`,
@@ -76,8 +79,12 @@ const I18N = {
     histTitle: "Approximate full-paper deadlines from past years, to gauge each venue's yearly pattern",
     starTitle: "Star",
     foot1: `⚠️ Deadlines are sample data estimated from past cycles — always verify on the
-      official website before submitting. Data lives in <code>data.js</code>; contributions welcome.`,
+      official website before submitting. Data lives in <code>data/conferences/*.yml</code> —
+      PRs welcome (CI validates and rebuilds the site).`,
     foot2: "Countdowns use each venue's official timezone (mostly AoE = UTC-12). Stars are stored locally in your browser. Ranks follow the CORE conference ranking (portal.core.edu.au).",
+    subBtn: "📡 Subscribe",
+    subTitle: "Subscribe to DDLs in Google/Apple Calendar — updates sync automatically",
+    subAll: "📅 All conferences",
     alertStar: "Star ⭐ a few conferences first, then export.",
     icsAbs: "abstract deadline", icsFull: "full paper deadline",
     icsAlarm: (name, label) => `${name} ${label} — 7 days left`,
@@ -179,6 +186,28 @@ const areaSel = setupMsel("#areaSel", state.areas,
 const rankSel = setupMsel("#rankSel", state.ranks,
   () => t("rankOptions"),
   () => t("allRanks"), (v) => t("rankOptionLabel")(v));
+
+// ---------- 日历订阅（webcal feeds，由 scripts/build.js 生成） ----------
+
+const FEED_HOST = "yzyhhhstudy.github.io/paper-deadlines";
+const feedSlug = (s) => s.toLowerCase().replace(/&/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+function buildSubPanel() {
+  const link = (slug, label) => `<a href="webcal://${FEED_HOST}/feeds/${slug}.ics">${label}</a>`;
+  const areas = [...new Set(CONFERENCES.map((c) => c.area))].sort();
+  $("#subPanel").innerHTML =
+    link("all", t("subAll")) + areas.map((a) => link(feedSlug(a), a)).join("");
+  $("#subBtn").textContent = t("subBtn");
+  $("#subBtn").title = t("subTitle");
+}
+
+$("#subBtn").onclick = (e) => {
+  e.stopPropagation();
+  const root = $("#subSel");
+  const wasOpen = root.classList.contains("open");
+  document.querySelectorAll(".msel.open").forEach((m) => m.classList.remove("open"));
+  if (!wasOpen) root.classList.add("open");
+};
 
 // ---------- 倒计时 ----------
 
@@ -308,6 +337,7 @@ function applyLang() {
   $("#foot1").innerHTML = t("foot1");
   $("#foot2").textContent = t("foot2");
   applyTheme();
+  buildSubPanel();
   areaSel.rebuild();
   rankSel.rebuild();
   render();

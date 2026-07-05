@@ -1,0 +1,63 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//DDLRadar//feeds//EN
+X-WR-CALNAME:DDL Radar · Security
+X-PUBLISHED-TTL:P1D
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+BEGIN:VEVENT
+UID:acm-ccs-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270115T115959Z
+DTSTART:20270115T115959Z
+DTEND:20270115T115959Z
+SUMMARY:📡 ACM CCS 2027 full paper deadline
+DESCRIPTION:ACM Conference on Computer and Communications Security\nhttps
+ ://sigsac.org/ccs.html
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:ACM CCS 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ieee-sp-2027-full-paper-deadline@ddlradar
+DTSTAMP:20261115T115959Z
+DTSTART:20261115T115959Z
+DTEND:20261115T115959Z
+SUMMARY:📡 IEEE S&P 2027 full paper deadline
+DESCRIPTION:IEEE Symposium on Security and Privacy\nhttps://sp2027.ieee-s
+ ecurity.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:IEEE S&P 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ndss-2027-summer-full-paper-deadline@ddlradar
+DTSTAMP:20260724T115959Z
+DTSTART:20260724T115959Z
+DTEND:20260724T115959Z
+SUMMARY:📡 NDSS 2027 (Summer) full paper deadline
+DESCRIPTION:Network and Distributed System Security Symposium\nhttps://nd
+ ss-symposium.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:NDSS 2027 (Summer) full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:usenix-security-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270206T115959Z
+DTSTART:20270206T115959Z
+DTEND:20270206T115959Z
+SUMMARY:📡 USENIX Security 2027 full paper deadline
+DESCRIPTION:USENIX Security Symposium\nhttps://usenix.org/conference/usen
+ ixsecurity27
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:USENIX Security 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+END:VCALENDAR

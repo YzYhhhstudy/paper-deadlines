@@ -1,0 +1,63 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//DDLRadar//feeds//EN
+X-WR-CALNAME:DDL Radar · SE
+X-PUBLISHED-TTL:P1D
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+BEGIN:VEVENT
+UID:ase-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270529T115959Z
+DTSTART:20270529T115959Z
+DTEND:20270529T115959Z
+SUMMARY:📡 ASE 2027 full paper deadline
+DESCRIPTION:IEEE/ACM International Conference on Automated Software Engin
+ eering\nhttps://conf.researchr.org/series/ase
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:ASE 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fse-2027-full-paper-deadline@ddlradar
+DTSTAMP:20260911T115959Z
+DTSTART:20260911T115959Z
+DTEND:20260911T115959Z
+SUMMARY:📡 FSE 2027 full paper deadline
+DESCRIPTION:ACM International Conference on the Foundations of Software E
+ ngineering\nhttps://conf.researchr.org/series/fse
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:FSE 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:icse-2028-full-paper-deadline@ddlradar
+DTSTAMP:20270316T115959Z
+DTSTART:20270316T115959Z
+DTEND:20270316T115959Z
+SUMMARY:📡 ICSE 2028 full paper deadline
+DESCRIPTION:International Conference on Software Engineering\nhttps://con
+ f.researchr.org/series/icse
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:ICSE 2028 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:issta-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270129T115959Z
+DTSTART:20270129T115959Z
+DTEND:20270129T115959Z
+SUMMARY:📡 ISSTA 2027 full paper deadline
+DESCRIPTION:ACM SIGSOFT International Symposium on Software Testing and A
+ nalysis\nhttps://conf.researchr.org/series/issta
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:ISSTA 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+END:VCALENDAR

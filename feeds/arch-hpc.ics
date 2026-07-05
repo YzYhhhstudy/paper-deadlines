@@ -1,0 +1,77 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//DDLRadar//feeds//EN
+X-WR-CALNAME:DDL Radar · Arch/HPC
+X-PUBLISHED-TTL:P1D
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+BEGIN:VEVENT
+UID:hpca-2027-full-paper-deadline@ddlradar
+DTSTAMP:20260802T115959Z
+DTSTART:20260802T115959Z
+DTEND:20260802T115959Z
+SUMMARY:📡 HPCA 2027 full paper deadline
+DESCRIPTION:IEEE International Symposium on High-Performance Computer Arc
+ hitecture\nhttps://hpca-conf.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:HPCA 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:isca-2027-full-paper-deadline@ddlradar
+DTSTAMP:20261121T115959Z
+DTSTART:20261121T115959Z
+DTEND:20261121T115959Z
+SUMMARY:📡 ISCA 2027 full paper deadline
+DESCRIPTION:International Symposium on Computer Architecture\nhttps://isc
+ aconf.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:ISCA 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:micro-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270416T115959Z
+DTSTART:20270416T115959Z
+DTEND:20270416T115959Z
+SUMMARY:📡 MICRO 2027 full paper deadline
+DESCRIPTION:IEEE/ACM International Symposium on Microarchitecture\nhttps:
+ //microarch.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:MICRO 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ppopp-2027-full-paper-deadline@ddlradar
+DTSTAMP:20260811T115959Z
+DTSTART:20260811T115959Z
+DTEND:20260811T115959Z
+SUMMARY:📡 PPoPP 2027 full paper deadline
+DESCRIPTION:ACM SIGPLAN Symposium on Principles and Practice of Parallel 
+ Programming\nhttps://ppopp27.sigplan.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:PPoPP 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270406T115959Z
+DTSTART:20270406T115959Z
+DTEND:20270406T115959Z
+SUMMARY:📡 SC 2027 full paper deadline
+DESCRIPTION:International Conference for High Performance Computing\, Net
+ working\, Storage and Analysis\nhttps://supercomputing.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:SC 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+END:VCALENDAR

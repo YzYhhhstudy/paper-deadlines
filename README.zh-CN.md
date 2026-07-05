@@ -19,34 +19,51 @@
 - 📈 20 个主流会议附**近 5 年历史 DDL**，一眼看出该会议每年几月截稿的规律（大致日期 ±数天，精确请查官网或 [ccfddl 数据仓库](https://github.com/ccfddl/ccf-deadlines)）
 - ⭐ 收藏关注的会议（localStorage 持久化），可只看收藏
 - 📅 一键把收藏的 DDL 导出为 `.ics`（含摘要+全文截止、提前 7 天提醒），导入 Google/Apple Calendar
+- 📡 **webcal:// 日历订阅**：全部会议或按领域订阅一次，数据更新后日历自动同步，无需重复导出
 - 🌐 截止时间自动换算为你的本地时间（数据里存官方时区，多数为 AoE）
 - 🙈 可隐藏/显示已截止的会议
 
-## ⚠️ 数据说明
+## 📡 日历订阅
 
-`data.js` 中的日期是**示例/往年周期推算**，投稿前务必核对官网。
-数据结构：
+点页头的**订阅日历**按钮，或直接在 Google/Apple 日历中添加 `webcal://` 订阅链接——
+全部会议用 `webcal://yzyhhhstudy.github.io/paper-deadlines/feeds/all.ics`，
+也可按领域订阅（如 `feeds/ai-ml.ics`）。数据更新后 feed 自动重建，日历 App 会定期自动同步，
+无需再手动导出。
 
-```js
-{
-  name: "ICLR 2027", fullName: "…", area: "AI/ML", rank: "CCF-A",
-  abstractDeadline: "2026-09-18T23:59:59-12:00",  // 可选
-  deadline: "2026-09-24T23:59:59-12:00",           // AoE 写 -12:00
-  confDate: "2027-04", place: "TBD", link: "https://iclr.cc",
-}
+## 🗂 数据与贡献
+
+日期是**示例/往年周期推算**，投稿前务必核对官网。每个会议一个 YAML 文件，放在
+`data/conferences/` 下：
+
+```yaml
+name: "ICLR"
+fullName: "International Conference on Learning Representations"
+area: "AI/ML"
+ccf: "CCF-A"    # CCF-A / CCF-B / CCF-C / Non-CCF（中文界面显示）
+core: "A*"      # CORE：A* / A / B / C / Unranked（英文界面显示）
+link: "https://iclr.cc"
+editions:
+  - id: "ICLR 2027"
+    abstractDeadline: "2026-09-18T23:59:59-12:00"   # 可选
+    deadline: "2026-09-24T23:59:59-12:00"           # AoE 写 -12:00
+    confDate: "2027-04"
+    place: "TBD"
+history:        # 往年全文截稿日（可选）
+  - "2025-09-19"
 ```
 
-英文界面使用的 CORE 等级维护在 `data.js` 底部的 `CORE_RANKS` 映射表中，按会议名前缀匹配，
-未收录的会议显示为 "Unranked"。
+发现某个 DDL 过期了？**改 YAML 提 PR** 即可——CI 自动校验格式，合并后自动重建
+`data.js` 和日历 feeds。本地构建：`npm install && npm run build`
+（页面本身仍是零依赖静态站；`data.js` 和 `feeds/` 是生成物，不要手改）。
 
 ## 运行
 
-纯静态页面，零依赖：`open index.html`，或部署到 GitHub Pages / Vercel。
+纯静态页面：`open index.html`，或部署到 GitHub Pages / Vercel。
 
 ## Roadmap
 
-- [ ] 数据改为 YAML + GitHub PR 众包维护（参考 ccfddl 模式）
+- [x] 数据改为 YAML + GitHub PR 众包维护（参考 ccfddl 模式）
+- [x] 订阅链接（webcal://）自动同步日历，而非手动导出
 - [ ] 浏览器通知 / 邮件提醒
-- [ ] 订阅链接（webcal://）自动同步日历，而非手动导出
 - [ ] 覆盖期刊（TPAMI、JMLR…）与 workshop
 - [ ] 显示 h5-index、录取率等元信息

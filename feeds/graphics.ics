@@ -1,0 +1,48 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//DDLRadar//feeds//EN
+X-WR-CALNAME:DDL Radar · Graphics
+X-PUBLISHED-TTL:P1D
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+BEGIN:VEVENT
+UID:eurographics-2027-full-paper-deadline@ddlradar
+DTSTAMP:20261010T115959Z
+DTSTART:20261010T115959Z
+DTEND:20261010T115959Z
+SUMMARY:📡 Eurographics 2027 full paper deadline
+DESCRIPTION:Annual Conference of the European Association for Computer Gr
+ aphics\nhttps://eg2027.eu
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:Eurographics 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:siggraph-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270123T075959Z
+DTSTART:20270123T075959Z
+DTEND:20270123T075959Z
+SUMMARY:📡 SIGGRAPH 2027 full paper deadline
+DESCRIPTION:ACM SIGGRAPH Annual Conference\nhttps://siggraph.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:SIGGRAPH 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:siggraph-asia-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270520T115959Z
+DTSTART:20270520T115959Z
+DTEND:20270520T115959Z
+SUMMARY:📡 SIGGRAPH Asia 2027 full paper deadline
+DESCRIPTION:ACM SIGGRAPH Conference and Exhibition on Computer Graphics a
+ nd Interactive Techniques in Asia\nhttps://asia.siggraph.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:SIGGRAPH Asia 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,213 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//DDLRadar//feeds//EN
+X-WR-CALNAME:DDL Radar · AI/ML
+X-PUBLISHED-TTL:P1D
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+BEGIN:VEVENT
+UID:aaai-2027-abstract-deadline@ddlradar
+DTSTAMP:20260726T115959Z
+DTSTART:20260726T115959Z
+DTEND:20260726T115959Z
+SUMMARY:📡 AAAI 2027 abstract deadline
+DESCRIPTION:AAAI Conference on Artificial Intelligence\nhttps://aaai.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:AAAI 2027 abstract deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:aaai-2027-full-paper-deadline@ddlradar
+DTSTAMP:20260802T115959Z
+DTSTART:20260802T115959Z
+DTEND:20260802T115959Z
+SUMMARY:📡 AAAI 2027 full paper deadline
+DESCRIPTION:AAAI Conference on Artificial Intelligence\nhttps://aaai.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:AAAI 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:aamas-2027-abstract-deadline@ddlradar
+DTSTAMP:20261002T115959Z
+DTSTART:20261002T115959Z
+DTEND:20261002T115959Z
+SUMMARY:📡 AAMAS 2027 abstract deadline
+DESCRIPTION:International Conference on Autonomous Agents and Multiagent 
+ Systems\nhttps://aamas-conference.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:AAMAS 2027 abstract deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:aamas-2027-full-paper-deadline@ddlradar
+DTSTAMP:20261009T115959Z
+DTSTART:20261009T115959Z
+DTEND:20261009T115959Z
+SUMMARY:📡 AAMAS 2027 full paper deadline
+DESCRIPTION:International Conference on Autonomous Agents and Multiagent 
+ Systems\nhttps://aamas-conference.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:AAMAS 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:aistats-2027-abstract-deadline@ddlradar
+DTSTAMP:20261002T115959Z
+DTSTART:20261002T115959Z
+DTEND:20261002T115959Z
+SUMMARY:📡 AISTATS 2027 abstract deadline
+DESCRIPTION:International Conference on Artificial Intelligence and Stati
+ stics\nhttps://aistats.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:AISTATS 2027 abstract deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:aistats-2027-full-paper-deadline@ddlradar
+DTSTAMP:20261009T115959Z
+DTSTART:20261009T115959Z
+DTEND:20261009T115959Z
+SUMMARY:📡 AISTATS 2027 full paper deadline
+DESCRIPTION:International Conference on Artificial Intelligence and Stati
+ stics\nhttps://aistats.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:AISTATS 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:colt-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270211T115959Z
+DTSTART:20270211T115959Z
+DTEND:20270211T115959Z
+SUMMARY:📡 COLT 2027 full paper deadline
+DESCRIPTION:Conference on Learning Theory\nhttps://learningtheory.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:COLT 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ecai-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270121T115959Z
+DTSTART:20270121T115959Z
+DTEND:20270121T115959Z
+SUMMARY:📡 ECAI 2027 full paper deadline
+DESCRIPTION:European Conference on Artificial Intelligence\nhttps://ecai2
+ 027.eu
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:ECAI 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:iclr-2027-abstract-deadline@ddlradar
+DTSTAMP:20260919T115959Z
+DTSTART:20260919T115959Z
+DTEND:20260919T115959Z
+SUMMARY:📡 ICLR 2027 abstract deadline
+DESCRIPTION:International Conference on Learning Representations\nhttps:/
+ /iclr.cc
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:ICLR 2027 abstract deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:iclr-2027-full-paper-deadline@ddlradar
+DTSTAMP:20260925T115959Z
+DTSTART:20260925T115959Z
+DTEND:20260925T115959Z
+SUMMARY:📡 ICLR 2027 full paper deadline
+DESCRIPTION:International Conference on Learning Representations\nhttps:/
+ /iclr.cc
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:ICLR 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:icml-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270129T115959Z
+DTSTART:20270129T115959Z
+DTEND:20270129T115959Z
+SUMMARY:📡 ICML 2027 full paper deadline
+DESCRIPTION:International Conference on Machine Learning\nhttps://icml.cc
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:ICML 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ijcai-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270116T115959Z
+DTSTART:20270116T115959Z
+DTEND:20270116T115959Z
+SUMMARY:📡 IJCAI 2027 full paper deadline
+DESCRIPTION:International Joint Conference on Artificial Intelligence\nht
+ tps://ijcai.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:IJCAI 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:neurips-2026-abstract-deadline@ddlradar
+DTSTAMP:20260512T115959Z
+DTSTART:20260512T115959Z
+DTEND:20260512T115959Z
+SUMMARY:📡 NeurIPS 2026 abstract deadline
+DESCRIPTION:Conference on Neural Information Processing Systems\nhttps://
+ neurips.cc
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:NeurIPS 2026 abstract deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:neurips-2026-full-paper-deadline@ddlradar
+DTSTAMP:20260516T115959Z
+DTSTART:20260516T115959Z
+DTEND:20260516T115959Z
+SUMMARY:📡 NeurIPS 2026 full paper deadline
+DESCRIPTION:Conference on Neural Information Processing Systems\nhttps://
+ neurips.cc
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:NeurIPS 2026 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:uai-2027-full-paper-deadline@ddlradar
+DTSTAMP:20270221T115959Z
+DTSTART:20270221T115959Z
+DTEND:20270221T115959Z
+SUMMARY:📡 UAI 2027 full paper deadline
+DESCRIPTION:Conference on Uncertainty in Artificial Intelligence\nhttps:/
+ /auai.org
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:UAI 2027 full paper deadline — 7 days left
+END:VALARM
+END:VEVENT
+END:VCALENDAR
