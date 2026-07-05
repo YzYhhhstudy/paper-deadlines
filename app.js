@@ -1168,9 +1168,16 @@ $("#starredOnly").onchange = (e) => { state.starredOnly = e.target.checked; rend
 $("#hidePast").onchange = (e) => { state.hidePast = e.target.checked; render(); };
 $("#exportIcs").onclick = exportIcs;
 
-// ---------- DDL 浏览器通知：收藏的会议临近截止时提醒（提前 7 天 / 1 天各一次） ----------
+// ---------- DDL 浏览器通知：收藏的会议临近截止时提醒（提前天数可自定义） ----------
 
-const NOTIFY_THRESHOLDS = [7, 1];
+const NOTIFY_DAY_PRESETS = [1, 3, 7, 14, 30];
+
+function notifyThresholds() {
+  try {
+    const v = JSON.parse(localStorage.getItem("ddlradar-notify-days") || "[7,1]");
+    return Array.isArray(v) && v.length ? v : [7, 1];
+  } catch { return [7, 1]; }
+}
 
 function notifyEnabled() {
   return "Notification" in window && Notification.permission === "granted"
@@ -1193,7 +1200,8 @@ async function checkNotifications() {
     const nd = nextDeadline(c);
     const ms = new Date(nd.iso).getTime() - Date.now();
     if (ms <= 0) continue;
-    for (const days of NOTIFY_THRESHOLDS) {
+    // 从最紧的档位往外找第一个命中的（升序），每个档位对每个截点只发一次
+    for (const days of [...notifyThresholds()].sort((a, b) => a - b)) {
       if (ms > days * 86400000) continue;
       const key = `${c.name}|${nd.iso}|${days}`;
       if (seen[key]) break;
@@ -1220,16 +1228,52 @@ function updateNotifyBtn() {
   btn.setAttribute("aria-label", btn.title);
 }
 
-$("#notifyBtn").onclick = async () => {
+// 铃铛下拉：开关提醒 + 自定义提前天数
+function buildNotifyPanel() {
+  const panel = $("#notifyPanel");
   if (!("Notification" in window)) return;
-  if (Notification.permission !== "granted") {
-    if (await Notification.requestPermission() !== "granted") { updateNotifyBtn(); return; }
-    localStorage.setItem("ddlradar-notify", "on");
+  if (!notifyEnabled()) {
+    panel.innerHTML = `<a href="#" data-act="enable">${t("notifyEnable")}</a>`;
   } else {
-    localStorage.setItem("ddlradar-notify", notifyEnabled() ? "off" : "on");
+    const days = notifyThresholds();
+    panel.innerHTML = `<div class="msel-actions"><span class="notify-lbl">${t("notifyDaysLbl")}</span></div>` +
+      NOTIFY_DAY_PRESETS.map((d) => `<label>
+        <input type="checkbox" value="${d}" ${days.includes(d) ? "checked" : ""}> ${t("daysLeft")(d)}
+      </label>`).join("") +
+      `<a href="#" data-act="disable">${t("notifyDisable")}</a>`;
   }
-  updateNotifyBtn();
-  checkNotifications();
+  panel.querySelectorAll("input").forEach((cb) => {
+    cb.onchange = () => {
+      const sel = [...panel.querySelectorAll("input:checked")].map((x) => +x.value);
+      localStorage.setItem("ddlradar-notify-days", JSON.stringify(sel.length ? sel : [7, 1]));
+      checkNotifications();
+    };
+  });
+  panel.querySelectorAll("a[data-act]").forEach((a) => {
+    a.onclick = async (e) => {
+      e.preventDefault();
+      if (a.dataset.act === "enable") {
+        if (Notification.permission !== "granted" && await Notification.requestPermission() !== "granted") return;
+        localStorage.setItem("ddlradar-notify", "on");
+        checkNotifications();
+      } else {
+        localStorage.setItem("ddlradar-notify", "off");
+        $("#notifySel").classList.remove("open");
+      }
+      updateNotifyBtn();
+      buildNotifyPanel();
+    };
+  });
+  panel.onclick = (e) => e.stopPropagation();
+}
+
+$("#notifyBtn").onclick = (e) => {
+  if (!("Notification" in window)) return;
+  e.stopPropagation();
+  const root = $("#notifySel");
+  const wasOpen = root.classList.contains("open");
+  document.querySelectorAll(".msel.open").forEach((m) => m.classList.remove("open"));
+  if (!wasOpen) { buildNotifyPanel(); root.classList.add("open"); }
 };
 
 applyLang();
