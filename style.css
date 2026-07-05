@@ -245,7 +245,11 @@ footer code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; 
 .tl-gridline { position: absolute; top: 22px; bottom: 0; border-left: 1px dashed var(--line); }
 .tl-gridlbl { position: absolute; top: 2px; font-size: 11px; color: var(--muted); white-space: nowrap; }
 .tl-today { position: absolute; top: 22px; bottom: 0; border-left: 2px solid var(--accent); }
-.tl-todaylbl { position: absolute; top: 2px; font-size: 11px; color: var(--accent); font-weight: 700; }
+.tl-todaylbl {
+  position: absolute; top: 1px; z-index: 3; /* 胶囊角标压在月份标签之上，避免文字重叠 */
+  background: var(--accent); color: #fff; font-size: 10px; font-weight: 700;
+  padding: 1px 8px; border-radius: 10px;
+}
 .tl-pin {
   position: absolute; padding: 4px 10px; font-size: 12px; white-space: nowrap;
   background: var(--panel-2); border: 1px solid var(--border); border-radius: 14px;
@@ -284,9 +288,10 @@ footer code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; 
 /* 看板视图 */
 .kanban {
   grid-column: 1/-1; display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px;
+  grid-template-columns: repeat(2, 1fr); gap: 14px; /* 4 个状态 → 2×2，填满页面 */
 }
-.kb-col { background: var(--panel-2); border-radius: var(--radius); padding: 10px; min-height: 120px; }
+@media (max-width: 760px) { .kanban { grid-template-columns: 1fr; } }
+.kb-col { background: var(--panel-2); border-radius: var(--radius); padding: 12px; min-height: 200px; }
 .kb-head {
   font-weight: 700; font-size: 13px; margin-bottom: 10px; padding: 4px 8px; border-radius: 8px;
   display: flex; justify-content: space-between; align-items: center;
