@@ -51,6 +51,9 @@ const I18N = {
     rollingLabel: "滚动审稿",
     rollingMeta: "期刊滚动收稿，无固定截止日期",
     journalTag: "期刊",
+    notifyTitle: (name, d) => `📡 ${name} 还有 ${d} 天截稿`,
+    notifyOn: "DDL 提醒已开启：收藏的会议临近截止时通知（提前 7 天 / 1 天）· 点击关闭",
+    notifyOff: "开启 DDL 提醒（收藏的会议临近截止时浏览器通知）",
     contribLead: "发现 DDL 过期或缺了你关注的会议？",
     contribAdd: "➕ 添加新会议",
     contribFix: "✏️ 修正现有数据",
@@ -111,6 +114,9 @@ const I18N = {
     rollingLabel: "Rolling review",
     rollingMeta: "Journal with rolling submissions — no fixed deadline",
     journalTag: "Journal",
+    notifyTitle: (name, d) => `📡 ${name} — ${d} day${d > 1 ? "s" : ""} to deadline`,
+    notifyOn: "DDL reminders on: notified 7 days / 1 day before starred deadlines · click to turn off",
+    notifyOff: "Enable DDL reminders (browser notifications for starred venues)",
     contribLead: "Spotted an outdated DDL, or missing your venue?",
     contribAdd: "➕ Add a conference",
     contribFix: "✏️ Fix existing data",
@@ -495,6 +501,7 @@ function applyLang() {
   $("#foot2").textContent = t("foot2");
   renderContrib();
   applyTheme();
+  updateNotifyBtn(); // 函数声明有提升，首次调用时已可用
   buildSubPanel();
   areaSel.rebuild();
   rankSel.rebuild();
@@ -574,8 +581,74 @@ $("#starredOnly").onchange = (e) => { state.starredOnly = e.target.checked; rend
 $("#hidePast").onchange = (e) => { state.hidePast = e.target.checked; render(); };
 $("#exportIcs").onclick = exportIcs;
 
+// ---------- DDL 浏览器通知：收藏的会议临近截止时提醒（提前 7 天 / 1 天各一次） ----------
+
+const NOTIFY_THRESHOLDS = [7, 1];
+
+function notifyEnabled() {
+  return "Notification" in window && Notification.permission === "granted"
+    && localStorage.getItem("ddlradar-notify") !== "off";
+}
+
+async function checkNotifications() {
+  if (!notifyEnabled()) return;
+  const seen = JSON.parse(localStorage.getItem("ddlradar-notified") || "{}");
+  // 首次加载时 SW 可能尚未注册完，等 ready（3 秒兜底后退回构造函数通知）
+  let reg = null;
+  if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+    reg = await Promise.race([
+      navigator.serviceWorker.ready,
+      new Promise((r) => setTimeout(() => r(null), 3000)),
+    ]);
+  }
+  for (const c of CONFERENCES) {
+    if (!state.starred.has(c.name) || c.rolling) continue;
+    const nd = nextDeadline(c);
+    const ms = new Date(nd.iso).getTime() - Date.now();
+    if (ms <= 0) continue;
+    for (const days of NOTIFY_THRESHOLDS) {
+      if (ms > days * 86400000) continue;
+      const key = `${c.name}|${nd.iso}|${days}`;
+      if (seen[key]) break;
+      seen[key] = 1;
+      const title = t("notifyTitle")(c.name, Math.ceil(ms / 86400000));
+      const opts = {
+        body: `${nd.type === "abstract" ? t("absLabel") : t("fullLabel")}${fmtLocal(nd.iso)}`,
+        icon: "icons/icon-192.png", tag: key,
+      };
+      if (reg) reg.showNotification(title, opts);
+      else new Notification(title, opts);
+      break; // 每个会议只发当前最紧的一档
+    }
+  }
+  localStorage.setItem("ddlradar-notified", JSON.stringify(seen));
+}
+
+function updateNotifyBtn() {
+  const btn = $("#notifyBtn");
+  if (!("Notification" in window)) { btn.style.display = "none"; return; }
+  const on = notifyEnabled();
+  btn.textContent = on ? "🔔" : "🔕";
+  btn.title = t(on ? "notifyOn" : "notifyOff");
+  btn.setAttribute("aria-label", btn.title);
+}
+
+$("#notifyBtn").onclick = async () => {
+  if (!("Notification" in window)) return;
+  if (Notification.permission !== "granted") {
+    if (await Notification.requestPermission() !== "granted") { updateNotifyBtn(); return; }
+    localStorage.setItem("ddlradar-notify", "on");
+  } else {
+    localStorage.setItem("ddlradar-notify", notifyEnabled() ? "off" : "on");
+  }
+  updateNotifyBtn();
+  checkNotifications();
+};
+
 applyLang();
+checkNotifications();
 setInterval(render, 60 * 1000); // 每分钟刷新倒计时
+setInterval(checkNotifications, 3600 * 1000); // 每小时检查一次提醒
 
 // ---------- PWA：注册 Service Worker（需要 https 或 localhost） ----------
 if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
