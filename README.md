@@ -14,8 +14,15 @@ differentiated by personalization and calendar integration.
 ## Features
 
 - ⏳ Live countdowns (days/hours/minutes), red under 7 days, orange under 30
-- 🗂 ~70 conferences in 16 areas: AI/ML, CV, NLP, Speech, Robotics (IROS/ICRA/RSS/CoRL),
-  Data Mining, DB, Systems, Arch/HPC, Networking, Security, SE, HCI, Graphics, Theory, Multimedia
+- 🗂 ~70 conferences in 16 areas — AI/ML, CV, NLP, Speech, Robotics, Data Mining, DB, Systems,
+  Arch/HPC, Networking, Security, SE, HCI, Graphics, Theory, Multimedia — plus
+  📖 **rolling journals** (TPAMI, IJCV, JMLR, TACL)
+- 📱 **Installable PWA**: works offline, add to home screen / desktop
+- 🔔 **Deadline notifications**: browser reminders 7 days / 1 day before starred deadlines
+- ☰ **Timeline view**: deadlines grouped by month, next to the classic card grid
+- 🔗 **Shareable URLs**: every filter/search/view choice is encoded in the address bar
+- 🔎 Alias-aware search (NIPS → NeurIPS, Oakland → IEEE S&P, ESEC/FSE → FSE…)
+- 📊 h5-index & acceptance-rate tags for ~36 major venues, sortable by either
 - ⚠️ **Abstract-deadline aware**: when a conference has an earlier abstract deadline, the countdown
   targets it and warns you — never mistake the full-paper date for your real DDL
 - 📈 5-year historical deadlines for 20 major venues — see each conference's annual pattern at a glance
@@ -62,19 +69,34 @@ history:        # past full-paper deadlines (optional)
 Spotted an outdated deadline? **Edit the YAML and open a PR** — CI validates the format,
 and after merge it rebuilds `data.js` and the calendar feeds automatically.
 To build locally: `npm install && npm run build` (the page itself stays a zero-dependency
-static site; `data.js` and `feeds/` are generated, don't edit them by hand).
+static site; `data.js`, `data.json` and `feeds/` are generated, don't edit them by hand).
 
-## Run
+Optional YAML fields: `aliases` (search synonyms), `h5`, `acceptRate`,
+`type: journal` + `rolling: true` for journals without fixed deadlines.
+
+- **Read-only API**: all data is published at
+  [`/data.json`](https://yzyhhhstudy.github.io/paper-deadlines/data.json) — build your own
+  client (CLI, extension, bot) on top of it.
+- **Weekly reconciliation bot**: an Action cross-checks our dates against
+  [ccfddl](https://github.com/ccfddl/ccf-deadlines) every Monday and opens an issue
+  listing any differences.
+
+## Run / install
 
 Pure static page: `open index.html`, or deploy to GitHub Pages / Vercel.
+On the live site, use the address-bar **install icon** (desktop Chrome/Edge) or
+**Share → Add to Home Screen** (iOS Safari) to install it as an offline-capable app.
 
 ## Roadmap
 
 - [x] Move data to YAML + crowdsourced GitHub PRs (the ccfddl model)
 - [x] `webcal://` subscription (auto-sync instead of manual export)
-- [ ] Browser / email notifications
-- [ ] Journals (TPAMI, JMLR…) and workshops
-- [ ] Show h5-index and acceptance rates
+- [x] Browser notifications
+- [x] Journals (TPAMI, JMLR, IJCV, TACL)
+- [x] h5-index and acceptance rates
+- [x] PWA (installable, offline)
+- [ ] Workshops; email digest
+- [ ] Browser extension / Raycast / chat-bot clients on top of `data.json`
 
 ## License
 

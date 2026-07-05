@@ -10,7 +10,14 @@
 ## 功能
 
 - ⏳ 实时倒计时（天/时/分），<7 天红色、<30 天橙色预警
-- 🗂 覆盖 15 个领域近 70 个会议：AI/ML、CV、NLP、Speech、Robotics（IROS/ICRA/RSS/CoRL）、Data Mining、DB、Systems、Arch/HPC、Networking、Security、SE、HCI、Graphics、Theory、Multimedia
+- 🗂 覆盖 16 个领域近 70 个会议（AI/ML、CV、NLP、Systems、Security 等），另有
+  📖 **滚动投稿期刊**（TPAMI、IJCV、JMLR、TACL）
+- 📱 **可安装 PWA**：离线可用，可添加到手机主屏幕 / 桌面
+- 🔔 **截稿提醒**：收藏的会议临近截止时浏览器通知（提前 7 天 / 1 天）
+- ☰ **时间线视图**：按月分组看 DDL 密度，与卡片视图一键切换
+- 🔗 **可分享链接**：搜索、筛选、视图状态全部编码进 URL，复制地址栏即可分享
+- 🔎 别名搜索（NIPS → NeurIPS、Oakland → IEEE S&P、ESEC/FSE → FSE…）
+- 📊 约 36 个主流会议附 h5 指数与录取率标签，支持按两者排序
 - 🎨 暗色 / 亮色 / 自动（跟随系统）三态主题切换（记忆偏好）
 - 🌏 **中英双语界面**：按浏览器语言自动选择，一键切换并记忆偏好
 - 🏷 按领域和等级**多选**筛选，支持搜索
@@ -53,17 +60,30 @@ history:        # 往年全文截稿日（可选）
 ```
 
 发现某个 DDL 过期了？**改 YAML 提 PR** 即可——CI 自动校验格式，合并后自动重建
-`data.js` 和日历 feeds。本地构建：`npm install && npm run build`
-（页面本身仍是零依赖静态站；`data.js` 和 `feeds/` 是生成物，不要手改）。
+`data.js`、`data.json` 和日历 feeds。本地构建：`npm install && npm run build`
+（页面本身仍是零依赖静态站；生成物不要手改）。
 
-## 运行
+可选字段：`aliases`（搜索别名）、`h5`、`acceptRate`、期刊用 `type: journal` + `rolling: true`。
+
+- **只读 API**：全部数据发布在
+  [`/data.json`](https://yzyhhhstudy.github.io/paper-deadlines/data.json)，
+  可以直接在它之上做 CLI / 插件 / 机器人等其他端
+- **每周对账机器人**：GitHub Action 每周一自动和
+  [ccfddl](https://github.com/ccfddl/ccf-deadlines) 比对日期，有差异就开 issue 提醒核对
+
+## 运行 / 安装
 
 纯静态页面：`open index.html`，或部署到 GitHub Pages / Vercel。
+线上站点可安装为应用：桌面 Chrome/Edge 点地址栏**安装图标**；iPhone 用
+Safari **分享 → 添加到主屏幕**。安装后离线也能打开。
 
 ## Roadmap
 
 - [x] 数据改为 YAML + GitHub PR 众包维护（参考 ccfddl 模式）
 - [x] 订阅链接（webcal://）自动同步日历，而非手动导出
-- [ ] 浏览器通知 / 邮件提醒
-- [ ] 覆盖期刊（TPAMI、JMLR…）与 workshop
-- [ ] 显示 h5-index、录取率等元信息
+- [x] 浏览器通知
+- [x] 期刊（TPAMI、JMLR、IJCV、TACL）
+- [x] h5-index、录取率
+- [x] PWA（可安装、离线可用）
+- [ ] Workshop；邮件摘要
+- [ ] 基于 data.json 的浏览器插件 / Raycast / 群机器人
