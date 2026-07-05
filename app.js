@@ -70,6 +70,8 @@ const I18N = {
     notifyTitle: (name, d) => `📡 ${name} 还有 ${d} 天截稿`,
     notifyOn: "DDL 提醒已开启：收藏的会议临近截止时通知（提前 7 天 / 1 天）· 点击关闭",
     notifyOff: "开启 DDL 提醒（收藏的会议临近截止时浏览器通知）",
+    exportData: "⬇ 备份我的数据",
+    importData: "⬆ 恢复备份",
     contribLead: "发现 DDL 过期或缺了你关注的会议？",
     contribAdd: "➕ 添加新会议",
     contribFix: "✏️ 修正现有数据",
@@ -149,6 +151,8 @@ const I18N = {
     notifyTitle: (name, d) => `📡 ${name} — ${d} day${d > 1 ? "s" : ""} to deadline`,
     notifyOn: "DDL reminders on: notified 7 days / 1 day before starred deadlines · click to turn off",
     notifyOff: "Enable DDL reminders (browser notifications for starred venues)",
+    exportData: "⬇ Back up my data",
+    importData: "⬆ Restore",
     contribLead: "Spotted an outdated DDL, or missing your venue?",
     contribAdd: "➕ Add a conference",
     contribFix: "✏️ Fix existing data",
@@ -224,6 +228,8 @@ const I18N = {
     notifyTitle: (name, d) => `📡 ${name} 締切まであと ${d} 日`,
     notifyOn: "締切リマインダー ON：お気に入りの締切 7 日前 / 1 日前に通知 · クリックで OFF",
     notifyOff: "締切リマインダーを有効にする（ブラウザ通知）",
+    exportData: "⬇ データをバックアップ",
+    importData: "⬆ 復元",
     contribLead: "締切が古い、または学会が見つからない？",
     contribAdd: "➕ 学会を追加",
     contribFix: "✏️ データを修正",
@@ -279,6 +285,8 @@ const I18N = {
     notifyTitle: (name, d) => `📡 ${name} 마감까지 ${d}일`,
     notifyOn: "마감 알림 ON: 즐겨찾기 마감 7일/1일 전 알림 · 클릭하여 끄기",
     notifyOff: "마감 알림 켜기(브라우저 알림)",
+    exportData: "⬇ 데이터 백업",
+    importData: "⬆ 복원",
     contribLead: "마감일이 오래됐거나 학회가 없나요?",
     contribAdd: "➕ 학회 추가", contribFix: "✏️ 데이터 수정",
     contribTail: "(GitHub에서 YAML 편집 후 PR — CI가 자동 검증)",
@@ -331,6 +339,8 @@ const I18N = {
     notifyTitle: (name, d) => `📡 ${name} — noch ${d} Tag${d > 1 ? "e" : ""}`,
     notifyOn: "Erinnerungen an: 7 Tage / 1 Tag vor favorisierten Deadlines · klicken zum Ausschalten",
     notifyOff: "Deadline-Erinnerungen aktivieren (Browser-Benachrichtigungen)",
+    exportData: "⬇ Daten sichern",
+    importData: "⬆ Wiederherstellen",
     contribLead: "Veraltete Deadline oder fehlt eine Konferenz?",
     contribAdd: "➕ Konferenz hinzufügen", contribFix: "✏️ Daten korrigieren",
     contribTail: "(YAML auf GitHub bearbeiten und PR öffnen — CI validiert)",
@@ -383,6 +393,8 @@ const I18N = {
     notifyTitle: (name, d) => `📡 ${name} — ${d} jour${d > 1 ? "s" : ""} restants`,
     notifyOn: "Rappels activés : 7 j / 1 j avant les deadlines favorites · cliquer pour désactiver",
     notifyOff: "Activer les rappels (notifications du navigateur)",
+    exportData: "⬇ Sauvegarder mes données",
+    importData: "⬆ Restaurer",
     contribLead: "Deadline obsolète ou conférence manquante ?",
     contribAdd: "➕ Ajouter une conférence", contribFix: "✏️ Corriger les données",
     contribTail: "(éditez le YAML sur GitHub et ouvrez une PR — validée par la CI)",
@@ -435,6 +447,8 @@ const I18N = {
     notifyTitle: (name, d) => `📡 ${name} — queda${d > 1 ? "n" : ""} ${d} día${d > 1 ? "s" : ""}`,
     notifyOn: "Recordatorios activados: 7 días / 1 día antes de las deadlines favoritas · clic para desactivar",
     notifyOff: "Activar recordatorios (notificaciones del navegador)",
+    exportData: "⬇ Respaldar mis datos",
+    importData: "⬆ Restaurar",
     contribLead: "¿Deadline desactualizada o falta tu congreso?",
     contribAdd: "➕ Añadir congreso", contribFix: "✏️ Corregir datos",
     contribTail: "(edita el YAML en GitHub y abre un PR — la CI lo valida)",
@@ -761,7 +775,22 @@ function openDetail(c) {
 
 function closeDetail() { $("#detailOverlay").hidden = true; }
 $("#detailOverlay").onclick = (e) => { if (e.target === $("#detailOverlay")) closeDetail(); };
-document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDetail(); });
+
+function setView(v) {
+  state.view = v;
+  $("#viewSeg").querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.view === v));
+  render();
+}
+
+// 键盘快捷键：/ 聚焦搜索，1/2/3 切视图，Esc 关弹窗
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") { closeDetail(); return; }
+  if (e.target?.closest?.("input, select, textarea")) return;
+  if (e.key === "/") { e.preventDefault(); $("#search").focus(); }
+  else if (e.key === "1") setView("cards");
+  else if (e.key === "2") setView("timeline");
+  else if (e.key === "3") setView("kanban");
+});
 
 // ---------- 投稿流程：状态选择器 + 看板视图 ----------
 
@@ -1046,6 +1075,37 @@ function renderContrib() {
     ${t("contribTail")}`;
 }
 
+// ---------- 个人数据备份 / 恢复（换设备迁移收藏、看板、提醒设置） ----------
+
+const BACKUP_KEYS = ["ddlradar-starred", "ddlradar-status", "ddlradar-notify", "ddlradar-notify-days", "ddlradar-lang", "ddlradar-theme"];
+
+function renderDataOps() {
+  $("#dataOps").innerHTML = `<a href="#" id="expBtn">${t("exportData")}</a> · <a href="#" id="impBtn">${t("importData")}</a>`;
+  $("#expBtn").onclick = (e) => {
+    e.preventDefault();
+    const data = { app: "ddl-radar", version: 1 };
+    BACKUP_KEYS.forEach((k) => { const v = localStorage.getItem(k); if (v != null) data[k] = v; });
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "ddl-radar-backup.json";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+  $("#impBtn").onclick = (e) => { e.preventDefault(); $("#importFile").click(); };
+}
+
+$("#importFile").onchange = async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  try {
+    const data = JSON.parse(await file.text());
+    if (data.app !== "ddl-radar") throw new Error("not a ddl-radar backup");
+    BACKUP_KEYS.forEach((k) => { if (typeof data[k] === "string") localStorage.setItem(k, data[k]); });
+    location.reload();
+  } catch { alert("Invalid backup file"); }
+};
+
 function applyLang() {
   document.documentElement.lang = t("htmlLang");
   document.title = t("docTitle");
@@ -1066,6 +1126,7 @@ function applyLang() {
   $("#foot1").innerHTML = t("foot1");
   $("#foot2").textContent = t("foot2");
   renderContrib();
+  renderDataOps();
   applyTheme();
   updateNotifyBtn(); // 函数声明有提升，首次调用时已可用
   buildSubPanel();

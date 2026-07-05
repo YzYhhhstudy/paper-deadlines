@@ -382,6 +382,7 @@ footer code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; 
 .accept-chart .dot { fill: var(--accent); }
 .accept-chart .lbl { fill: var(--muted); font-size: 10px; }
 .accept-chart .val { fill: var(--text); font-size: 10px; font-weight: 600; }
-#contrib { margin-bottom: 10px; }
-#contrib a { color: var(--accent); text-decoration: none; font-weight: 600; }
-#contrib a:hover { text-decoration: underline; }
+#contrib { margin-bottom: 6px; }
+#contrib a, #dataOps a { color: var(--accent); text-decoration: none; font-weight: 600; }
+#contrib a:hover, #dataOps a:hover { text-decoration: underline; }
+#dataOps { margin-bottom: 10px; }
