@@ -39,7 +39,7 @@ const I18N = {
     subBtn: "📡 订阅日历",
     subTitle: "在 Google/Apple 日历中订阅 DDL，数据更新自动同步",
     subAll: "📅 全部会议",
-    sortOptions: { deadline: "按截止时间", h5: "按 h5 指数", acceptAsc: "录取率 低→高", acceptDesc: "录取率 高→低" },
+    sortOptions: { deadline: "按截止时间", h5: "按 h5 指数", acceptAsc: "录取率 升序", acceptDesc: "录取率 降序" },
     viewCards: "▦ 卡片",
     viewTimeline: "☰ 时间线",
     viewKanban: "▤ 看板",
@@ -120,7 +120,7 @@ const I18N = {
     subBtn: "📡 Subscribe",
     subTitle: "Subscribe to DDLs in Google/Apple Calendar — updates sync automatically",
     subAll: "📅 All conferences",
-    sortOptions: { deadline: "By deadline", h5: "By h5-index", acceptAsc: "Accept rate low→high", acceptDesc: "Accept rate high→low" },
+    sortOptions: { deadline: "By deadline", h5: "By h5-index", acceptAsc: "Accept rate asc.", acceptDesc: "Accept rate desc." },
     viewCards: "▦ Cards",
     viewTimeline: "☰ Timeline",
     viewKanban: "▤ Board",
@@ -197,7 +197,7 @@ const I18N = {
     foot1: `⚠️ 締切はサンプル／過去の傾向からの推定です。投稿前に必ず公式サイトでご確認ください。
       データは <code>data/conferences/*.yml</code> で管理（PR 歓迎、CI が自動検証）。`,
     foot2: "カウントダウンは各学会の公式タイムゾーン（多くは AoE = UTC-12）基準。お気に入りはブラウザに保存。ランクは CORE ランキング（portal.core.edu.au）に基づきます。",
-    sortOptions: { deadline: "締切順", h5: "h5 指数順", acceptAsc: "採択率 低→高", acceptDesc: "採択率 高→低" },
+    sortOptions: { deadline: "締切順", h5: "h5 指数順", acceptAsc: "採択率 昇順", acceptDesc: "採択率 降順" },
     viewCards: "▦ カード",
     viewTimeline: "☰ タイムライン",
     viewKanban: "▤ ボード",
@@ -265,7 +265,7 @@ const I18N = {
     foot1: `⚠️ 마감일은 과거 주기 기반 추정치입니다. 투고 전 반드시 공식 사이트를 확인하세요.
       데이터는 <code>data/conferences/*.yml</code>에서 관리(PR 환영, CI 자동 검증).`,
     foot2: "카운트다운은 각 학회 공식 시간대(대부분 AoE = UTC-12) 기준. 즐겨찾기는 브라우저에 저장. 등급은 CORE 랭킹(portal.core.edu.au) 기준.",
-    sortOptions: { deadline: "마감순", h5: "h5 지수순", acceptAsc: "채택률 낮은순", acceptDesc: "채택률 높은순" },
+    sortOptions: { deadline: "마감순", h5: "h5 지수순", acceptAsc: "채택률 오름차순", acceptDesc: "채택률 내림차순" },
     viewCards: "▦ 카드", viewTimeline: "☰ 타임라인", viewKanban: "▤ 보드",
     statusNames: { planned: "투고 예정", writing: "작성 중", submitted: "투고 완료", rebuttal: "리버틀", accepted: "채택됨", rejected: "거절됨" },
     statusNone: "＋ 상태",
@@ -319,7 +319,7 @@ const I18N = {
     foot1: `⚠️ Termine sind Schätzungen aus früheren Zyklen — vor dem Einreichen immer die offizielle
       Seite prüfen. Daten in <code>data/conferences/*.yml</code> (PRs willkommen, CI validiert).`,
     foot2: "Countdowns in der offiziellen Zeitzone (meist AoE = UTC-12). Favoriten lokal im Browser. Ränge nach CORE-Ranking (portal.core.edu.au).",
-    sortOptions: { deadline: "Nach Deadline", h5: "Nach h5-Index", acceptAsc: "Quote niedrig→hoch", acceptDesc: "Quote hoch→niedrig" },
+    sortOptions: { deadline: "Nach Deadline", h5: "Nach h5-Index", acceptAsc: "Quote aufsteigend", acceptDesc: "Quote absteigend" },
     viewCards: "▦ Karten", viewTimeline: "☰ Zeitachse", viewKanban: "▤ Board",
     statusNames: { planned: "Geplant", writing: "Schreiben", submitted: "Eingereicht", rebuttal: "Rebuttal", accepted: "Angenommen", rejected: "Abgelehnt" },
     statusNone: "＋ Status",
@@ -373,7 +373,7 @@ const I18N = {
     foot1: `⚠️ Dates estimées à partir des cycles passés — vérifiez toujours le site officiel avant de
       soumettre. Données dans <code>data/conferences/*.yml</code> (PR bienvenues, validées par la CI).`,
     foot2: "Comptes à rebours dans le fuseau officiel (souvent AoE = UTC-12). Favoris stockés localement. Rangs selon le classement CORE (portal.core.edu.au).",
-    sortOptions: { deadline: "Par deadline", h5: "Par indice h5", acceptAsc: "Taux acc. croissant", acceptDesc: "Taux acc. décroissant" },
+    sortOptions: { deadline: "Par deadline", h5: "Par indice h5", acceptAsc: "Taux croissant", acceptDesc: "Taux décroissant" },
     viewCards: "▦ Cartes", viewTimeline: "☰ Chronologie", viewKanban: "▤ Tableau",
     statusNames: { planned: "Prévu", writing: "Rédaction", submitted: "Soumis", rebuttal: "Rebuttal", accepted: "Accepté", rejected: "Rejeté" },
     statusNone: "＋ statut",
@@ -427,7 +427,7 @@ const I18N = {
     foot1: `⚠️ Fechas estimadas a partir de ciclos anteriores — verifica siempre el sitio oficial antes
       de enviar. Datos en <code>data/conferences/*.yml</code> (PRs bienvenidos, validados por CI).`,
     foot2: "Cuentas atrás en la zona horaria oficial (mayormente AoE = UTC-12). Favoritos guardados localmente. Rangos según el ranking CORE (portal.core.edu.au).",
-    sortOptions: { deadline: "Por deadline", h5: "Por índice h5", acceptAsc: "Acept. baja→alta", acceptDesc: "Acept. alta→baja" },
+    sortOptions: { deadline: "Por deadline", h5: "Por índice h5", acceptAsc: "Acept. ascendente", acceptDesc: "Acept. descendente" },
     viewCards: "▦ Tarjetas", viewTimeline: "☰ Cronología", viewKanban: "▤ Tablero",
     statusNames: { planned: "Planificado", writing: "Escribiendo", submitted: "Enviado", rebuttal: "Rebuttal", accepted: "Aceptado", rejected: "Rechazado" },
     statusNone: "＋ estado",
@@ -726,21 +726,22 @@ function visibleConfs() {
 // ---------- 会议详情弹窗：关键日期 + 历年录取率曲线 ----------
 
 function acceptChartSvg(hist) {
-  const W = 420, H = 120, padL = 34, padR = 16, padT = 12, padB = 22;
+  // 左侧留足轴标签空间 + 数据点整体内缩，避免曲线/数值标签与纵轴数字重叠
+  const W = 480, H = 170, padL = 56, padR = 28, padT = 22, padB = 28, inset = 16;
   const rates = hist.map((h) => h.rate);
   const lo = Math.floor(Math.min(...rates) - 2), hi = Math.ceil(Math.max(...rates) + 2);
-  const x = (i) => padL + (i * (W - padL - padR)) / Math.max(1, hist.length - 1);
+  const x = (i) => padL + inset + (i * (W - padL - padR - inset * 2)) / Math.max(1, hist.length - 1);
   const y = (r) => padT + ((hi - r) * (H - padT - padB)) / (hi - lo);
   const pts = hist.map((h, i) => `${x(i)},${y(h.rate)}`).join(" ");
   return `<svg viewBox="0 0 ${W} ${H}" class="accept-chart">
     ${[lo, (lo + hi) / 2, hi].map((r) => `<g>
       <line x1="${padL}" y1="${y(r)}" x2="${W - padR}" y2="${y(r)}" class="grid"/>
-      <text x="${padL - 5}" y="${y(r) + 3}" text-anchor="end" class="lbl">${Math.round(r)}%</text></g>`).join("")}
+      <text x="${padL - 9}" y="${y(r) + 3}" text-anchor="end" class="lbl">${Math.round(r)}%</text></g>`).join("")}
     <polyline points="${pts}" class="line"/>
     ${hist.map((h, i) => `<g>
-      <circle cx="${x(i)}" cy="${y(h.rate)}" r="3.2" class="dot"/>
-      <text x="${x(i)}" y="${y(h.rate) - 7}" text-anchor="middle" class="val">${h.rate}%</text>
-      <text x="${x(i)}" y="${H - 6}" text-anchor="middle" class="lbl">'${String(h.year).slice(2)}</text></g>`).join("")}
+      <circle cx="${x(i)}" cy="${y(h.rate)}" r="3.5" class="dot"/>
+      <text x="${x(i)}" y="${y(h.rate) - 9}" text-anchor="middle" class="val">${h.rate}%</text>
+      <text x="${x(i)}" y="${H - 8}" text-anchor="middle" class="lbl">'${String(h.year).slice(2)}</text></g>`).join("")}
   </svg>`;
 }
 

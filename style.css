@@ -130,7 +130,7 @@ main { max-width: min(1680px, 94vw); margin: 0 auto; padding: 20px 24px 40px; }
 .filters select {
   background: var(--panel-2); color: var(--text);
   border: 1px solid var(--border); border-radius: 8px; padding: 9px 10px; font-size: 13px;
-  width: 128px; /* 固定宽度，切换语言时不跳动 */
+  width: 168px; /* 固定宽度，切换语言时不跳动；容纳"升序/降序"完整词汇 */
 }
 .tag.tag-metric { background: #33261f; color: #e0a97f; border-color: #5a3f2f; }
 .tag.tag-submit { background: var(--accent); color: #fff; border-color: var(--accent); text-decoration: none; font-weight: 600; }
@@ -361,8 +361,8 @@ footer code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; 
 .overlay[hidden] { display: none; } /* display:flex 会覆盖 hidden 属性的 UA 样式 */
 .detail {
   background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 22px 24px; max-width: 520px; width: 100%; max-height: 86vh; overflow-y: auto;
-  position: relative; display: flex; flex-direction: column; gap: 10px;
+  padding: 28px 32px; max-width: 660px; width: 100%; max-height: 88vh; overflow-y: auto;
+  position: relative; display: flex; flex-direction: column; gap: 12px;
 }
 .detail h2 { font-size: 20px; }
 .detail h2 a { color: var(--text); text-decoration: none; }
