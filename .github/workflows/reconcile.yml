@@ -31,6 +31,10 @@ jobs:
       - name: Run reconciliation with auto-fix
         run: node scripts/reconcile.js /tmp/ccfddl/conference --fix > report.md && cat report.md
 
+      # OpenReview 官方数据在 ccfddl 之后跑：官方时刻覆盖社区数据并加 verified 锁
+      - name: Cross-check with OpenReview (official)
+        run: node scripts/openreview.js --fix >> report.md || echo "OpenReview 核对失败，跳过" >> report.md
+
       - name: Rebuild generated files after fixes
         run: |
           if ! git diff --quiet data/; then npm run build; fi
