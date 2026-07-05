@@ -160,6 +160,10 @@ main { max-width: min(1680px, 94vw); margin: 0 auto; padding: 20px 24px 40px; }
 }
 .msel-panel a:hover { background: var(--panel-2); }
 
+/* 语言下拉：固定宽度，任何语言下位置不变 */
+#langSel .msel-btn { width: 122px; }
+.msel-panel a.cur { color: var(--accent); font-weight: 700; }
+
 /* 页头的订阅下拉：宽度由影子标签决定，面板右对齐 */
 .header-actions .msel-btn {
   width: auto; border-radius: 20px; background: var(--panel-2);

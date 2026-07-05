@@ -224,6 +224,193 @@ const I18N = {
     rankOptionLabel: (v) => (v === "Unranked" ? "ランク外" : `CORE ${v}`),
     rankTag: (v) => (v === "Unranked" ? "ランク外" : `CORE ${v}`),
   },
+  ko: {
+    htmlLang: "ko", dateLocale: "ko-KR",
+    docTitle: "DDL Radar · 학회 마감일 트래커",
+    subtitle: "학회·저널 투고 마감 트래커 — 카운트다운 · 즐겨찾기 · 캘린더 연동",
+    themeTitles: { auto: "테마: 자동(시스템)", light: "테마: 라이트", dark: "테마: 다크" },
+    selAll: "전체 선택", selNone: "지우기",
+    exportBtn: "📅 즐겨찾기를 캘린더로", exportTitle: "즐겨찾기한 마감일을 .ics 파일로 내보내기",
+    searchPh: "🔍 학회 검색 (예: NeurIPS / CVPR…)",
+    allAreas: "전체 분야", allRanks: "전체 등급", nSelected: (n) => `${n}개 선택`,
+    starredOnly: "즐겨찾기만 ⭐", hidePast: "마감된 항목 숨기기",
+    empty: "조건에 맞는 학회가 없습니다 — 필터를 완화하거나 YAML로 추가하세요",
+    done: "마감됨", d: "일", h: "시간", m: "분",
+    absFirst: "⚠️ 초록 먼저! <b>초록</b> 마감까지", absClosed: "초록 마감 · 본문 마감까지", fullLeft: "본문 마감까지",
+    absLabel: "초록 마감: ", fullLabel: "본문 마감: ", localTime: " (현지 시간)",
+    absNote: " ← 본문보다 빠르니 주의", hist: "📈 과거 마감일: ",
+    histTitle: "지난 몇 년간의 본문 마감일(대략) — 연간 패턴 파악용",
+    starTitle: "즐겨찾기",
+    foot1: `⚠️ 마감일은 과거 주기 기반 추정치입니다. 투고 전 반드시 공식 사이트를 확인하세요.
+      데이터는 <code>data/conferences/*.yml</code>에서 관리(PR 환영, CI 자동 검증).`,
+    foot2: "카운트다운은 각 학회 공식 시간대(대부분 AoE = UTC-12) 기준. 즐겨찾기는 브라우저에 저장. 등급은 CORE 랭킹(portal.core.edu.au) 기준.",
+    sortOptions: { deadline: "마감순", h5: "h5 지수순", accept: "채택률순" },
+    viewCards: "▦ 카드", viewTimeline: "☰ 타임라인", viewKanban: "▤ 보드",
+    statusNames: { planned: "투고 예정", writing: "작성 중", submitted: "투고 완료", rebuttal: "리버틀" },
+    statusNone: "＋ 상태",
+    kanbanEmpty: "파이프라인이 비어 있습니다 — 카드에서 '투고 예정 / 작성 중 / 투고 완료 / 리버틀'을 선택하세요",
+    notifLabel: "결과 통지: ", rebuttalLabel: "리버틀: ",
+    keyDates: "주요 일정", acceptTrend: "연도별 채택률(대략)",
+    tlAxisBtn: "⇥ 축", tlListBtn: "☰ 목록", todayLbl: "오늘",
+    tlRolling: "🔄 저널 · 상시 투고", absTag: "초록",
+    daysLeft: (d) => `${d}일`, h5Tag: (v) => `h5 ${v}`, acceptTag: (v) => `채택률 ${v}`,
+    rolling: "🔄 상시 투고 가능", rollingLabel: "롤링 심사",
+    rollingMeta: "저널은 상시 투고 가능, 고정 마감 없음", journalTag: "저널",
+    notifyTitle: (name, d) => `📡 ${name} 마감까지 ${d}일`,
+    notifyOn: "마감 알림 ON: 즐겨찾기 마감 7일/1일 전 알림 · 클릭하여 끄기",
+    notifyOff: "마감 알림 켜기(브라우저 알림)",
+    contribLead: "마감일이 오래됐거나 학회가 없나요?",
+    contribAdd: "➕ 학회 추가", contribFix: "✏️ 데이터 수정",
+    contribTail: "(GitHub에서 YAML 편집 후 PR — CI가 자동 검증)",
+    subBtn: "📡 구독", subTitle: "Google/Apple 캘린더에서 마감일 구독 — 자동 동기화", subAll: "📅 전체 학회",
+    alertStar: "먼저 ⭐로 몇 개 즐겨찾기한 뒤 내보내세요.",
+    icsAbs: "abstract deadline", icsFull: "full paper deadline",
+    icsAlarm: (name, label) => `${name} ${label} — 7 days left`,
+    rankKey: "core", rankOptions: ["A*", "A", "B", "C", "Unranked"],
+    rankOptionLabel: (v) => (v === "Unranked" ? "등급 외" : `CORE ${v}`),
+    rankTag: (v) => (v === "Unranked" ? "등급 외" : `CORE ${v}`),
+  },
+  de: {
+    htmlLang: "de", dateLocale: "de-DE",
+    docTitle: "DDL Radar · Deadline-Tracker für Konferenzen",
+    subtitle: "Deadline-Tracker für Konferenzen & Journals — Countdown · Favoriten · Kalender",
+    themeTitles: { auto: "Thema: automatisch (System)", light: "Thema: hell", dark: "Thema: dunkel" },
+    selAll: "Alle auswählen", selNone: "Leeren",
+    exportBtn: "📅 Favoriten in Kalender", exportTitle: "Favorisierte Deadlines als .ics exportieren",
+    searchPh: "🔍 Konferenz suchen (z. B. NeurIPS / CVPR…)",
+    allAreas: "Alle Bereiche", allRanks: "Alle Ränge", nSelected: (n) => `${n} ausgewählt`,
+    starredOnly: "Nur Favoriten ⭐", hidePast: "Abgelaufene ausblenden",
+    empty: "Keine passenden Konferenzen — Filter lockern oder per YAML ergänzen",
+    done: "Abgelaufen", d: "T", h: "Std", m: "Min",
+    absFirst: "⚠️ Erst Abstract! Bis zur <b>Abstract</b>-Deadline",
+    absClosed: "Abstract vorbei · bis zur Volltext-Deadline", fullLeft: "Bis zur Volltext-Deadline",
+    absLabel: "Abstract: ", fullLabel: "Volltext: ", localTime: " (Ortszeit)",
+    absNote: " ← früher als der Volltext!", hist: "📈 Frühere Deadlines: ",
+    histTitle: "Ungefähre Volltext-Deadlines der Vorjahre — für das Jahresmuster",
+    starTitle: "Favorit",
+    foot1: `⚠️ Termine sind Schätzungen aus früheren Zyklen — vor dem Einreichen immer die offizielle
+      Seite prüfen. Daten in <code>data/conferences/*.yml</code> (PRs willkommen, CI validiert).`,
+    foot2: "Countdowns in der offiziellen Zeitzone (meist AoE = UTC-12). Favoriten lokal im Browser. Ränge nach CORE-Ranking (portal.core.edu.au).",
+    sortOptions: { deadline: "Nach Deadline", h5: "Nach h5-Index", accept: "Nach Annahmequote" },
+    viewCards: "▦ Karten", viewTimeline: "☰ Zeitachse", viewKanban: "▤ Board",
+    statusNames: { planned: "Geplant", writing: "Schreiben", submitted: "Eingereicht", rebuttal: "Rebuttal" },
+    statusNone: "＋ Status",
+    kanbanEmpty: "Pipeline leer — wähle auf einer Karte „Geplant / Schreiben / Eingereicht / Rebuttal“",
+    notifLabel: "Benachrichtigung: ", rebuttalLabel: "Rebuttal: ",
+    keyDates: "Wichtige Termine", acceptTrend: "Annahmequote nach Jahr (ca.)",
+    tlAxisBtn: "⇥ Achse", tlListBtn: "☰ Liste", todayLbl: "Heute",
+    tlRolling: "🔄 Journals · fortlaufend", absTag: "Abstract",
+    daysLeft: (d) => `${d} T`, h5Tag: (v) => `h5 ${v}`, acceptTag: (v) => `Quote ${v}`,
+    rolling: "🔄 Jederzeit einreichbar", rollingLabel: "Rolling Review",
+    rollingMeta: "Journal mit fortlaufender Einreichung — keine feste Deadline", journalTag: "Journal",
+    notifyTitle: (name, d) => `📡 ${name} — noch ${d} Tag${d > 1 ? "e" : ""}`,
+    notifyOn: "Erinnerungen an: 7 Tage / 1 Tag vor favorisierten Deadlines · klicken zum Ausschalten",
+    notifyOff: "Deadline-Erinnerungen aktivieren (Browser-Benachrichtigungen)",
+    contribLead: "Veraltete Deadline oder fehlt eine Konferenz?",
+    contribAdd: "➕ Konferenz hinzufügen", contribFix: "✏️ Daten korrigieren",
+    contribTail: "(YAML auf GitHub bearbeiten und PR öffnen — CI validiert)",
+    subBtn: "📡 Abonnieren", subTitle: "Deadlines im Google/Apple-Kalender abonnieren — synchronisiert automatisch", subAll: "📅 Alle Konferenzen",
+    alertStar: "Erst ⭐ einige Konferenzen favorisieren, dann exportieren.",
+    icsAbs: "abstract deadline", icsFull: "full paper deadline",
+    icsAlarm: (name, label) => `${name} ${label} — 7 days left`,
+    rankKey: "core", rankOptions: ["A*", "A", "B", "C", "Unranked"],
+    rankOptionLabel: (v) => (v === "Unranked" ? "Ohne Rang" : `CORE ${v}`),
+    rankTag: (v) => (v === "Unranked" ? "Ohne Rang" : `CORE ${v}`),
+  },
+  fr: {
+    htmlLang: "fr", dateLocale: "fr-FR",
+    docTitle: "DDL Radar · Suivi des deadlines de conférences",
+    subtitle: "Suivi des deadlines de conférences et revues — compte à rebours · favoris · calendrier",
+    themeTitles: { auto: "Thème : auto (système)", light: "Thème : clair", dark: "Thème : sombre" },
+    selAll: "Tout sélectionner", selNone: "Effacer",
+    exportBtn: "📅 Favoris vers le calendrier", exportTitle: "Exporter les deadlines favorites en .ics",
+    searchPh: "🔍 Rechercher (ex. NeurIPS / CVPR…)",
+    allAreas: "Tous les domaines", allRanks: "Tous les rangs", nSelected: (n) => `${n} sélectionnés`,
+    starredOnly: "Favoris seulement ⭐", hidePast: "Masquer les passées",
+    empty: "Aucune conférence trouvée — élargissez les filtres ou ajoutez-en via YAML",
+    done: "Clôturée", d: "j", h: "h", m: "min",
+    absFirst: "⚠️ Résumé d'abord ! Avant la deadline du <b>résumé</b>",
+    absClosed: "Résumé clos · avant la deadline de l'article", fullLeft: "Avant la deadline de l'article",
+    absLabel: "Résumé : ", fullLabel: "Article : ", localTime: " (heure locale)",
+    absNote: " ← plus tôt que l'article !", hist: "📈 Deadlines passées : ",
+    histTitle: "Deadlines des années précédentes (approx.) — pour repérer le rythme annuel",
+    starTitle: "Favori",
+    foot1: `⚠️ Dates estimées à partir des cycles passés — vérifiez toujours le site officiel avant de
+      soumettre. Données dans <code>data/conferences/*.yml</code> (PR bienvenues, validées par la CI).`,
+    foot2: "Comptes à rebours dans le fuseau officiel (souvent AoE = UTC-12). Favoris stockés localement. Rangs selon le classement CORE (portal.core.edu.au).",
+    sortOptions: { deadline: "Par deadline", h5: "Par indice h5", accept: "Par taux d'acceptation" },
+    viewCards: "▦ Cartes", viewTimeline: "☰ Chronologie", viewKanban: "▤ Tableau",
+    statusNames: { planned: "Prévu", writing: "Rédaction", submitted: "Soumis", rebuttal: "Rebuttal" },
+    statusNone: "＋ statut",
+    kanbanEmpty: "Pipeline vide — choisissez « Prévu / Rédaction / Soumis / Rebuttal » sur une carte",
+    notifLabel: "Notification : ", rebuttalLabel: "Rebuttal : ",
+    keyDates: "Dates clés", acceptTrend: "Taux d'acceptation par an (approx.)",
+    tlAxisBtn: "⇥ Axe", tlListBtn: "☰ Liste", todayLbl: "Aujourd'hui",
+    tlRolling: "🔄 Revues · au fil de l'eau", absTag: "résumé",
+    daysLeft: (d) => `${d} j`, h5Tag: (v) => `h5 ${v}`, acceptTag: (v) => `acc. ${v}`,
+    rolling: "🔄 Soumission ouverte", rollingLabel: "Évaluation continue",
+    rollingMeta: "Revue à soumission continue — pas de deadline fixe", journalTag: "Revue",
+    notifyTitle: (name, d) => `📡 ${name} — ${d} jour${d > 1 ? "s" : ""} restants`,
+    notifyOn: "Rappels activés : 7 j / 1 j avant les deadlines favorites · cliquer pour désactiver",
+    notifyOff: "Activer les rappels (notifications du navigateur)",
+    contribLead: "Deadline obsolète ou conférence manquante ?",
+    contribAdd: "➕ Ajouter une conférence", contribFix: "✏️ Corriger les données",
+    contribTail: "(éditez le YAML sur GitHub et ouvrez une PR — validée par la CI)",
+    subBtn: "📡 S'abonner", subTitle: "Abonnez-vous aux deadlines dans Google/Apple Agenda — synchro auto", subAll: "📅 Toutes les conférences",
+    alertStar: "Ajoutez d'abord ⭐ quelques favoris, puis exportez.",
+    icsAbs: "abstract deadline", icsFull: "full paper deadline",
+    icsAlarm: (name, label) => `${name} ${label} — 7 days left`,
+    rankKey: "core", rankOptions: ["A*", "A", "B", "C", "Unranked"],
+    rankOptionLabel: (v) => (v === "Unranked" ? "Non classé" : `CORE ${v}`),
+    rankTag: (v) => (v === "Unranked" ? "Non classé" : `CORE ${v}`),
+  },
+  es: {
+    htmlLang: "es", dateLocale: "es-ES",
+    docTitle: "DDL Radar · Rastreador de deadlines",
+    subtitle: "Rastreador de deadlines de congresos y revistas — cuenta atrás · favoritos · calendario",
+    themeTitles: { auto: "Tema: automático (sistema)", light: "Tema: claro", dark: "Tema: oscuro" },
+    selAll: "Seleccionar todo", selNone: "Limpiar",
+    exportBtn: "📅 Favoritos al calendario", exportTitle: "Exportar deadlines favoritas como .ics",
+    searchPh: "🔍 Buscar (p. ej. NeurIPS / CVPR…)",
+    allAreas: "Todas las áreas", allRanks: "Todos los rangos", nSelected: (n) => `${n} seleccionados`,
+    starredOnly: "Solo favoritos ⭐", hidePast: "Ocultar vencidas",
+    empty: "No hay congresos que coincidan — relaja los filtros o añade por YAML",
+    done: "Cerrada", d: "d", h: "h", m: "min",
+    absFirst: "⚠️ ¡Primero el resumen! Hasta la deadline del <b>resumen</b>",
+    absClosed: "Resumen cerrado · hasta la deadline del artículo", fullLeft: "Hasta la deadline del artículo",
+    absLabel: "Resumen: ", fullLabel: "Artículo: ", localTime: " (hora local)",
+    absNote: " ← antes que el artículo", hist: "📈 Deadlines pasadas: ",
+    histTitle: "Deadlines de años anteriores (aprox.) — para ver el patrón anual",
+    starTitle: "Favorito",
+    foot1: `⚠️ Fechas estimadas a partir de ciclos anteriores — verifica siempre el sitio oficial antes
+      de enviar. Datos en <code>data/conferences/*.yml</code> (PRs bienvenidos, validados por CI).`,
+    foot2: "Cuentas atrás en la zona horaria oficial (mayormente AoE = UTC-12). Favoritos guardados localmente. Rangos según el ranking CORE (portal.core.edu.au).",
+    sortOptions: { deadline: "Por deadline", h5: "Por índice h5", accept: "Por tasa de aceptación" },
+    viewCards: "▦ Tarjetas", viewTimeline: "☰ Cronología", viewKanban: "▤ Tablero",
+    statusNames: { planned: "Planificado", writing: "Escribiendo", submitted: "Enviado", rebuttal: "Rebuttal" },
+    statusNone: "＋ estado",
+    kanbanEmpty: "Pipeline vacío — elige «Planificado / Escribiendo / Enviado / Rebuttal» en una tarjeta",
+    notifLabel: "Notificación: ", rebuttalLabel: "Rebuttal: ",
+    keyDates: "Fechas clave", acceptTrend: "Tasa de aceptación por año (aprox.)",
+    tlAxisBtn: "⇥ Eje", tlListBtn: "☰ Lista", todayLbl: "Hoy",
+    tlRolling: "🔄 Revistas · continuo", absTag: "resumen",
+    daysLeft: (d) => `${d} d`, h5Tag: (v) => `h5 ${v}`, acceptTag: (v) => `acept. ${v}`,
+    rolling: "🔄 Envío abierto", rollingLabel: "Revisión continua",
+    rollingMeta: "Revista de envío continuo — sin deadline fija", journalTag: "Revista",
+    notifyTitle: (name, d) => `📡 ${name} — queda${d > 1 ? "n" : ""} ${d} día${d > 1 ? "s" : ""}`,
+    notifyOn: "Recordatorios activados: 7 días / 1 día antes de las deadlines favoritas · clic para desactivar",
+    notifyOff: "Activar recordatorios (notificaciones del navegador)",
+    contribLead: "¿Deadline desactualizada o falta tu congreso?",
+    contribAdd: "➕ Añadir congreso", contribFix: "✏️ Corregir datos",
+    contribTail: "(edita el YAML en GitHub y abre un PR — la CI lo valida)",
+    subBtn: "📡 Suscribirse", subTitle: "Suscríbete a las deadlines en Google/Apple Calendar — sincroniza solo", subAll: "📅 Todos los congresos",
+    alertStar: "Marca ⭐ algunos congresos primero y luego exporta.",
+    icsAbs: "abstract deadline", icsFull: "full paper deadline",
+    icsAlarm: (name, label) => `${name} ${label} — 7 days left`,
+    rankKey: "core", rankOptions: ["A*", "A", "B", "C", "Unranked"],
+    rankOptionLabel: (v) => (v === "Unranked" ? "Sin rango" : `CORE ${v}`),
+    rankTag: (v) => (v === "Unranked" ? "Sin rango" : `CORE ${v}`),
+  },
 };
 
 // URL 参数优先（分享链接可完整复现视图），其次本地偏好，最后浏览器语言
@@ -231,7 +418,7 @@ const urlParams = new URLSearchParams(location.search);
 let lang = urlParams.get("lang") || localStorage.getItem("ddlradar-lang");
 if (!I18N[lang]) {
   const nav = (navigator.language || "").toLowerCase();
-  lang = nav.startsWith("zh") ? "zh" : nav.startsWith("ja") ? "ja" : "en";
+  lang = Object.keys(I18N).find((l) => nav.startsWith(l)) || "en";
 }
 const t = (key) => I18N[lang][key];
 
@@ -790,8 +977,7 @@ function applyLang() {
   document.documentElement.lang = t("htmlLang");
   document.title = t("docTitle");
   $("#subtitle").textContent = t("subtitle");
-  $("#langSeg").querySelectorAll("button").forEach((b) =>
-    b.classList.toggle("on", b.dataset.lang === lang));
+  buildLangSel();
   $("#viewSeg").querySelectorAll("button").forEach((b) => {
     biLabel(b, { cards: "viewCards", timeline: "viewTimeline", kanban: "viewKanban" }[b.dataset.view]);
     b.classList.toggle("on", b.dataset.view === state.view);
@@ -816,14 +1002,35 @@ function applyLang() {
   localStorage.setItem("ddlradar-lang", lang);
 }
 
-$("#langSeg").querySelectorAll("button").forEach((b) => {
-  b.onclick = () => {
-    if (lang === b.dataset.lang) return;
-    lang = b.dataset.lang;
-    state.ranks.clear(); // CCF 与 CORE 的等级值不同，切语言时清空等级筛选
-    applyLang();
-  };
-});
+// ---------- 语言下拉 ----------
+
+const LANG_NAMES = { zh: "中文", en: "English", ja: "日本語", ko: "한국어", de: "Deutsch", fr: "Français", es: "Español" };
+
+function buildLangSel() {
+  $("#langBtn").textContent = `🌐 ${LANG_NAMES[lang]}`;
+  $("#langPanel").innerHTML = Object.entries(LANG_NAMES).map(([l, name]) =>
+    `<a href="#" data-lang="${l}" lang="${I18N[l].htmlLang}" class="${l === lang ? "cur" : ""}">${l === lang ? "✓ " : ""}${name}</a>`).join("");
+  $("#langPanel").querySelectorAll("a").forEach((a) => {
+    a.onclick = (e) => {
+      e.preventDefault();
+      $("#langSel").classList.remove("open");
+      if (a.dataset.lang === lang) return;
+      const prevRankKey = t("rankKey");
+      lang = a.dataset.lang;
+      // 等级体系变了（CCF ↔ CORE）才清空等级筛选
+      if (t("rankKey") !== prevRankKey) state.ranks.clear();
+      applyLang();
+    };
+  });
+}
+
+$("#langBtn").onclick = (e) => {
+  e.stopPropagation();
+  const root = $("#langSel");
+  const wasOpen = root.classList.contains("open");
+  document.querySelectorAll(".msel.open").forEach((m) => m.classList.remove("open"));
+  if (!wasOpen) root.classList.add("open");
+};
 
 // ---------- .ics 导出 ----------
 
