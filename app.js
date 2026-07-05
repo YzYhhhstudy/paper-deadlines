@@ -50,6 +50,9 @@ const I18N = {
     rebuttalLabel: "Rebuttal：",
     keyDates: "关键日期",
     acceptTrend: "历年录取率（约数）",
+    tlAxisBtn: "⇥ 时间轴",
+    tlListBtn: "☰ 列表",
+    todayLbl: "今天",
     tlRolling: "🔄 期刊 · 随时可投",
     absTag: "摘要截止",
     daysLeft: (d) => `${d} 天`,
@@ -121,6 +124,9 @@ const I18N = {
     rebuttalLabel: "Rebuttal: ",
     keyDates: "Key dates",
     acceptTrend: "Acceptance rate by year (approx.)",
+    tlAxisBtn: "⇥ Axis",
+    tlListBtn: "☰ List",
+    todayLbl: "Today",
     tlRolling: "🔄 Journals · rolling",
     absTag: "abstract",
     daysLeft: (d) => `${d}d`,
@@ -188,6 +194,9 @@ const I18N = {
     rebuttalLabel: "リバッタル：",
     keyDates: "重要日程",
     acceptTrend: "採択率の推移（目安）",
+    tlAxisBtn: "⇥ 軸",
+    tlListBtn: "☰ リスト",
+    todayLbl: "今日",
     tlRolling: "🔄 ジャーナル · 随時投稿可",
     absTag: "アブスト",
     daysLeft: (d) => `${d} 日`,
@@ -268,6 +277,7 @@ const state = {
   hidePast: urlParams.get("past") !== "show",
   sort: ["deadline", "h5", "accept"].includes(urlParams.get("sort")) ? urlParams.get("sort") : "deadline",
   view: ["timeline", "kanban"].includes(urlParams.get("view")) ? urlParams.get("view") : "cards",
+  tlMode: urlParams.get("tlmode") === "list" ? "list" : "axis", // 时间线默认横轴模式
   starred: new Set(JSON.parse(localStorage.getItem("ddlradar-starred") || "[]")),
   // 投稿流程状态：会议名 → planned / writing / submitted / rebuttal
   statusMap: JSON.parse(localStorage.getItem("ddlradar-status") || "{}"),
@@ -290,6 +300,7 @@ function syncUrl() {
   if (!state.hidePast) p.set("past", "show");
   if (state.sort !== "deadline") p.set("sort", state.sort);
   if (state.view !== "cards") p.set("view", state.view);
+  if (state.tlMode !== "axis") p.set("tlmode", state.tlMode);
   const url = location.pathname + "?" + p.toString();
   if (url !== lastUrl) {
     lastUrl = url;
@@ -581,10 +592,80 @@ function renderKanban(wrap) {
   bindStatusSels(wrap);
 }
 
-// ---------- 时间线视图：按月分组，一眼看清各月 DDL 密度 ----------
+// ---------- 时间线视图：横轴时间轴（默认）/ 按月分组列表 ----------
+
+// 横轴模式：x 轴为时间，重叠的会议自动分行（泳道），可横向滚动
+function tlAxisHtml(confs) {
+  const dated = confs.filter((c) => !c.rolling)
+    .sort((a, b) => new Date(nextDeadline(a).iso) - new Date(nextDeadline(b).iso));
+  if (!dated.length) return `<div class="empty">${t("empty")}</div>`;
+
+  const DAY = 86400000, PX_PER_DAY = 3.4, LANE_H = 36;
+  const start = Date.now() - 6 * DAY;
+  const end = Math.max(...dated.map((c) => new Date(nextDeadline(c).iso).getTime())) + 24 * DAY;
+  const width = Math.ceil((end - start) / DAY * PX_PER_DAY);
+  const xOf = (ts) => (ts - start) / DAY * PX_PER_DAY;
+
+  // 泳道分配：与本行上一个标签重叠就换行
+  const lanes = [];
+  const items = dated.map((c) => {
+    const nd = nextDeadline(c);
+    const x = xOf(new Date(nd.iso).getTime());
+    const label = `${c.name} · ${t("daysLeft")(Math.max(0, Math.floor(msLeft(c) / DAY)))}`;
+    const w = label.length * 7.4 + 34;
+    let lane = lanes.findIndex((endX) => endX + 10 < x);
+    if (lane < 0) { lane = lanes.length; lanes.push(0); }
+    lanes[lane] = x + w;
+    return { c, nd, x, lane, label };
+  });
+  const height = lanes.length * LANE_H + 34;
+
+  // 月份网格线
+  let months = "";
+  const cur = new Date(start);
+  cur.setDate(1); cur.setMonth(cur.getMonth() + 1);
+  for (; cur.getTime() < end; cur.setMonth(cur.getMonth() + 1)) {
+    const x = xOf(cur.getTime());
+    months += `<div class="tl-gridline" style="left:${x}px"></div>
+      <div class="tl-gridlbl" style="left:${x + 5}px">${cur.toLocaleString(t("dateLocale"), { year: "2-digit", month: "short" })}</div>`;
+  }
+
+  const pins = items.map(({ c, nd, x, lane, label }) => {
+    const d = Math.floor(msLeft(c) / DAY);
+    const cls = d < 7 ? "urgent" : d < 30 ? "soon" : "safe";
+    return `<div class="tl-pin ${cls}" style="left:${x}px;top:${lane * LANE_H + 26}px" data-name="${c.name}"
+      title="${nd.iso.slice(0, 10)}${nd.type === "abstract" ? " · " + t("absTag") : ""}">${nd.type === "abstract" ? "⚠️ " : ""}${label}</div>`;
+  }).join("");
+
+  const todayX = xOf(Date.now());
+  return `<div class="tl-axis-scroll"><div class="tl-axis" style="width:${width}px;height:${height}px">
+    ${months}
+    <div class="tl-today" style="left:${todayX}px"></div>
+    <div class="tl-todaylbl" style="left:${todayX + 5}px">${t("todayLbl")}</div>
+    ${pins}
+  </div></div>`;
+}
 
 function renderTimeline(wrap, confs) {
-  // 时间线固定按截稿时间升序（h5/录取率排序在月份分组下没有意义），滚动期刊单独一组
+  const toolbar = `<div class="tl-toolbar"><div class="seg tl-modeseg">
+    <button type="button" data-m="axis" class="${state.tlMode === "axis" ? "on" : ""}">${t("tlAxisBtn")}</button>
+    <button type="button" data-m="list" class="${state.tlMode === "list" ? "on" : ""}">${t("tlListBtn")}</button>
+  </div></div>`;
+  const body = state.tlMode === "axis" ? tlAxisHtml(confs) : tlListHtml(confs);
+  wrap.innerHTML = `<div class="timeline-wrap">${toolbar}${body}</div>`;
+  wrap.querySelectorAll(".tl-modeseg button").forEach((b) => {
+    b.onclick = () => { state.tlMode = b.dataset.m; render(); };
+  });
+  wrap.querySelectorAll(".tl-pin").forEach((el) => {
+    el.onclick = () => {
+      const c = CONFERENCES.find((x) => x.name === el.dataset.name);
+      if (c) openDetail(c);
+    };
+  });
+}
+
+// 列表模式：按月分组
+function tlListHtml(confs) {
   const dated = confs.filter((c) => !c.rolling)
     .sort((a, b) => new Date(nextDeadline(a).iso) - new Date(nextDeadline(b).iso));
   const rolling = confs.filter((c) => c.rolling);
@@ -615,7 +696,7 @@ function renderTimeline(wrap, confs) {
   if (rolling.length) {
     html += `<div class="tl-month">${t("tlRolling")}</div>` + rolling.map(row).join("");
   }
-  wrap.innerHTML = `<div class="timeline">${html}</div>`;
+  return `<div class="timeline">${html}</div>`;
 }
 
 function render() {
