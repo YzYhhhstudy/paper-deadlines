@@ -85,6 +85,9 @@ for (const f of files) {
     }
     if (typeof ed.confDate !== "string" || !ed.confDate.trim()) err(f, `${where}.confDate 缺失`);
     if (typeof ed.place !== "string" || !ed.place.trim()) err(f, `${where}.place 缺失`);
+    for (const key of ["notification", "rebuttal"]) {
+      if (ed[key] != null && !DATE_RE.test(String(ed[key]))) err(f, `${where}.${key} 需为 YYYY-MM-DD，收到 "${ed[key]}"`);
+    }
   });
 
   if (doc.history != null) {
@@ -115,6 +118,8 @@ for (const f of files) {
       core: doc.core,
       ...(ed.abstractDeadline ? { abstractDeadline: ed.abstractDeadline } : {}),
       deadline: ed.deadline,
+      ...(ed.rebuttal ? { rebuttal: String(ed.rebuttal) } : {}),
+      ...(ed.notification ? { notification: String(ed.notification) } : {}),
       confDate: ed.confDate,
       place: ed.place,
       link: doc.link,

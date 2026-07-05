@@ -427,6 +427,12 @@ function fmtLocal(iso) {
   });
 }
 
+// 通知/rebuttal 这类"未来里程碑"行：日期 +（还剩 N 天），已过则不显示倒计时
+function milestoneLine(labelKey, dateStr) {
+  const d = Math.ceil((new Date(dateStr + "T23:59:59Z").getTime() - Date.now()) / 86400000);
+  return `<br>${t(labelKey)}<b>${dateStr}</b>${d >= 0 ? `（${t("daysLeft")(d)}）` : ""}`;
+}
+
 // "2024-05-22" → "'24 05/22"
 function fmtHist(d) {
   const [y, m, dd] = d.split("-");
@@ -588,6 +594,8 @@ function render() {
       <div class="meta">
         ${c.abstractDeadline ? `<span class="${absUpcoming ? "abs-hot" : ""}">${absUpcoming ? "⚠️ " : ""}${t("absLabel")}<b>${fmtLocal(c.abstractDeadline)}</b>${t("localTime")}${absUpcoming ? t("absNote") : ""}</span><br>` : ""}
         ${c.rolling ? t("rollingMeta") : `${t("fullLabel")}<b>${fmtLocal(c.deadline)}</b>${t("localTime")}`}
+        ${c.rebuttal ? milestoneLine("rebuttalLabel", c.rebuttal) : ""}
+        ${c.notification ? milestoneLine("notifLabel", c.notification) : ""}
         ${c.history ? `<br><span class="hist" title="${t("histTitle")}">${t("hist")}${c.history.map(fmtHist).join(" · ")}</span>` : ""}
       </div>
     </div>`;

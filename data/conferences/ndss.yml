@@ -10,5 +10,6 @@ editions:
     deadline: "2026-07-23T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-02"
     place: "San Diego"
+    notification: "2026-09-10"   # 结果通知（约数）
 h5: 90   # Google Scholar h5-index（约数）
 acceptRate: "~17%"   # 近年录取率（约数）
