@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "DDL Radar - CS conference deadline tracker",
   "private": true,
+  "bin": { "ddl-radar": "cli/ddl-radar.js" },
   "scripts": {
     "build": "node scripts/build.js",
     "validate": "node scripts/build.js --validate"
