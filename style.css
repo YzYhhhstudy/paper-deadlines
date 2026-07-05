@@ -32,8 +32,8 @@
   --muted: #5d6880;
   --accent: #5b4be0;
   --urgent: #d92f2f;
-  --soon: #b97a10;
-  --safe: #148f5b;
+  --soon: #8f5f04;
+  --safe: #0c7a4a;
   --past: #9aa3b5;
   --border: #ccd4e2;
   --line: #dde2eb;
@@ -55,8 +55,8 @@
     --muted: #5d6880;
     --accent: #5b4be0;
     --urgent: #d92f2f;
-    --soon: #b97a10;
-    --safe: #148f5b;
+    --soon: #8f5f04;
+    --safe: #0c7a4a;
     --past: #9aa3b5;
     --border: #ccd4e2;
     --line: #dde2eb;
@@ -206,8 +206,8 @@ main { max-width: min(1680px, 94vw); margin: 0 auto; padding: 20px 24px 40px; }
 .card.past { opacity: .55; }
 
 .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
-.card-top h3 { font-size: 17px; }
-.card-top h3 a { color: var(--text); text-decoration: none; }
+.card-top h2 { font-size: 17px; }
+.card-top h2 a { color: var(--text); text-decoration: none; }
 .card-top h3 a:hover { color: var(--accent); }
 .star { background: none; border: none; font-size: 20px; cursor: pointer; filter: grayscale(1); }
 .star.on { filter: none; }
@@ -367,7 +367,7 @@ footer code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; 
 .detail h2 { font-size: 20px; }
 .detail h2 a { color: var(--text); text-decoration: none; }
 .detail h2 a:hover { color: var(--accent); }
-.detail h4 { font-size: 13px; color: var(--muted); margin-top: 8px; text-transform: uppercase; letter-spacing: .04em; }
+.detail h3.dt-sec { font-size: 13px; color: var(--muted); margin-top: 8px; text-transform: uppercase; letter-spacing: .04em; }
 .dt-close {
   position: absolute; top: 12px; right: 12px; background: var(--panel-2);
   color: var(--muted); border: 1px solid var(--border); border-radius: 50%;

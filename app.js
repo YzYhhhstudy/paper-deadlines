@@ -759,7 +759,7 @@ function openDetail(c) {
       ${c.h5 ? `<span class="tag tag-metric">${t("h5Tag")(c.h5)}</span>` : ""}
       ${c.acceptRate ? `<span class="tag tag-metric">${t("acceptTag")(c.acceptRate)}</span>` : ""}
     </div>
-    <h4>${t("keyDates")}</h4>
+    <h3 class="dt-sec">${t("keyDates")}</h3>
     ${c.rolling ? `<div class="dt-row"><b>${t("rollingMeta")}</b></div>` : ""}
     ${dateRow(t("absLabel"), c.abstractDeadline && fmtLocal(c.abstractDeadline))}
     ${dateRow(t("fullLabel"), c.deadline && fmtLocal(c.deadline))}
@@ -767,7 +767,7 @@ function openDetail(c) {
     ${dateRow(t("notifLabel"), c.notification)}
     ${c.history ? `<div class="dt-row hist"><span>${t("hist")}</span><b>${c.history.map(fmtHist).join(" · ")}</b></div>` : ""}
     ${c.submitLink ? `<div class="dt-row"><span></span><a class="tag tag-submit" href="${c.submitLink}" target="_blank" rel="noopener">${t("submitBtn")}</a></div>` : ""}
-    ${c.acceptHistory ? `<h4>${t("acceptTrend")}</h4>${acceptChartSvg(c.acceptHistory)}` : ""}
+    ${c.acceptHistory ? `<h3 class="dt-sec">${t("acceptTrend")}</h3>${acceptChartSvg(c.acceptHistory)}` : ""}
   `;
   $("#detailOverlay").hidden = false;
   $("#detailBox").querySelector(".dt-close").onclick = closeDetail;
@@ -1004,7 +1004,7 @@ function render() {
     const rank = rankOf(c);
     return `<div class="card ${past ? "past" : ""}" data-name="${c.name}">
       <div class="card-top">
-        <h3><a href="${c.link}" target="_blank" rel="noopener">${c.name}</a></h3>
+        <h2><a href="${c.link}" target="_blank" rel="noopener">${c.name}</a></h2>
         <span class="card-actions">${statusSelHtml(c.name)}<button class="star ${star ? "on" : ""}" data-name="${c.name}" title="${t("starTitle")}">⭐</button></span>
       </div>
       <div class="full-name">${c.fullName}</div>
@@ -1119,6 +1119,7 @@ function applyLang() {
   $("#exportIcs").title = t("exportTitle");
   $("#search").placeholder = t("searchPh");
   const sortSel = $("#sortSel");
+  sortSel.setAttribute("aria-label", "Sort");
   sortSel.innerHTML = Object.entries(t("sortOptions"))
     .map(([v, label]) => `<option value="${v}" ${state.sort === v ? "selected" : ""}>${label}</option>`).join("");
   biLabel($("#starredLabel"), "starredOnly");
