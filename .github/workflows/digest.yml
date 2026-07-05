@@ -1,0 +1,70 @@
+name: Weekly DDL digest
+
+# 每周一 08:00 UTC 推送未来 14 天的截稿摘要。
+# 在仓库 Settings → Secrets and variables → Actions 配置以下任意几项即可启用对应渠道：
+#   邮件：MAIL_SERVER / MAIL_PORT / MAIL_USERNAME / MAIL_PASSWORD / MAIL_TO
+#        （如 Gmail：smtp.gmail.com / 465 / 邮箱 / App Password）
+#   Slack：SLACK_WEBHOOK_URL（Incoming Webhook 地址）
+#   Discord：DISCORD_WEBHOOK_URL
+#   飞书：FEISHU_WEBHOOK_URL（自定义机器人 webhook）
+# 未配置的渠道自动跳过。
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate digest
+        run: |
+          node scripts/digest.js --days 14 --format text > digest.txt
+          node scripts/digest.js --days 14 --format markdown > digest.md
+          cat digest.txt
+
+      - name: Send email
+        env:
+          MAIL_SERVER: ${{ secrets.MAIL_SERVER }}
+        if: env.MAIL_SERVER != ''
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.MAIL_SERVER }}
+          server_port: ${{ secrets.MAIL_PORT }}
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          to: ${{ secrets.MAIL_TO }}
+          from: DDL Radar <${{ secrets.MAIL_USERNAME }}>
+          subject: "📡 DDL Radar 周报"
+          body: file://digest.txt
+
+      - name: Post to Slack
+        env:
+          URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          [ -z "$URL" ] && { echo "未配置 Slack，跳过"; exit 0; }
+          node scripts/digest.js --days 14 --format slack | curl -sf -X POST -H "Content-Type: application/json" -d @- "$URL"
+
+      - name: Post to Discord
+        env:
+          URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          [ -z "$URL" ] && { echo "未配置 Discord，跳过"; exit 0; }
+          node scripts/digest.js --days 14 --format discord | curl -sf -X POST -H "Content-Type: application/json" -d @- "$URL"
+
+      - name: Post to Feishu
+        env:
+          URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+        run: |
+          [ -z "$URL" ] && { echo "未配置飞书，跳过"; exit 0; }
+          node scripts/digest.js --days 14 --format feishu | curl -sf -X POST -H "Content-Type: application/json" -d @- "$URL"
