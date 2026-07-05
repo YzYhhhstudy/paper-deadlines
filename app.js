@@ -42,6 +42,12 @@ const I18N = {
     sortOptions: { deadline: "按截止时间", h5: "按 h5 指数", accept: "按录取率" },
     viewCards: "▦ 卡片",
     viewTimeline: "☰ 时间线",
+    viewKanban: "▤ 看板",
+    statusNames: { planned: "想投", writing: "在写", submitted: "已投", rebuttal: "Rebuttal" },
+    statusNone: "＋ 状态",
+    kanbanEmpty: "还没有会议进入投稿流程 — 在会议卡片右上角选择「想投 / 在写 / 已投 / Rebuttal」即可加入看板",
+    notifLabel: "结果通知：",
+    rebuttalLabel: "Rebuttal：",
     tlRolling: "🔄 期刊 · 随时可投",
     absTag: "摘要截止",
     daysLeft: (d) => `${d} 天`,
@@ -105,6 +111,12 @@ const I18N = {
     sortOptions: { deadline: "By deadline", h5: "By h5-index", accept: "By accept rate" },
     viewCards: "▦ Cards",
     viewTimeline: "☰ Timeline",
+    viewKanban: "▤ Board",
+    statusNames: { planned: "Planned", writing: "Writing", submitted: "Submitted", rebuttal: "Rebuttal" },
+    statusNone: "＋ status",
+    kanbanEmpty: "Nothing in your pipeline yet — pick “Planned / Writing / Submitted / Rebuttal” on any conference card",
+    notifLabel: "Notification: ",
+    rebuttalLabel: "Rebuttal: ",
     tlRolling: "🔄 Journals · rolling",
     absTag: "abstract",
     daysLeft: (d) => `${d}d`,
@@ -164,6 +176,12 @@ const I18N = {
     sortOptions: { deadline: "締切順", h5: "h5 指数順", accept: "採択率順" },
     viewCards: "▦ カード",
     viewTimeline: "☰ タイムライン",
+    viewKanban: "▤ ボード",
+    statusNames: { planned: "投稿予定", writing: "執筆中", submitted: "投稿済み", rebuttal: "リバッタル" },
+    statusNone: "＋ 状態",
+    kanbanEmpty: "パイプラインはまだ空です — カードで「投稿予定 / 執筆中 / 投稿済み / リバッタル」を選んでください",
+    notifLabel: "結果通知：",
+    rebuttalLabel: "リバッタル：",
     tlRolling: "🔄 ジャーナル · 随時投稿可",
     absTag: "アブスト",
     daysLeft: (d) => `${d} 日`,
@@ -243,9 +261,16 @@ const state = {
   starredOnly: urlParams.get("star") === "1",
   hidePast: urlParams.get("past") !== "show",
   sort: ["deadline", "h5", "accept"].includes(urlParams.get("sort")) ? urlParams.get("sort") : "deadline",
-  view: urlParams.get("view") === "timeline" ? "timeline" : "cards",
+  view: ["timeline", "kanban"].includes(urlParams.get("view")) ? urlParams.get("view") : "cards",
   starred: new Set(JSON.parse(localStorage.getItem("ddlradar-starred") || "[]")),
+  // 投稿流程状态：会议名 → planned / writing / submitted / rebuttal
+  statusMap: JSON.parse(localStorage.getItem("ddlradar-status") || "{}"),
 };
+const STATUSES = ["planned", "writing", "submitted", "rebuttal"];
+
+function saveStatus() {
+  localStorage.setItem("ddlradar-status", JSON.stringify(state.statusMap));
+}
 
 // 筛选状态实时写回 URL（replaceState 不产生历史记录），复制地址栏即可分享当前视图
 let lastUrl = null;
@@ -436,6 +461,61 @@ function visibleConfs() {
     });
 }
 
+// ---------- 投稿流程：状态选择器 + 看板视图 ----------
+
+function statusSelHtml(name) {
+  const st = state.statusMap[name] || "";
+  return `<select class="status-sel ${st ? "has st-" + st : ""}" data-name="${name}" title="${t("statusNone")}">
+    <option value="">${st ? "—" : t("statusNone")}</option>
+    ${STATUSES.map((s) => `<option value="${s}" ${st === s ? "selected" : ""}>${t("statusNames")[s]}</option>`).join("")}
+  </select>`;
+}
+
+function bindStatusSels(root) {
+  root.querySelectorAll(".status-sel").forEach((sel) => {
+    sel.onchange = () => {
+      if (sel.value) state.statusMap[sel.dataset.name] = sel.value;
+      else delete state.statusMap[sel.dataset.name];
+      saveStatus();
+      render();
+    };
+    sel.onclick = (e) => e.stopPropagation();
+  });
+}
+
+function kanbanCountdown(c) {
+  // 已投/rebuttal 阶段关心的是结果通知，其余阶段关心投稿截止
+  const st = state.statusMap[c.name];
+  if ((st === "submitted" || st === "rebuttal") && c.notification) {
+    const d = Math.ceil((new Date(c.notification + "T23:59:59Z").getTime() - Date.now()) / 86400000);
+    if (d >= 0) return `<span class="kb-cd soon">${t("notifLabel")}${c.notification.slice(5)} · ${t("daysLeft")(d)}</span>`;
+  }
+  if (c.rolling) return `<span class="kb-cd safe">${t("rolling")}</span>`;
+  if (fullMsLeft(c) <= 0) return `<span class="kb-cd done">${t("done")}</span>`;
+  const d = Math.floor(msLeft(c) / 86400000);
+  const cls = d < 7 ? "urgent" : d < 30 ? "soon" : "safe";
+  return `<span class="kb-cd ${cls}">${nextDeadline(c).iso.slice(5, 10)} · ${t("daysLeft")(d)}</span>`;
+}
+
+function renderKanban(wrap) {
+  // 看板是"我的投稿流程"，不受筛选影响，展示所有设置过状态的会议
+  const cols = STATUSES.map((s) => {
+    const items = CONFERENCES.filter((c) => state.statusMap[c.name] === s);
+    return `<div class="kb-col">
+      <div class="kb-head st-${s}">${t("statusNames")[s]} <span class="kb-count">${items.length}</span></div>
+      ${items.map((c) => `<div class="kb-item">
+        <a href="${c.link}" target="_blank" rel="noopener">${c.name}</a>
+        ${kanbanCountdown(c)}
+        ${statusSelHtml(c.name)}
+      </div>`).join("")}
+    </div>`;
+  });
+  const any = Object.keys(state.statusMap).length;
+  wrap.innerHTML = `<div class="kanban">${cols.join("")}</div>` +
+    (any ? "" : `<div class="empty">${t("kanbanEmpty")}</div>`);
+  bindStatusSels(wrap);
+}
+
 // ---------- 时间线视图：按月分组，一眼看清各月 DDL 密度 ----------
 
 function renderTimeline(wrap, confs) {
@@ -481,6 +561,7 @@ function render() {
     wrap.innerHTML = `<div class="empty">${t("empty")}</div>`;
     return;
   }
+  if (state.view === "kanban") { renderKanban(wrap); return; }
   if (state.view === "timeline") { renderTimeline(wrap, confs); return; }
   wrap.innerHTML = confs.map((c) => {
     const past = fullMsLeft(c) <= 0;
@@ -490,7 +571,7 @@ function render() {
     return `<div class="card ${past ? "past" : ""}">
       <div class="card-top">
         <h3><a href="${c.link}" target="_blank" rel="noopener">${c.name}</a></h3>
-        <button class="star ${star ? "on" : ""}" data-name="${c.name}" title="${t("starTitle")}">⭐</button>
+        <span class="card-actions">${statusSelHtml(c.name)}<button class="star ${star ? "on" : ""}" data-name="${c.name}" title="${t("starTitle")}">⭐</button></span>
       </div>
       <div class="full-name">${c.fullName}</div>
       <div class="tags">
@@ -520,6 +601,7 @@ function render() {
       render();
     };
   });
+  bindStatusSels(wrap);
 }
 
 // ---------- 语言切换 ----------
@@ -555,7 +637,7 @@ function applyLang() {
   $("#langSeg").querySelectorAll("button").forEach((b) =>
     b.classList.toggle("on", b.dataset.lang === lang));
   $("#viewSeg").querySelectorAll("button").forEach((b) => {
-    biLabel(b, b.dataset.view === "cards" ? "viewCards" : "viewTimeline");
+    biLabel(b, { cards: "viewCards", timeline: "viewTimeline", kanban: "viewKanban" }[b.dataset.view]);
     b.classList.toggle("on", b.dataset.view === state.view);
   });
   biLabel($("#exportIcs"), "exportBtn");

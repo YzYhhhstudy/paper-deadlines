@@ -243,6 +243,42 @@ footer code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; 
 .tl-left.urgent { color: var(--urgent); }
 .tl-left.soon { color: var(--soon); }
 .tl-left.safe { color: var(--safe); }
+
+/* 投稿流程状态 */
+.card-actions { display: flex; align-items: center; gap: 4px; }
+.status-sel {
+  background: var(--panel-2); color: var(--muted); border: 1px solid var(--border);
+  border-radius: 12px; padding: 2px 6px; font-size: 11px; max-width: 96px; cursor: pointer;
+}
+.status-sel.has { color: var(--text); border-color: var(--accent); font-weight: 600; }
+.status-sel.st-submitted, .status-sel.st-rebuttal { border-color: var(--soon); }
+
+/* 看板视图 */
+.kanban {
+  grid-column: 1/-1; display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px;
+}
+.kb-col { background: var(--panel-2); border-radius: var(--radius); padding: 10px; min-height: 120px; }
+.kb-head {
+  font-weight: 700; font-size: 13px; margin-bottom: 10px; padding: 4px 8px; border-radius: 8px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.kb-head.st-planned { background: #1f2c3d; color: #8db8ff; }
+.kb-head.st-writing { background: #2d3d1f; color: #b3d97f; }
+.kb-head.st-submitted { background: #3d3a1f; color: #e0c07f; }
+.kb-head.st-rebuttal { background: #3d1f2c; color: #ff9db8; }
+.kb-count { font-size: 11px; opacity: .8; }
+.kb-item {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  padding: 10px 12px; margin-bottom: 8px; display: flex; flex-direction: column; gap: 6px;
+}
+.kb-item a { color: var(--text); text-decoration: none; font-weight: 600; font-size: 13px; }
+.kb-item a:hover { color: var(--accent); }
+.kb-cd { font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.kb-cd.urgent { color: var(--urgent); }
+.kb-cd.soon { color: var(--soon); }
+.kb-cd.safe { color: var(--safe); }
+.kb-cd.done { color: var(--past); }
 #contrib { margin-bottom: 10px; }
 #contrib a { color: var(--accent); text-decoration: none; font-weight: 600; }
 #contrib a:hover { text-decoration: underline; }
