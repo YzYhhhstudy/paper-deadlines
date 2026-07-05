@@ -18,3 +18,9 @@ history:   # 往年全文截稿日（大致日期）
   - "2025-09-11"
 h5: 130   # Google Scholar h5-index（约数）
 acceptRate: "~25%"   # 近年录取率（约数）
+acceptHistory:   # 历年录取率 %（约数）
+  - { year: 2021, rate: 26.3 }
+  - { year: 2022, rate: 24.6 }
+  - { year: 2023, rate: 28.4 }
+  - { year: 2024, rate: 26.4 }
+  - { year: 2025, rate: 25.0 }

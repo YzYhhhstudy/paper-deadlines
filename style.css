@@ -279,6 +279,36 @@ footer code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; 
 .kb-cd.soon { color: var(--soon); }
 .kb-cd.safe { color: var(--safe); }
 .kb-cd.done { color: var(--past); }
+
+/* 会议详情弹窗 */
+.card { cursor: pointer; }
+.overlay {
+  position: fixed; inset: 0; z-index: 100; background: rgba(0, 0, 0, .55);
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+}
+.detail {
+  background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px 24px; max-width: 520px; width: 100%; max-height: 86vh; overflow-y: auto;
+  position: relative; display: flex; flex-direction: column; gap: 10px;
+}
+.detail h2 { font-size: 20px; }
+.detail h2 a { color: var(--text); text-decoration: none; }
+.detail h2 a:hover { color: var(--accent); }
+.detail h4 { font-size: 13px; color: var(--muted); margin-top: 8px; text-transform: uppercase; letter-spacing: .04em; }
+.dt-close {
+  position: absolute; top: 12px; right: 12px; background: var(--panel-2);
+  color: var(--muted); border: 1px solid var(--border); border-radius: 50%;
+  width: 30px; height: 30px; cursor: pointer; font-size: 13px;
+}
+.dt-close:hover { color: var(--text); border-color: var(--accent); }
+.dt-row { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--muted); }
+.dt-row b { color: var(--text); font-variant-numeric: tabular-nums; text-align: right; }
+.accept-chart { width: 100%; height: auto; }
+.accept-chart .grid { stroke: var(--line); stroke-width: 1; }
+.accept-chart .line { fill: none; stroke: var(--accent); stroke-width: 2; }
+.accept-chart .dot { fill: var(--accent); }
+.accept-chart .lbl { fill: var(--muted); font-size: 10px; }
+.accept-chart .val { fill: var(--text); font-size: 10px; font-weight: 600; }
 #contrib { margin-bottom: 10px; }
 #contrib a { color: var(--accent); text-decoration: none; font-weight: 600; }
 #contrib a:hover { text-decoration: underline; }

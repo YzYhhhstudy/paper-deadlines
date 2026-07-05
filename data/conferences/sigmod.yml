@@ -13,3 +13,9 @@ editions:
     notification: "2026-10-15"   # 结果通知（约数）
 h5: 90   # Google Scholar h5-index（约数）
 acceptRate: "~25%"   # 近年录取率（约数）
+acceptHistory:   # 历年录取率 %（约数）
+  - { year: 2021, rate: 22.0 }
+  - { year: 2022, rate: 25.0 }
+  - { year: 2023, rate: 27.0 }
+  - { year: 2024, rate: 26.0 }
+  - { year: 2025, rate: 25.0 }

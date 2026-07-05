@@ -18,7 +18,29 @@
       "2025-08-01"
     ],
     "h5": 210,
-    "acceptRate": "~23%"
+    "acceptRate": "~23%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 21.4
+      },
+      {
+        "year": 2022,
+        "rate": 15
+      },
+      {
+        "year": 2023,
+        "rate": 19.6
+      },
+      {
+        "year": 2024,
+        "rate": 23.8
+      },
+      {
+        "year": 2025,
+        "rate": 23.4
+      }
+    ]
   },
   {
     "name": "AAMAS 2027",
@@ -49,7 +71,29 @@
       "2026-02-15"
     ],
     "h5": 200,
-    "acceptRate": "~22%"
+    "acceptRate": "~22%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 21.3
+      },
+      {
+        "year": 2022,
+        "rate": 20.8
+      },
+      {
+        "year": 2023,
+        "rate": 23.5
+      },
+      {
+        "year": 2024,
+        "rate": 21.3
+      },
+      {
+        "year": 2025,
+        "rate": 22
+      }
+    ]
   },
   {
     "name": "ACM CCS 2027",
@@ -145,7 +189,29 @@
       "2025-09-11"
     ],
     "h5": 130,
-    "acceptRate": "~25%"
+    "acceptRate": "~25%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 26.3
+      },
+      {
+        "year": 2022,
+        "rate": 24.6
+      },
+      {
+        "year": 2023,
+        "rate": 28.4
+      },
+      {
+        "year": 2024,
+        "rate": 26.4
+      },
+      {
+        "year": 2025,
+        "rate": 25
+      }
+    ]
   },
   {
     "name": "CIKM 2027",
@@ -221,7 +287,29 @@
       "2025-11-14"
     ],
     "h5": 440,
-    "acceptRate": "~24%"
+    "acceptRate": "~24%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 23.4
+      },
+      {
+        "year": 2022,
+        "rate": 25.3
+      },
+      {
+        "year": 2023,
+        "rate": 25.8
+      },
+      {
+        "year": 2024,
+        "rate": 23.6
+      },
+      {
+        "year": 2025,
+        "rate": 22.1
+      }
+    ]
   },
   {
     "name": "CVPR Workshops 2027",
@@ -372,7 +460,21 @@
       "2025-03-08"
     ],
     "h5": 230,
-    "acceptRate": "~26%"
+    "acceptRate": "~26%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 25.9
+      },
+      {
+        "year": 2023,
+        "rate": 26.2
+      },
+      {
+        "year": 2025,
+        "rate": 24.3
+      }
+    ]
   },
   {
     "name": "ICDE 2027",
@@ -418,7 +520,29 @@
       "2025-09-19"
     ],
     "h5": 300,
-    "acceptRate": "~31%"
+    "acceptRate": "~31%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 28.7
+      },
+      {
+        "year": 2022,
+        "rate": 32.3
+      },
+      {
+        "year": 2023,
+        "rate": 31.8
+      },
+      {
+        "year": 2024,
+        "rate": 31
+      },
+      {
+        "year": 2025,
+        "rate": 31.7
+      }
+    ]
   },
   {
     "name": "ICML 2027",
@@ -440,7 +564,29 @@
       "2026-01-28"
     ],
     "h5": 270,
-    "acceptRate": "~27%"
+    "acceptRate": "~27%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 21.5
+      },
+      {
+        "year": 2022,
+        "rate": 21.9
+      },
+      {
+        "year": 2023,
+        "rate": 27.9
+      },
+      {
+        "year": 2024,
+        "rate": 27.5
+      },
+      {
+        "year": 2025,
+        "rate": 26.9
+      }
+    ]
   },
   {
     "name": "ICRA 2027",
@@ -490,7 +636,29 @@
       "SP"
     ],
     "h5": 110,
-    "acceptRate": "~15%"
+    "acceptRate": "~15%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 12.1
+      },
+      {
+        "year": 2022,
+        "rate": 14.5
+      },
+      {
+        "year": 2023,
+        "rate": 17.1
+      },
+      {
+        "year": 2024,
+        "rate": 14.8
+      },
+      {
+        "year": 2025,
+        "rate": 14
+      }
+    ]
   },
   {
     "name": "IJCAI 2027",
@@ -638,7 +806,29 @@
       "2025-02-10"
     ],
     "h5": 130,
-    "acceptRate": "~20%"
+    "acceptRate": "~20%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 15.4
+      },
+      {
+        "year": 2022,
+        "rate": 15
+      },
+      {
+        "year": 2023,
+        "rate": 22.1
+      },
+      {
+        "year": 2024,
+        "rate": 20
+      },
+      {
+        "year": 2025,
+        "rate": 19
+      }
+    ]
   },
   {
     "name": "MICRO 2027",
@@ -713,7 +903,29 @@
       "NIPS"
     ],
     "h5": 300,
-    "acceptRate": "~26%"
+    "acceptRate": "~26%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 25.7
+      },
+      {
+        "year": 2022,
+        "rate": 25.6
+      },
+      {
+        "year": 2023,
+        "rate": 26.1
+      },
+      {
+        "year": 2024,
+        "rate": 25.8
+      },
+      {
+        "year": 2025,
+        "rate": 24.5
+      }
+    ]
   },
   {
     "name": "NeurIPS Workshops 2026",
@@ -757,7 +969,29 @@
       "2025-12-10"
     ],
     "h5": 60,
-    "acceptRate": "~18%"
+    "acceptRate": "~18%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 19.4
+      },
+      {
+        "year": 2022,
+        "rate": 16.3
+      },
+      {
+        "year": 2023,
+        "rate": 17.4
+      },
+      {
+        "year": 2024,
+        "rate": 18
+      },
+      {
+        "year": 2025,
+        "rate": 17.5
+      }
+    ]
   },
   {
     "name": "PPoPP 2027",
@@ -880,7 +1114,29 @@
     "place": "TBD",
     "link": "https://sigmod.org",
     "h5": 90,
-    "acceptRate": "~25%"
+    "acceptRate": "~25%",
+    "acceptHistory": [
+      {
+        "year": 2021,
+        "rate": 22
+      },
+      {
+        "year": 2022,
+        "rate": 25
+      },
+      {
+        "year": 2023,
+        "rate": 27
+      },
+      {
+        "year": 2024,
+        "rate": 26
+      },
+      {
+        "year": 2025,
+        "rate": 25
+      }
+    ]
   },
   {
     "name": "SODA 2027",

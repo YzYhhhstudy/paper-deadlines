@@ -105,6 +105,12 @@ for (const f of files) {
   if (doc.acceptRate != null && !/^~?\d+(\.\d+)?%$/.test(String(doc.acceptRate))) {
     err(f, `acceptRate 需形如 "~25%"，收到 "${doc.acceptRate}"`);
   }
+  if (doc.acceptHistory != null) {
+    if (!Array.isArray(doc.acceptHistory) || doc.acceptHistory.some((h) =>
+      !h || !Number.isInteger(h.year) || typeof h.rate !== "number" || h.rate <= 0 || h.rate >= 100)) {
+      err(f, "acceptHistory 需为 [{year: 2024, rate: 25.8}, …]（rate 为百分数数值）");
+    }
+  }
 
   if (errors.some((e) => e.startsWith(f + ":"))) continue;
 
@@ -127,6 +133,7 @@ for (const f of files) {
       ...(doc.aliases ? { aliases: doc.aliases } : {}),
       ...(doc.h5 ? { h5: doc.h5 } : {}),
       ...(doc.acceptRate ? { acceptRate: String(doc.acceptRate) } : {}),
+      ...(doc.acceptHistory ? { acceptHistory: doc.acceptHistory } : {}),
     });
   }
 }

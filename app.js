@@ -48,6 +48,8 @@ const I18N = {
     kanbanEmpty: "还没有会议进入投稿流程 — 在会议卡片右上角选择「想投 / 在写 / 已投 / Rebuttal」即可加入看板",
     notifLabel: "结果通知：",
     rebuttalLabel: "Rebuttal：",
+    keyDates: "关键日期",
+    acceptTrend: "历年录取率（约数）",
     tlRolling: "🔄 期刊 · 随时可投",
     absTag: "摘要截止",
     daysLeft: (d) => `${d} 天`,
@@ -117,6 +119,8 @@ const I18N = {
     kanbanEmpty: "Nothing in your pipeline yet — pick “Planned / Writing / Submitted / Rebuttal” on any conference card",
     notifLabel: "Notification: ",
     rebuttalLabel: "Rebuttal: ",
+    keyDates: "Key dates",
+    acceptTrend: "Acceptance rate by year (approx.)",
     tlRolling: "🔄 Journals · rolling",
     absTag: "abstract",
     daysLeft: (d) => `${d}d`,
@@ -182,6 +186,8 @@ const I18N = {
     kanbanEmpty: "パイプラインはまだ空です — カードで「投稿予定 / 執筆中 / 投稿済み / リバッタル」を選んでください",
     notifLabel: "結果通知：",
     rebuttalLabel: "リバッタル：",
+    keyDates: "重要日程",
+    acceptTrend: "採択率の推移（目安）",
     tlRolling: "🔄 ジャーナル · 随時投稿可",
     absTag: "アブスト",
     daysLeft: (d) => `${d} 日`,
@@ -467,6 +473,59 @@ function visibleConfs() {
     });
 }
 
+// ---------- 会议详情弹窗：关键日期 + 历年录取率曲线 ----------
+
+function acceptChartSvg(hist) {
+  const W = 420, H = 120, padL = 34, padR = 16, padT = 12, padB = 22;
+  const rates = hist.map((h) => h.rate);
+  const lo = Math.floor(Math.min(...rates) - 2), hi = Math.ceil(Math.max(...rates) + 2);
+  const x = (i) => padL + (i * (W - padL - padR)) / Math.max(1, hist.length - 1);
+  const y = (r) => padT + ((hi - r) * (H - padT - padB)) / (hi - lo);
+  const pts = hist.map((h, i) => `${x(i)},${y(h.rate)}`).join(" ");
+  return `<svg viewBox="0 0 ${W} ${H}" class="accept-chart">
+    ${[lo, (lo + hi) / 2, hi].map((r) => `<g>
+      <line x1="${padL}" y1="${y(r)}" x2="${W - padR}" y2="${y(r)}" class="grid"/>
+      <text x="${padL - 5}" y="${y(r) + 3}" text-anchor="end" class="lbl">${Math.round(r)}%</text></g>`).join("")}
+    <polyline points="${pts}" class="line"/>
+    ${hist.map((h, i) => `<g>
+      <circle cx="${x(i)}" cy="${y(h.rate)}" r="3.2" class="dot"/>
+      <text x="${x(i)}" y="${y(h.rate) - 7}" text-anchor="middle" class="val">${h.rate}%</text>
+      <text x="${x(i)}" y="${H - 6}" text-anchor="middle" class="lbl">'${String(h.year).slice(2)}</text></g>`).join("")}
+  </svg>`;
+}
+
+function openDetail(c) {
+  const rank = rankOf(c);
+  const dateRow = (label, value) => value ? `<div class="dt-row"><span>${label}</span><b>${value}</b></div>` : "";
+  $("#detailBox").innerHTML = `
+    <button class="dt-close" aria-label="×">✕</button>
+    <h2><a href="${c.link}" target="_blank" rel="noopener">${c.name}</a></h2>
+    <div class="full-name">${c.fullName}</div>
+    <div class="tags">
+      <span class="tag rank-${rankSlug(rank)}">${t("rankTag")(rank)}</span>
+      ${c.type === "journal" ? `<span class="tag type-journal">📖 ${t("journalTag")}</span>` : ""}
+      ${c.type === "workshop" ? `<span class="tag type-workshop">🛠 Workshop</span>` : ""}
+      <span class="tag">${c.area}</span>
+      ${c.h5 ? `<span class="tag tag-metric">${t("h5Tag")(c.h5)}</span>` : ""}
+      ${c.acceptRate ? `<span class="tag tag-metric">${t("acceptTag")(c.acceptRate)}</span>` : ""}
+    </div>
+    <h4>${t("keyDates")}</h4>
+    ${c.rolling ? `<div class="dt-row"><b>${t("rollingMeta")}</b></div>` : ""}
+    ${dateRow(t("absLabel"), c.abstractDeadline && fmtLocal(c.abstractDeadline))}
+    ${dateRow(t("fullLabel"), c.deadline && fmtLocal(c.deadline))}
+    ${dateRow(t("rebuttalLabel"), c.rebuttal)}
+    ${dateRow(t("notifLabel"), c.notification)}
+    ${c.history ? `<div class="dt-row hist"><span>${t("hist")}</span><b>${c.history.map(fmtHist).join(" · ")}</b></div>` : ""}
+    ${c.acceptHistory ? `<h4>${t("acceptTrend")}</h4>${acceptChartSvg(c.acceptHistory)}` : ""}
+  `;
+  $("#detailOverlay").hidden = false;
+  $("#detailBox").querySelector(".dt-close").onclick = closeDetail;
+}
+
+function closeDetail() { $("#detailOverlay").hidden = true; }
+$("#detailOverlay").onclick = (e) => { if (e.target === $("#detailOverlay")) closeDetail(); };
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDetail(); });
+
 // ---------- 投稿流程：状态选择器 + 看板视图 ----------
 
 function statusSelHtml(name) {
@@ -574,7 +633,7 @@ function render() {
     const star = state.starred.has(c.name);
     const absUpcoming = nextDeadline(c).type === "abstract";
     const rank = rankOf(c);
-    return `<div class="card ${past ? "past" : ""}">
+    return `<div class="card ${past ? "past" : ""}" data-name="${c.name}">
       <div class="card-top">
         <h3><a href="${c.link}" target="_blank" rel="noopener">${c.name}</a></h3>
         <span class="card-actions">${statusSelHtml(c.name)}<button class="star ${star ? "on" : ""}" data-name="${c.name}" title="${t("starTitle")}">⭐</button></span>
@@ -610,6 +669,14 @@ function render() {
     };
   });
   bindStatusSels(wrap);
+  // 点卡片空白处打开详情（链接/收藏/状态选择不触发）
+  wrap.querySelectorAll(".card").forEach((el) => {
+    el.onclick = (e) => {
+      if (e.target.closest("a, button, select")) return;
+      const c = CONFERENCES.find((x) => x.name === el.dataset.name);
+      if (c) openDetail(c);
+    };
+  });
 }
 
 // ---------- 语言切换 ----------
