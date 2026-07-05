@@ -26,7 +26,7 @@ differentiated by personalization and calendar integration.
 - ⚠️ **Abstract-deadline aware**: when a conference has an earlier abstract deadline, the countdown
   targets it and warns you — never mistake the full-paper date for your real DDL
 - 📈 5-year historical deadlines for 20 major venues — see each conference's annual pattern at a glance
-- 🌏 **Bilingual UI (English / 中文)** — auto-detected from browser language, one-click toggle, remembered locally
+- 🌏 **Trilingual UI (English / 中文 / 日本語)** — auto-detected from browser language, one-click toggle, remembered locally
 - 🏷 **Multi-select** filters by area and rank, plus full-text search
 - 🎓 **Dual rank system**: the English UI shows [CORE ranks](https://portal.core.edu.au) (A*/A/B/C —
   the international standard), while the Chinese UI shows CCF ranks (China's official venue tiers)
@@ -81,11 +81,24 @@ Optional YAML fields: `aliases` (search synonyms), `h5`, `acceptRate`,
   [ccfddl](https://github.com/ccfddl/ccf-deadlines) every Monday and opens an issue
   listing any differences.
 
-## Run / install
+## Where to use it
+
+One data source (`data.json`), many clients:
+
+| Client | How |
+|--------|-----|
+| 🌐 **Web / PWA** | [Live site](https://yzyhhhstudy.github.io/paper-deadlines/) — install via the address-bar icon (Chrome/Edge) or Share → Add to Home Screen (iOS); works offline; UI in 中 / EN / 日 |
+| 📅 **Calendar** | Header **Subscribe** button → `webcal://` feeds, auto-syncing in Google/Apple Calendar |
+| 🧩 **Chrome / Edge extension** | Badge = deadlines within 7 days + popup list. Load [`clients/extension/`](clients/extension/) unpacked — see its [README](clients/extension/README.md) |
+| ⚡ **Raycast** | Add [`clients/raycast/`](clients/raycast/) as a Script Commands directory |
+| 📟 **macOS menu bar** | Copy [`clients/menubar/ddlradar.1h.sh`](clients/menubar/ddlradar.1h.sh) into your SwiftBar/xbar plugins folder |
+| 💻 **CLI** | `npx github:YzYhhhstudy/paper-deadlines --days 30 --area AI/ML` |
+| 📬 **Email / Slack / Discord / Feishu** | Weekly digest via GitHub Actions — set the secrets documented in [`.github/workflows/digest.yml`](.github/workflows/digest.yml) |
+| 🔌 **Your own client** | `GET` [`/data.json`](https://yzyhhhstudy.github.io/paper-deadlines/data.json) |
+
+## Run locally
 
 Pure static page: `open index.html`, or deploy to GitHub Pages / Vercel.
-On the live site, use the address-bar **install icon** (desktop Chrome/Edge) or
-**Share → Add to Home Screen** (iOS Safari) to install it as an offline-capable app.
 
 ## Roadmap
 
@@ -95,8 +108,11 @@ On the live site, use the address-bar **install icon** (desktop Chrome/Edge) or
 - [x] Journals (TPAMI, JMLR, IJCV, TACL)
 - [x] h5-index and acceptance rates
 - [x] PWA (installable, offline)
-- [ ] Workshops; email digest
-- [ ] Browser extension / Raycast / chat-bot clients on top of `data.json`
+- [x] Workshops; weekly email/chat digest
+- [x] Browser extension, Raycast, menu bar, CLI clients on `data.json`
+- [x] Weekly reconciliation bot with auto-fix PRs (ccfddl)
+- [ ] Automated crawling of official sites for deadlines/CFP details
+- [ ] Publish extension to Chrome Web Store / Edge Add-ons; CLI to npm
 
 ## License
 

@@ -19,7 +19,7 @@
 - 🔎 别名搜索（NIPS → NeurIPS、Oakland → IEEE S&P、ESEC/FSE → FSE…）
 - 📊 约 36 个主流会议附 h5 指数与录取率标签，支持按两者排序
 - 🎨 暗色 / 亮色 / 自动（跟随系统）三态主题切换（记忆偏好）
-- 🌏 **中英双语界面**：按浏览器语言自动选择，一键切换并记忆偏好
+- 🌏 **中 / 英 / 日三语界面**：按浏览器语言自动选择，一键切换并记忆偏好
 - 🏷 按领域和等级**多选**筛选，支持搜索
 - 🎓 **双等级体系**：中文界面显示 CCF 等级（A/B/C/非CCF），英文界面显示国际通用的
   [CORE 等级](https://portal.core.edu.au)（A*/A/B/C）
@@ -71,11 +71,24 @@ history:        # 往年全文截稿日（可选）
 - **每周对账机器人**：GitHub Action 每周一自动和
   [ccfddl](https://github.com/ccfddl/ccf-deadlines) 比对日期，有差异就开 issue 提醒核对
 
-## 运行 / 安装
+## 在哪里使用
+
+一份数据源（`data.json`），多端使用：
+
+| 端 | 用法 |
+|----|------|
+| 🌐 **网页 / PWA** | [线上站点](https://yzyhhhstudy.github.io/paper-deadlines/)——桌面 Chrome/Edge 点地址栏安装图标、iPhone 用 Safari 分享→添加到主屏幕；离线可用；界面支持 中 / EN / 日 |
+| 📅 **日历订阅** | 页头**订阅日历**按钮 → `webcal://` 订阅源，Google/Apple 日历自动同步 |
+| 🧩 **Chrome / Edge 插件** | 角标显示 7 天内截止数 + 弹窗列表。加载 [`clients/extension/`](clients/extension/)，步骤见其 [README](clients/extension/README.md) |
+| ⚡ **Raycast** | 把 [`clients/raycast/`](clients/raycast/) 添加为 Script Commands 目录 |
+| 📟 **macOS 菜单栏** | 把 [`clients/menubar/ddlradar.1h.sh`](clients/menubar/ddlradar.1h.sh) 拷入 SwiftBar/xbar 插件目录 |
+| 💻 **命令行** | `npx github:YzYhhhstudy/paper-deadlines --days 30 --area AI/ML` |
+| 📬 **邮件 / Slack / Discord / 飞书** | GitHub Actions 每周一推送摘要——按 [`.github/workflows/digest.yml`](.github/workflows/digest.yml) 里的说明配置 Secrets 即可 |
+| 🔌 **自己开发** | 直接 `GET` [`/data.json`](https://yzyhhhstudy.github.io/paper-deadlines/data.json) |
+
+## 本地运行
 
 纯静态页面：`open index.html`，或部署到 GitHub Pages / Vercel。
-线上站点可安装为应用：桌面 Chrome/Edge 点地址栏**安装图标**；iPhone 用
-Safari **分享 → 添加到主屏幕**。安装后离线也能打开。
 
 ## Roadmap
 
@@ -85,5 +98,8 @@ Safari **分享 → 添加到主屏幕**。安装后离线也能打开。
 - [x] 期刊（TPAMI、JMLR、IJCV、TACL）
 - [x] h5-index、录取率
 - [x] PWA（可安装、离线可用）
-- [ ] Workshop；邮件摘要
-- [ ] 基于 data.json 的浏览器插件 / Raycast / 群机器人
+- [x] Workshop；每周邮件/群机器人摘要
+- [x] 基于 data.json 的浏览器插件 / Raycast / 菜单栏 / CLI
+- [x] 每周对账机器人 + 自动修正 PR（ccfddl）
+- [ ] 自动爬取官网获取精确 DDL / CFP 详情
+- [ ] 插件上架 Chrome Web Store / Edge Add-ons；CLI 发布到 npm
