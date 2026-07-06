@@ -35,7 +35,7 @@ Works on desktop **and** mobile (`isDesktopOnly: false`).
 - **Startup reminders**: a notice for starred conferences due within N days
   (configurable, at most once per day)
 - **Command palette**: *Insert deadline table* drops a Markdown snapshot at the cursor
-- UI in English / 中文 (follows the Obsidian language setting)
+- UI in English (default) / 中文 — switch in Settings → DDL Radar → Language
 
 ## Network use disclosure
 

@@ -37,7 +37,10 @@ interface Conf {
   aliases?: string[];
 }
 
+type Lang = "en" | "zh";
+
 interface RadarSettings {
+  language: Lang;
   starred: string[];
   reminderDays: number;
   refreshHours: number;
@@ -49,6 +52,7 @@ interface RadarSettings {
 }
 
 const DEFAULT_SETTINGS: RadarSettings = {
+  language: "en",
   starred: [],
   reminderDays: 7,
   refreshHours: 6,
@@ -59,48 +63,99 @@ const DEFAULT_SETTINGS: RadarSettings = {
   cacheFetchedAt: 0,
 };
 
-const zh = (window.localStorage.getItem("language") || "").startsWith("zh");
-const T = zh
-  ? {
-      panel: "DDL Radar：会议截稿",
-      search: "搜索会议…",
-      starredOnly: "只看收藏",
-      refresh: "刷新数据",
-      refreshed: "DDL Radar 数据已刷新",
-      offline: "DDL Radar：拉取数据失败，使用本地缓存",
-      empty: "没有即将截止的会议",
-      abs: "摘要",
-      absFirst: "⚠️ 摘要截止",
-      full: "截稿",
-      insertCmd: "插入截稿表格",
-      openCmd: "打开截稿面板",
-      refreshCmd: "刷新会议数据",
-      days: (d: number) => `${d} 天`,
-      dueSoon: (n: number) => `📡 ${n} 个会议 7 天内截止`,
-      tblHead: "| 截稿 | 会议 | 等级 | 领域 | 倒计时 |\n|---|---|---|---|---|",
-      bannerDdl: "距截稿",
-      site: "完整站点 →",
-    }
-  : {
-      panel: "DDL Radar: conference deadlines",
-      search: "Search venues…",
-      starredOnly: "Starred only",
-      refresh: "Refresh data",
-      refreshed: "DDL Radar data refreshed",
-      offline: "DDL Radar: fetch failed, using cached data",
-      empty: "No upcoming deadlines",
-      abs: "abstract",
-      absFirst: "⚠️ abstract due",
-      full: "deadline",
-      insertCmd: "Insert deadline table",
-      openCmd: "Open deadline panel",
-      refreshCmd: "Refresh conference data",
-      days: (d: number) => `${d}d`,
-      dueSoon: (n: number) => `📡 ${n} deadline${n > 1 ? "s" : ""} within 7 days`,
-      tblHead: "| Deadline | Conference | Rank | Area | Countdown |\n|---|---|---|---|---|",
-      bannerDdl: "until deadline",
-      site: "Full site →",
-    };
+interface Strings {
+  panel: string;
+  search: string;
+  starredOnly: string;
+  refresh: string;
+  refreshed: string;
+  offline: string;
+  empty: string;
+  abs: string;
+  absFirst: string;
+  full: string;
+  insertCmd: string;
+  openCmd: string;
+  refreshCmd: string;
+  days: (d: number) => string;
+  dueSoon: (n: number) => string;
+  tblHead: string;
+  bannerDdl: string;
+  site: string;
+  setLanguage: string;
+  setLanguageDesc: string;
+  setReminder: string;
+  setReminderDesc: string;
+  setRefresh: string;
+  setRefreshDesc: string;
+  setWindow: string;
+  setWindowDesc: string;
+  setSource: string;
+  refreshNow: string;
+}
+
+const STRINGS: Record<Lang, Strings> = {
+  en: {
+    panel: "DDL Radar: conference deadlines",
+    search: "Search venues…",
+    starredOnly: "Starred only",
+    refresh: "Refresh data",
+    refreshed: "DDL Radar data refreshed",
+    offline: "DDL Radar: fetch failed, using cached data",
+    empty: "No upcoming deadlines",
+    abs: "abstract",
+    absFirst: "⚠️ abstract due",
+    full: "deadline",
+    insertCmd: "Insert deadline table",
+    openCmd: "Open deadline panel",
+    refreshCmd: "Refresh conference data",
+    days: (d) => `${d}d`,
+    dueSoon: (n) => `📡 ${n} deadline${n > 1 ? "s" : ""} within 7 days`,
+    tblHead: "| Deadline | Conference | Rank | Area | Countdown |\n|---|---|---|---|---|",
+    bannerDdl: "until deadline",
+    site: "Full site →",
+    setLanguage: "Language",
+    setLanguageDesc: "Plugin interface language",
+    setReminder: "Reminder lead time (days)",
+    setReminderDesc: "On startup, show a notice for starred conferences due within N days (at most once a day)",
+    setRefresh: "Auto-refresh interval (hours)",
+    setRefreshDesc: "How often to re-fetch the public dataset",
+    setWindow: "Default window (days)",
+    setWindowDesc: "Code blocks and inserted tables show deadlines within N days by default",
+    setSource: "Data source",
+    refreshNow: "Refresh now",
+  },
+  zh: {
+    panel: "DDL Radar：会议截稿",
+    search: "搜索会议…",
+    starredOnly: "只看收藏",
+    refresh: "刷新数据",
+    refreshed: "DDL Radar 数据已刷新",
+    offline: "DDL Radar：拉取数据失败，使用本地缓存",
+    empty: "没有即将截止的会议",
+    abs: "摘要",
+    absFirst: "⚠️ 摘要截止",
+    full: "截稿",
+    insertCmd: "插入截稿表格",
+    openCmd: "打开截稿面板",
+    refreshCmd: "刷新会议数据",
+    days: (d) => `${d} 天`,
+    dueSoon: (n) => `📡 ${n} 个会议 7 天内截止`,
+    tblHead: "| 截稿 | 会议 | 等级 | 领域 | 倒计时 |\n|---|---|---|---|---|",
+    bannerDdl: "距截稿",
+    site: "完整站点 →",
+    setLanguage: "语言 / Language",
+    setLanguageDesc: "插件界面语言",
+    setReminder: "提醒提前量（天）",
+    setReminderDesc: "启动时，收藏的会议在 N 天内截止会弹出提醒（每天最多一次）",
+    setRefresh: "自动刷新间隔（小时）",
+    setRefreshDesc: "从公开数据集拉取最新截稿数据的频率",
+    setWindow: "默认时间窗口（天）",
+    setWindowDesc: "代码块与插入表格默认只显示 N 天内的截稿",
+    setSource: "数据来源",
+    refreshNow: "立即刷新",
+  },
+};
 
 function nextDeadline(c: Conf): { iso: string; abs: boolean } | null {
   if (c.rolling || !c.deadline) return null;
@@ -139,33 +194,38 @@ export default class DdlRadarPlugin extends Plugin {
   confs: Conf[] = [];
   statusEl: HTMLElement | null = null;
 
+  get t(): Strings {
+    return STRINGS[this.settings.language] ?? STRINGS.en;
+  }
+
   async onload() {
     await this.loadSettings();
     this.confs = this.settings.cacheConfs;
 
     this.registerView(VIEW_TYPE, (leaf) => new RadarView(leaf, this));
-    this.addRibbonIcon("radar", T.panel, () => this.activateView());
+    this.addRibbonIcon("radar", "DDL Radar", () => this.activateView());
 
     this.statusEl = this.addStatusBarItem();
     this.statusEl.addClass("ddlr-status");
     this.statusEl.onClickEvent(() => this.activateView());
 
+    // command names are read once at registration; they update after a plugin reload
     this.addCommand({
       id: "open-panel",
-      name: T.openCmd,
+      name: this.t.openCmd,
       callback: () => this.activateView(),
     });
     this.addCommand({
       id: "refresh-data",
-      name: T.refreshCmd,
+      name: this.t.refreshCmd,
       callback: async () => {
         await this.refreshData(true);
-        new Notice(T.refreshed);
+        new Notice(this.t.refreshed);
       },
     });
     this.addCommand({
       id: "insert-table",
-      name: T.insertCmd,
+      name: this.t.insertCmd,
       editorCallback: (editor: Editor) => {
         editor.replaceSelection(this.buildTable({ days: this.settings.defaultDays, limit: 20 }));
       },
@@ -204,6 +264,15 @@ export default class DdlRadarPlugin extends Plugin {
     await this.saveData(this.settings);
   }
 
+  applyLanguage() {
+    this.updateStatusBar();
+    this.updateBanner(this.app.workspace.getActiveFile());
+    this.app.workspace.getLeavesOfType(VIEW_TYPE).forEach((l) => {
+      const v = l.view;
+      if (v instanceof RadarView) v.rebuild();
+    });
+  }
+
   // ---- data ----
 
   async refreshData(force: boolean) {
@@ -219,7 +288,7 @@ export default class DdlRadarPlugin extends Plugin {
       this.settings.cacheFetchedAt = Date.now();
       await this.saveSettings();
     } catch {
-      if (this.confs.length) new Notice(T.offline);
+      if (this.confs.length) new Notice(this.t.offline);
     }
     this.afterDataChanged();
   }
@@ -293,7 +362,7 @@ export default class DdlRadarPlugin extends Plugin {
   updateStatusBar() {
     if (!this.statusEl) return;
     const urgent = this.filtered({ days: 6 }).length;
-    this.statusEl.setText(urgent ? T.dueSoon(urgent) : "📡");
+    this.statusEl.setText(urgent ? this.t.dueSoon(urgent) : "📡");
     this.statusEl.toggleClass("ddlr-status-urgent", urgent > 0);
   }
 
@@ -305,7 +374,7 @@ export default class DdlRadarPlugin extends Plugin {
     this.settings.lastReminder = today;
     void this.saveSettings();
     for (const r of due) {
-      new Notice(`📡 ${r.c.name}: ${T.days(r.d)} (${r.abs ? T.abs + " " : ""}${fmtDate(r.iso)})`, 8000);
+      new Notice(`📡 ${r.c.name}: ${this.t.days(r.d)} (${r.abs ? this.t.abs + " " : ""}${fmtDate(r.iso)})`, 8000);
     }
   }
 
@@ -313,12 +382,12 @@ export default class DdlRadarPlugin extends Plugin {
     el.empty();
     el.addClass("ddlr-board");
     if (!this.confs.length) {
-      el.createDiv({ text: T.empty, cls: "ddlr-empty" });
+      el.createDiv({ text: this.t.empty, cls: "ddlr-empty" });
       return;
     }
     const rows = this.filtered({ days: f.days ?? this.settings.defaultDays, ...f });
     if (!rows.length) {
-      el.createDiv({ text: T.empty, cls: "ddlr-empty" });
+      el.createDiv({ text: this.t.empty, cls: "ddlr-empty" });
       return;
     }
     for (const r of rows) {
@@ -328,19 +397,19 @@ export default class DdlRadarPlugin extends Plugin {
       a.setAttr("rel", "noopener");
       const rank = r.c.rank || r.c.core;
       if (rank) row.createSpan({ cls: "ddlr-rank", text: rank });
-      if (r.abs) row.createSpan({ cls: "ddlr-abs", text: `⚠️ ${T.abs}` });
-      row.createSpan({ cls: `ddlr-left ${urgencyClass(r.d)}`, text: T.days(r.d) });
+      if (r.abs) row.createSpan({ cls: "ddlr-abs", text: `⚠️ ${this.t.abs}` });
+      row.createSpan({ cls: `ddlr-left ${urgencyClass(r.d)}`, text: this.t.days(r.d) });
     }
   }
 
   buildTable(f: Filter): string {
     const rows = this.filtered(f);
-    const lines = [T.tblHead];
+    const lines = [this.t.tblHead];
     for (const r of rows) {
       const rank = r.c.rank || r.c.core || "";
-      const abs = r.abs ? ` ⚠️${T.abs}` : "";
+      const abs = r.abs ? ` ⚠️${this.t.abs}` : "";
       lines.push(
-        `| ${fmtDate(r.iso)}${abs} | [${r.c.name}](${r.c.link || SITE_URL}) | ${rank} | ${r.c.area || ""} | ${T.days(r.d)} |`
+        `| ${fmtDate(r.iso)}${abs} | [${r.c.name}](${r.c.link || SITE_URL}) | ${rank} | ${r.c.area || ""} | ${this.t.days(r.d)} |`
       );
     }
     return lines.join("\n") + "\n";
@@ -367,10 +436,10 @@ export default class DdlRadarPlugin extends Plugin {
         const d = daysLeft(nd.iso);
         banner.createSpan({
           cls: `ddlr-left ${urgencyClass(d)}`,
-          text: `${T.days(d)} ${nd.abs ? T.absFirst : T.bannerDdl} · ${fmtDate(nd.iso)}`,
+          text: `${this.t.days(d)} ${nd.abs ? this.t.absFirst : this.t.bannerDdl} · ${fmtDate(nd.iso)}`,
         });
         if (nd.abs && c.deadline) {
-          banner.createSpan({ cls: "ddlr-banner-full", text: `${T.full}: ${fmtDate(c.deadline)}` });
+          banner.createSpan({ cls: "ddlr-banner-full", text: `${this.t.full}: ${fmtDate(c.deadline)}` });
         }
       } else {
         banner.createSpan({ cls: "ddlr-banner-full", text: c.rolling ? "rolling" : "—" });
@@ -423,13 +492,20 @@ class RadarView extends ItemView {
   }
 
   async onOpen() {
+    this.rebuild();
+    if (!this.plugin.confs.length) await this.plugin.refreshData(false);
+  }
+
+  rebuild() {
+    const t = this.plugin.t;
     const root = this.contentEl;
     root.empty();
     root.addClass("ddlr-view");
 
     const head = root.createDiv({ cls: "ddlr-head" });
     const search = head.createEl("input", { type: "text", cls: "ddlr-search" });
-    search.placeholder = T.search;
+    search.placeholder = t.search;
+    search.value = this.query;
     search.oninput = () => {
       this.query = search.value.trim().toLowerCase();
       this.renderList();
@@ -439,35 +515,35 @@ class RadarView extends ItemView {
     const starToggle = controls.createEl("label", { cls: "ddlr-startoggle" });
     const cb = starToggle.createEl("input", { type: "checkbox" });
     cb.checked = this.plugin.settings.starredOnly;
-    starToggle.appendText(` ⭐ ${T.starredOnly}`);
+    starToggle.appendText(` ⭐ ${t.starredOnly}`);
     cb.onchange = () => {
       this.plugin.settings.starredOnly = cb.checked;
       void this.plugin.saveSettings();
       this.renderList();
     };
-    const refreshBtn = controls.createEl("button", { cls: "ddlr-refresh", text: `↻ ${T.refresh}` });
+    const refreshBtn = controls.createEl("button", { cls: "ddlr-refresh", text: `↻ ${t.refresh}` });
     refreshBtn.onclick = async () => {
       await this.plugin.refreshData(true);
-      new Notice(T.refreshed);
+      new Notice(this.plugin.t.refreshed);
     };
-    const site = controls.createEl("a", { cls: "ddlr-site", text: T.site, href: SITE_URL });
+    const site = controls.createEl("a", { cls: "ddlr-site", text: t.site, href: SITE_URL });
     site.setAttr("rel", "noopener");
 
     this.listEl = root.createDiv({ cls: "ddlr-list" });
     this.renderList();
-    if (!this.plugin.confs.length) await this.plugin.refreshData(false);
   }
 
   renderList() {
     const el = this.listEl;
     if (!el) return;
     el.empty();
+    const t = this.plugin.t;
     const rows = this.plugin.filtered({
       query: this.query,
       starred: this.plugin.settings.starredOnly,
     });
     if (!rows.length) {
-      el.createDiv({ text: T.empty, cls: "ddlr-empty" });
+      el.createDiv({ text: t.empty, cls: "ddlr-empty" });
       return;
     }
     for (const r of rows) {
@@ -490,8 +566,8 @@ class RadarView extends ItemView {
       a.setAttr("title", r.c.fullName || r.c.name);
       const rank = r.c.rank || r.c.core;
       if (rank) row.createSpan({ cls: "ddlr-rank", text: rank });
-      if (r.abs) row.createSpan({ cls: "ddlr-abs", text: `⚠️${T.abs}` });
-      row.createSpan({ cls: `ddlr-left ${urgencyClass(r.d)}`, text: T.days(r.d) });
+      if (r.abs) row.createSpan({ cls: "ddlr-abs", text: `⚠️${t.abs}` });
+      row.createSpan({ cls: `ddlr-left ${urgencyClass(r.d)}`, text: t.days(r.d) });
     }
   }
 
@@ -510,15 +586,28 @@ class RadarSettingTab extends PluginSettingTab {
 
   display() {
     const { containerEl } = this;
+    const t = this.plugin.t;
     containerEl.empty();
 
     new Setting(containerEl)
-      .setName(zh ? "提醒提前量（天）" : "Reminder lead time (days)")
-      .setDesc(
-        zh
-          ? "启动时，收藏的会议在 N 天内截止会弹出提醒（每天最多一次）"
-          : "On startup, show a notice for starred conferences due within N days (at most once a day)"
-      )
+      .setName(t.setLanguage)
+      .setDesc(t.setLanguageDesc)
+      .addDropdown((dd) =>
+        dd
+          .addOption("en", "English")
+          .addOption("zh", "中文")
+          .setValue(this.plugin.settings.language)
+          .onChange(async (v) => {
+            this.plugin.settings.language = (v === "zh" ? "zh" : "en") as Lang;
+            await this.plugin.saveSettings();
+            this.plugin.applyLanguage();
+            this.display();
+          })
+      );
+
+    new Setting(containerEl)
+      .setName(t.setReminder)
+      .setDesc(t.setReminderDesc)
       .addSlider((s) =>
         s
           .setLimits(1, 30, 1)
@@ -531,8 +620,8 @@ class RadarSettingTab extends PluginSettingTab {
       );
 
     new Setting(containerEl)
-      .setName(zh ? "自动刷新间隔（小时）" : "Auto-refresh interval (hours)")
-      .setDesc(zh ? "从公开数据集拉取最新截稿数据的频率" : "How often to re-fetch the public dataset")
+      .setName(t.setRefresh)
+      .setDesc(t.setRefreshDesc)
       .addSlider((s) =>
         s
           .setLimits(1, 24, 1)
@@ -545,12 +634,8 @@ class RadarSettingTab extends PluginSettingTab {
       );
 
     new Setting(containerEl)
-      .setName(zh ? "默认时间窗口（天）" : "Default window (days)")
-      .setDesc(
-        zh
-          ? "代码块与插入表格默认只显示 N 天内的截稿"
-          : "Code blocks and inserted tables show deadlines within N days by default"
-      )
+      .setName(t.setWindow)
+      .setDesc(t.setWindowDesc)
       .addSlider((s) =>
         s
           .setLimits(30, 365, 5)
@@ -563,12 +648,12 @@ class RadarSettingTab extends PluginSettingTab {
       );
 
     new Setting(containerEl)
-      .setName(zh ? "数据来源" : "Data source")
+      .setName(t.setSource)
       .setDesc(DATA_URL)
       .addButton((b) =>
-        b.setButtonText(zh ? "立即刷新" : "Refresh now").onClick(async () => {
+        b.setButtonText(t.refreshNow).onClick(async () => {
           await this.plugin.refreshData(true);
-          new Notice(T.refreshed);
+          new Notice(this.plugin.t.refreshed);
         })
       );
   }

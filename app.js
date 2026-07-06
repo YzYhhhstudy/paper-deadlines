@@ -462,13 +462,10 @@ const I18N = {
   },
 };
 
-// URL 参数优先（分享链接可完整复现视图），其次本地偏好，最后浏览器语言
+// URL 参数优先（分享链接可完整复现视图），其次本地偏好；默认英文（不随浏览器语言）
 const urlParams = new URLSearchParams(location.search);
 let lang = urlParams.get("lang") || localStorage.getItem("ddlradar-lang");
-if (!I18N[lang]) {
-  const nav = (navigator.language || "").toLowerCase();
-  lang = Object.keys(I18N).find((l) => nav.startsWith(l)) || "en";
-}
+if (!I18N[lang]) lang = "en";
 const t = (key) => I18N[lang][key];
 
 // 会议在当前等级体系下的等级值
