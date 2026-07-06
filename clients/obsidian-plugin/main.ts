@@ -259,11 +259,12 @@ export default class DdlRadarPlugin extends Plugin {
   }
 
   onunload() {
-    document.querySelectorAll(".ddlr-banner").forEach((b) => b.remove());
+    activeDocument.querySelectorAll(".ddlr-banner").forEach((b) => b.remove());
   }
 
   async loadSettings() {
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+    const saved = (await this.loadData()) as Partial<RadarSettings> | null;
+    this.settings = { ...DEFAULT_SETTINGS, ...(saved ?? {}) };
   }
 
   async saveSettings() {
@@ -427,9 +428,9 @@ export default class DdlRadarPlugin extends Plugin {
     view.containerEl.querySelectorAll(".ddlr-banner").forEach((b) => b.remove());
     if (!file || !this.confs.length) return;
     const fm = this.app.metadataCache.getFileCache(file)?.frontmatter;
-    const raw = fm?.conference;
-    if (!raw) return;
-    const refs: string[] = Array.isArray(raw) ? raw.map(String) : [String(raw)];
+    const raw: unknown = fm?.conference;
+    if (raw == null || raw === "") return;
+    const refs = (Array.isArray(raw) ? (raw as unknown[]) : [raw]).map((x) => String(x));
     const content = view.containerEl.querySelector(".view-content");
     if (!content) return;
     for (const ref of refs) {
@@ -604,7 +605,7 @@ class RadarSettingTab extends PluginSettingTab {
           .addOption("zh", "中文")
           .setValue(this.plugin.settings.language)
           .onChange(async (v) => {
-            this.plugin.settings.language = (v === "zh" ? "zh" : "en") as Lang;
+            this.plugin.settings.language = v === "zh" ? "zh" : "en";
             await this.plugin.saveSettings();
             this.plugin.applyLanguage();
             this.display();

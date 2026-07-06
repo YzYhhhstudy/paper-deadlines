@@ -4,11 +4,6 @@ body {
   font-family: -apple-system, "PingFang SC", "Segoe UI", sans-serif;
   background: #0e1116; color: #e9edf4; padding: 12px;
 }
-@media (prefers-color-scheme: light) {
-  body { background: #f3f5f9; color: #1b2231; }
-  .row { background: #ffffff !important; border-color: #dde2eb !important; }
-  input { background: #ffffff !important; color: #1b2231 !important; border-color: #ccd4e2 !important; }
-}
 header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
 .brand { font-weight: 700; font-size: 15px; }
 header a { color: #7c6cff; font-size: 12px; text-decoration: none; }
@@ -29,3 +24,10 @@ input {
 .left.safe { color: #37c47f; }
 .abs { font-size: 11px; color: #f0a832; }
 .empty { color: #8a94a8; text-align: center; padding: 16px 0; font-size: 13px; }
+
+/* 浅色模式覆盖：置于文件末尾，靠源序生效，无需 !important */
+@media (prefers-color-scheme: light) {
+  body { background: #f3f5f9; color: #1b2231; }
+  .row { background: #ffffff; border-color: #dde2eb; }
+  input { background: #ffffff; color: #1b2231; border-color: #ccd4e2; }
+}

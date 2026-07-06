@@ -1,0 +1,45 @@
+# Obsidian 插件 release：CI 重新构建 main.js 并生成 artifact attestations
+# （出处证明，回应社区插件自动审查的建议），再覆盖上传到对应 release。
+name: Attest plugin release
+
+on:
+  push:
+    tags: ["[0-9]+.[0-9]+.[0-9]+"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to (re)build and attest, e.g. 1.0.0"
+        required: true
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  attest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.tag || github.ref_name }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build plugin
+        working-directory: clients/obsidian-plugin
+        run: |
+          npm ci
+          npm run build
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            clients/obsidian-plugin/main.js
+            clients/obsidian-plugin/styles.css
+      - name: Upload assets to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.inputs.tag || github.ref_name }}
+        working-directory: clients/obsidian-plugin
+        run: gh release upload "$TAG" main.js styles.css manifest.json --clobber
