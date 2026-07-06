@@ -110,7 +110,7 @@ One data source (`data.json`), many clients:
 | 📟 **macOS menu bar** | Copy [`clients/menubar/ddlradar.1h.sh`](clients/menubar/ddlradar.1h.sh) into your SwiftBar/xbar plugins folder |
 | 💻 **CLI** | `npx ddl-radar --days 30 --area AI/ML` — on [npm](https://www.npmjs.com/package/ddl-radar), or `npm i -g ddl-radar` |
 | 📬 **Email / Slack / Discord / Feishu** | Weekly digest via GitHub Actions — set the secrets documented in [`.github/workflows/digest.yml`](.github/workflows/digest.yml) |
-| 📓 **Obsidian** | Live deadline table inside your notes via DataviewJS, or the generated [`deadlines.md`](https://yzyhhhstudy.github.io/paper-deadlines/deadlines.md) — see [`clients/obsidian/`](clients/obsidian/) |
+| 📓 **Obsidian** | **Native plugin** (desktop & mobile, no dependencies): sidebar countdown panel, in-note `ddl-radar` boards, frontmatter countdown banners on your paper notes, status-bar badge. Fetches only the public `data.json` — see [`clients/obsidian-plugin/`](clients/obsidian-plugin/). DataviewJS alternative: [`clients/obsidian/`](clients/obsidian/) |
 | 🔌 **Your own client** | `GET` [`/data.json`](https://yzyhhhstudy.github.io/paper-deadlines/data.json) |
 
 ## Run locally
@@ -131,6 +131,7 @@ Pure static page: `open index.html`, or deploy to GitHub Pages / Vercel.
 - [ ] Automated crawling of official sites for deadlines/CFP details
 - [x] CLI published to npm ([`ddl-radar`](https://www.npmjs.com/package/ddl-radar))
 - [ ] Publish extension to Chrome Web Store / Edge Add-ons (submitted, in review)
+- [ ] Obsidian community-plugin listing (plugin built — [`clients/obsidian-plugin/`](clients/obsidian-plugin/))
 
 ## License
 

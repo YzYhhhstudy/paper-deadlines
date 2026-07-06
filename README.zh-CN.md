@@ -99,7 +99,7 @@ history:        # 往年全文截稿日（可选）
 | 📟 **macOS 菜单栏** | 把 [`clients/menubar/ddlradar.1h.sh`](clients/menubar/ddlradar.1h.sh) 拷入 SwiftBar/xbar 插件目录 |
 | 💻 **命令行** | `npx ddl-radar --days 30 --area AI/ML`——已发布 [npm](https://www.npmjs.com/package/ddl-radar)，也可 `npm i -g ddl-radar` |
 | 📬 **邮件 / Slack / Discord / 飞书** | GitHub Actions 每周一推送摘要——按 [`.github/workflows/digest.yml`](.github/workflows/digest.yml) 里的说明配置 Secrets 即可 |
-| 📓 **Obsidian** | DataviewJS 在笔记里嵌实时截稿表，或使用构建生成的 [`deadlines.md`](https://yzyhhhstudy.github.io/paper-deadlines/deadlines.md)——见 [`clients/obsidian/`](clients/obsidian/) |
+| 📓 **Obsidian** | **原生插件**（桌面 + 手机，零依赖）：侧边栏倒计时面板、笔记内 `ddl-radar` 代码块看板、论文笔记 frontmatter 倒计时横幅、状态栏角标。仅拉取公开 `data.json`——见 [`clients/obsidian-plugin/`](clients/obsidian-plugin/)。DataviewJS 备选方案：[`clients/obsidian/`](clients/obsidian/) |
 | 🔌 **自己开发** | 直接 `GET` [`/data.json`](https://yzyhhhstudy.github.io/paper-deadlines/data.json) |
 
 ## 本地运行
@@ -120,3 +120,4 @@ history:        # 往年全文截稿日（可选）
 - [ ] 自动爬取官网获取精确 DDL / CFP 详情
 - [x] CLI 发布到 npm（[`ddl-radar`](https://www.npmjs.com/package/ddl-radar)）
 - [ ] 插件上架 Chrome Web Store / Edge Add-ons（已提交，审核中）
+- [ ] Obsidian 社区插件市场上架（插件已完成——[`clients/obsidian-plugin/`](clients/obsidian-plugin/)）

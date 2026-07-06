@@ -1,0 +1,157 @@
+/* DDL Radar for Obsidian */
+
+.ddlr-view .ddlr-head {
+  position: sticky;
+  top: 0;
+  padding-bottom: 8px;
+  background: var(--background-primary);
+  z-index: 1;
+}
+
+.ddlr-search {
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.ddlr-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--font-ui-smaller);
+  flex-wrap: wrap;
+}
+
+.ddlr-startoggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+}
+
+.ddlr-refresh {
+  font-size: var(--font-ui-smaller);
+  padding: 2px 8px;
+}
+
+.ddlr-site {
+  margin-left: auto;
+}
+
+.ddlr-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 6px;
+  border-radius: 6px;
+  font-size: var(--font-ui-small);
+}
+
+.ddlr-row:hover {
+  background: var(--background-modifier-hover);
+}
+
+.ddlr-star {
+  cursor: pointer;
+  color: var(--text-faint);
+}
+
+.ddlr-star.is-starred {
+  color: var(--color-yellow);
+}
+
+.ddlr-date {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.ddlr-name {
+  flex: 1;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-normal);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ddlr-name:hover {
+  color: var(--interactive-accent);
+}
+
+.ddlr-rank {
+  font-size: var(--font-ui-smaller);
+  padding: 1px 6px;
+  border-radius: 9px;
+  background: var(--background-modifier-border);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.ddlr-abs {
+  font-size: var(--font-ui-smaller);
+  color: var(--color-orange);
+  white-space: nowrap;
+}
+
+.ddlr-left {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.ddlr-urgent { color: var(--color-red); }
+.ddlr-soon   { color: var(--color-orange); }
+.ddlr-safe   { color: var(--color-green); }
+
+.ddlr-empty {
+  color: var(--text-faint);
+  text-align: center;
+  padding: 14px 0;
+}
+
+/* ```ddl-radar``` code block board */
+.ddlr-board .ddlr-row {
+  border: 1px solid var(--background-modifier-border);
+  margin-bottom: 5px;
+}
+
+.ddlr-board .ddlr-left {
+  margin-left: auto;
+}
+
+/* frontmatter countdown banner */
+.ddlr-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 7px 14px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  background: var(--background-secondary);
+  font-size: var(--font-ui-small);
+}
+
+.ddlr-banner-name {
+  font-weight: 700;
+}
+
+.ddlr-banner-full {
+  color: var(--text-muted);
+}
+
+.ddlr-banner-link {
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* status bar */
+.ddlr-status {
+  cursor: pointer;
+}
+
+.ddlr-status-urgent {
+  color: var(--color-red);
+}

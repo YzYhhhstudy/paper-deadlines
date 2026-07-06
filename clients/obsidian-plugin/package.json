@@ -1,0 +1,16 @@
+{
+  "name": "ddl-radar-obsidian",
+  "version": "1.0.0",
+  "description": "Obsidian plugin for DDL Radar conference deadlines",
+  "main": "main.js",
+  "scripts": {
+    "build": "esbuild main.ts --bundle --external:obsidian --format=cjs --target=es2022 --outfile=main.js",
+    "dev": "npm run build -- --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "esbuild": "^0.21.0",
+    "obsidian": "^1.5.7",
+    "typescript": "^5.4.0"
+  }
+}

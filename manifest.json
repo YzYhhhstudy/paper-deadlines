@@ -1,0 +1,10 @@
+{
+  "id": "ddl-radar",
+  "name": "DDL Radar",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "CS conference deadline countdowns inside your vault: sidebar panel, in-note deadline boards, frontmatter-linked countdown banners and status-bar badge.",
+  "author": "YzYhhhstudy",
+  "authorUrl": "https://github.com/YzYhhhstudy",
+  "isDesktopOnly": false
+}
