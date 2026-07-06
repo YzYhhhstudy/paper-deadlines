@@ -6,6 +6,8 @@
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fyzyhhhstudy.github.io%2Fpaper-deadlines%2F&label=site)](https://yzyhhhstudy.github.io/paper-deadlines/)
 [![PWA](https://img.shields.io/badge/PWA-installable-5b4be0)](https://yzyhhhstudy.github.io/paper-deadlines/)
 [![npm](https://img.shields.io/npm/v/ddl-radar?logo=npm&color=cb3837)](https://www.npmjs.com/package/ddl-radar)
+[![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-in_review-fbbc05)](clients/extension/)
+[![Edge Add-ons](https://img.shields.io/badge/Edge_Add--ons-in_review-0078d7)](clients/extension/)
 [![i18n](https://img.shields.io/badge/i18n-7_languages-1baf7a)](#features)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/YzYhhhstudy/paper-deadlines/tree/master/data/conferences)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](#license)
