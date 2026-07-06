@@ -8,6 +8,7 @@
 [![npm](https://img.shields.io/npm/v/ddl-radar?logo=npm&color=cb3837)](https://www.npmjs.com/package/ddl-radar)
 [![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-in_review-fbbc05)](clients/extension/)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Add--ons-in_review-0078d7)](clients/extension/)
+[![Obsidian](https://img.shields.io/badge/Obsidian-community_plugin-7c3aed?logo=obsidian&logoColor=white)](https://obsidian.md/plugins?id=ddl-radar)
 [![i18n](https://img.shields.io/badge/i18n-7_languages-1baf7a)](#features)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/YzYhhhstudy/paper-deadlines/tree/master/data/conferences)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](#license)
@@ -110,7 +111,7 @@ One data source (`data.json`), many clients:
 | 📟 **macOS menu bar** | Copy [`clients/menubar/ddlradar.1h.sh`](clients/menubar/ddlradar.1h.sh) into your SwiftBar/xbar plugins folder |
 | 💻 **CLI** | `npx ddl-radar --days 30 --area AI/ML` — on [npm](https://www.npmjs.com/package/ddl-radar), or `npm i -g ddl-radar` |
 | 📬 **Email / Slack / Discord / Feishu** | Weekly digest via GitHub Actions — set the secrets documented in [`.github/workflows/digest.yml`](.github/workflows/digest.yml) |
-| 📓 **Obsidian** | **Native plugin** (desktop & mobile, no dependencies): sidebar countdown panel, in-note `ddl-radar` boards, frontmatter countdown banners on your paper notes, status-bar badge. Fetches only the public `data.json` — see [`clients/obsidian-plugin/`](clients/obsidian-plugin/). DataviewJS alternative: [`clients/obsidian/`](clients/obsidian/) |
+| 📓 **Obsidian** | **[Install from Community plugins](https://obsidian.md/plugins?id=ddl-radar)** — search "DDL Radar" (desktop & mobile, no dependencies): sidebar countdown panel, in-note `ddl-radar` boards, frontmatter countdown banners on your paper notes, status-bar badge. Fetches only the public `data.json` — details in [`clients/obsidian-plugin/`](clients/obsidian-plugin/) |
 | 🔌 **Your own client** | `GET` [`/data.json`](https://yzyhhhstudy.github.io/paper-deadlines/data.json) |
 
 ## Run locally
@@ -131,7 +132,7 @@ Pure static page: `open index.html`, or deploy to GitHub Pages / Vercel.
 - [ ] Automated crawling of official sites for deadlines/CFP details
 - [x] CLI published to npm ([`ddl-radar`](https://www.npmjs.com/package/ddl-radar))
 - [ ] Publish extension to Chrome Web Store / Edge Add-ons (submitted, in review)
-- [ ] Obsidian community-plugin listing (plugin built — [`clients/obsidian-plugin/`](clients/obsidian-plugin/))
+- [x] Obsidian community-plugin listing ([install](https://obsidian.md/plugins?id=ddl-radar))
 
 ## License
 

@@ -58,9 +58,14 @@
 3. `git tag X.Y.Z && git push origin X.Y.Z` → CI 自动：构建 → attest → 创建/更新 release 资产
    （首次给已存在的 tag 补 attestation：Actions → Attest plugin release → Run workflow 填 tag）
 
-## 上架后
+## 上架后（2026-07-06 已收录进 community-plugins.json，提交次日即上架）
 
-- [ ] README 徽章：`obsidian-downloads`（等 community-plugin-stats.json 收录 `ddl-radar` 后，
-      shields dynamic json 查 `$["ddl-radar"].downloads`）
-- [ ] README"多端使用"表格：Obsidian 行改为商店一键安装优先，手动安装收进 `<details>`
-- [ ] Roadmap 勾掉 Obsidian 上架项
+- [x] README 静态徽章 Obsidian community plugin（链接 obsidian.md/plugins?id=ddl-radar）
+- [ ] 换成下载量徽章：等 community-plugin-stats.json 收录 `ddl-radar` 后，
+      shields dynamic json 查 `$["ddl-radar"].downloads`
+- [x] README"多端使用"表格：Obsidian 行改为商店一键安装优先
+- [x] Roadmap 勾掉 Obsidian 上架项
+
+后续版本的自动审查里，SOURCE CODE 的 no-unsafe-* 海量 warning 与 js-yaml 点名会一直存在
+（bot 环境噪音 + 仓库级扫描，见上文表格），不影响任何 Pass 项；1.0.2 起 RELEASES 的
+attestation 和 BUILD VERIFICATION（byte-for-byte 复现）均为 Pass。
