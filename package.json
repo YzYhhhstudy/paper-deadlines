@@ -9,7 +9,7 @@
   "scripts": {
     "build": "node scripts/build.js",
     "validate": "node scripts/build.js --validate",
-    "pack:extension": "mkdir -p dist && cd clients/extension && zip -rq ../../dist/ddl-radar-extension.zip . -x '*.DS_Store' && echo 'dist/ddl-radar-extension.zip 已生成'",
+    "pack:extension": "mkdir -p dist && cd clients/extension && zip -rq ../../dist/ddl-radar-extension.zip . -x '*.DS_Store' -x 'STORE.md' -x 'README.md' && echo 'dist/ddl-radar-extension.zip 已生成'",
     "pack:cli": "cd cli && npm pack --pack-destination ../dist"
   },
   "devDependencies": {
