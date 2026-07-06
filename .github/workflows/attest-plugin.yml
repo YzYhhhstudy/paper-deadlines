@@ -42,4 +42,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ github.event.inputs.tag || github.ref_name }}
         working-directory: clients/obsidian-plugin
-        run: gh release upload "$TAG" main.js styles.css manifest.json --clobber
+        run: |
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "DDL Radar $TAG" --generate-notes
+          gh release upload "$TAG" main.js styles.css manifest.json --clobber
