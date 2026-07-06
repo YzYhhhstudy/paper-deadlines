@@ -32,6 +32,25 @@
 | js-yaml 点名 | 仓库级扫描，连根 package.json 的**站点构建依赖**也扫 | 插件包内没有它就可以不理（Obsidian 内置 `parseYaml`，若真要在插件里解析 YAML 用它） |
 | CSS `!important` | 同样是全仓库扫，连浏览器插件的 popup.css 都会被点 | 用源序/特异性替代：暗色为基础样式，浅色 media query 放文件末尾覆盖 |
 
+## ⚠️ 最重要的坑：release 成功 ≠ 商店可见（插件有两处 manifest）
+
+来自 LeetLog 0.3.5 版本推送失败的实战教训（2026-07-06），DDL Radar 同日排查发现
+也缺根 versions.json：
+
+- Obsidian 商店判断插件最新版本，读的**不是 GitHub Release**，而是**默认分支
+  （master）根目录的 `manifest.json`**；根目录还必须有 `versions.json`
+  （版本 → 最低 Obsidian 版本映射）。
+- 插件源码目录和仓库根目录各有一份 manifest——release 发得再成功，只要根目录那份
+  没更新，商店就永远认为旧版本是最新，不会给用户推送更新。
+- 排查时看到"release 资产齐全"容易误判成"商店缓存延迟，等等就好"——先对比
+  **根目录 manifest 版本 vs 插件目录 manifest 版本**，不一致才是真因。
+
+防复发（已内置到 attest-plugin.yml，两道保险）：
+1. 打 tag 时校验插件 manifest 版本必须等于 tag，不一致直接拒绝发布；
+2. 发布成功后机器人自动把根 `manifest.json` + `versions.json` 同步提交回 master
+   （commit 形如 `chore: sync root manifest/versions to X.Y.Z for Obsidian catalog`）。
+   本地 `npm run build:obsidian` 也会同步这四件套，双保险。
+
 ## 发新版本流程
 
 1. 改 `clients/obsidian-plugin/manifest.json` 的 `version`（和 `versions.json` 加一行）

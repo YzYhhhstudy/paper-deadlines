@@ -23,9 +23,21 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.inputs.tag || github.ref_name }}
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      # 保险 1：tag 必须等于插件 manifest 版本，不一致直接拒绝发布
+      - name: Verify tag matches manifest version
+        env:
+          TAG: ${{ github.event.inputs.tag || github.ref_name }}
+        working-directory: clients/obsidian-plugin
+        run: |
+          V=$(node -p "require('./manifest.json').version")
+          if [ "$V" != "$TAG" ]; then
+            echo "::error::manifest version ($V) != tag ($TAG) — refusing to publish"
+            exit 1
+          fi
       - name: Build plugin
         working-directory: clients/obsidian-plugin
         run: |
@@ -45,3 +57,23 @@ jobs:
         run: |
           gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "DDL Radar $TAG" --generate-notes
           gh release upload "$TAG" main.js styles.css manifest.json --clobber
+      # 保险 2：商店读的是默认分支根目录的 manifest/versions（release 成功 ≠ 商店可见），
+      # 发布后自动把两份文件同步提交回 master
+      - name: Sync root manifest/versions to master
+        env:
+          TAG: ${{ github.event.inputs.tag || github.ref_name }}
+        run: |
+          cp clients/obsidian-plugin/manifest.json /tmp/manifest.json
+          cp clients/obsidian-plugin/versions.json /tmp/versions.json
+          git checkout -f master
+          cp /tmp/manifest.json manifest.json
+          cp /tmp/versions.json versions.json
+          if git diff --quiet -- manifest.json versions.json; then
+            echo "root manifest/versions already in sync"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add manifest.json versions.json
+            git commit -m "chore: sync root manifest/versions to $TAG for Obsidian catalog"
+            git push origin master
+          fi

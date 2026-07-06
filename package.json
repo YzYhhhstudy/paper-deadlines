@@ -11,7 +11,7 @@
     "validate": "node scripts/build.js --validate",
     "pack:extension": "mkdir -p dist && cd clients/extension && zip -rq ../../dist/ddl-radar-extension.zip . -x '*.DS_Store' -x 'STORE.md' -x 'README.md' && echo 'dist/ddl-radar-extension.zip 已生成'",
     "pack:cli": "cd cli && npm pack --pack-destination ../dist",
-    "build:obsidian": "cd clients/obsidian-plugin && npm run build && cp main.js styles.css manifest.json ../.."
+    "build:obsidian": "cd clients/obsidian-plugin && npm run build && cp main.js styles.css manifest.json versions.json ../.."
   },
   "devDependencies": {
     "@anthropic-ai/sdk": "^0.110.0",
