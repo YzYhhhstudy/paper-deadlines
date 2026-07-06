@@ -5,6 +5,7 @@
 [![Data validate & build](https://github.com/YzYhhhstudy/paper-deadlines/actions/workflows/data.yml/badge.svg)](https://github.com/YzYhhhstudy/paper-deadlines/actions/workflows/data.yml)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fyzyhhhstudy.github.io%2Fpaper-deadlines%2F&label=site)](https://yzyhhhstudy.github.io/paper-deadlines/)
 [![PWA](https://img.shields.io/badge/PWA-installable-5b4be0)](https://yzyhhhstudy.github.io/paper-deadlines/)
+[![npm](https://img.shields.io/npm/v/ddl-radar?logo=npm&color=cb3837)](https://www.npmjs.com/package/ddl-radar)
 [![i18n](https://img.shields.io/badge/i18n-7_languages-1baf7a)](#features)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/YzYhhhstudy/paper-deadlines/tree/master/data/conferences)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](#license)
@@ -105,7 +106,7 @@ One data source (`data.json`), many clients:
 | 🧩 **Chrome / Edge extension** | Badge = deadlines within 7 days + popup list. Load [`clients/extension/`](clients/extension/) unpacked — see its [README](clients/extension/README.md) |
 | ⚡ **Raycast** | Add [`clients/raycast/`](clients/raycast/) as a Script Commands directory |
 | 📟 **macOS menu bar** | Copy [`clients/menubar/ddlradar.1h.sh`](clients/menubar/ddlradar.1h.sh) into your SwiftBar/xbar plugins folder |
-| 💻 **CLI** | `npx github:YzYhhhstudy/paper-deadlines --days 30 --area AI/ML` |
+| 💻 **CLI** | `npx ddl-radar --days 30 --area AI/ML` — on [npm](https://www.npmjs.com/package/ddl-radar), or `npm i -g ddl-radar` |
 | 📬 **Email / Slack / Discord / Feishu** | Weekly digest via GitHub Actions — set the secrets documented in [`.github/workflows/digest.yml`](.github/workflows/digest.yml) |
 | 📓 **Obsidian** | Live deadline table inside your notes via DataviewJS, or the generated [`deadlines.md`](https://yzyhhhstudy.github.io/paper-deadlines/deadlines.md) — see [`clients/obsidian/`](clients/obsidian/) |
 | 🔌 **Your own client** | `GET` [`/data.json`](https://yzyhhhstudy.github.io/paper-deadlines/data.json) |
@@ -126,7 +127,8 @@ Pure static page: `open index.html`, or deploy to GitHub Pages / Vercel.
 - [x] Browser extension, Raycast, menu bar, CLI clients on `data.json`
 - [x] Weekly reconciliation bot with auto-fix PRs (ccfddl)
 - [ ] Automated crawling of official sites for deadlines/CFP details
-- [ ] Publish extension to Chrome Web Store / Edge Add-ons; CLI to npm
+- [x] CLI published to npm ([`ddl-radar`](https://www.npmjs.com/package/ddl-radar))
+- [ ] Publish extension to Chrome Web Store / Edge Add-ons (submitted, in review)
 
 ## License
 

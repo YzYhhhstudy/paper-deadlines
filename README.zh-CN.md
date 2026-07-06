@@ -5,6 +5,7 @@
 [![Data validate & build](https://github.com/YzYhhhstudy/paper-deadlines/actions/workflows/data.yml/badge.svg)](https://github.com/YzYhhhstudy/paper-deadlines/actions/workflows/data.yml)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fyzyhhhstudy.github.io%2Fpaper-deadlines%2F&label=site)](https://yzyhhhstudy.github.io/paper-deadlines/)
 [![PWA](https://img.shields.io/badge/PWA-installable-5b4be0)](https://yzyhhhstudy.github.io/paper-deadlines/)
+[![npm](https://img.shields.io/npm/v/ddl-radar?logo=npm&color=cb3837)](https://www.npmjs.com/package/ddl-radar)
 [![i18n](https://img.shields.io/badge/i18n-7_languages-1baf7a)](#功能)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/YzYhhhstudy/paper-deadlines/tree/master/data/conferences)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://github.com/YzYhhhstudy/paper-deadlines)
@@ -94,7 +95,7 @@ history:        # 往年全文截稿日（可选）
 | 🧩 **Chrome / Edge 插件** | 角标显示 7 天内截止数 + 弹窗列表。加载 [`clients/extension/`](clients/extension/)，步骤见其 [README](clients/extension/README.md) |
 | ⚡ **Raycast** | 把 [`clients/raycast/`](clients/raycast/) 添加为 Script Commands 目录 |
 | 📟 **macOS 菜单栏** | 把 [`clients/menubar/ddlradar.1h.sh`](clients/menubar/ddlradar.1h.sh) 拷入 SwiftBar/xbar 插件目录 |
-| 💻 **命令行** | `npx github:YzYhhhstudy/paper-deadlines --days 30 --area AI/ML` |
+| 💻 **命令行** | `npx ddl-radar --days 30 --area AI/ML`——已发布 [npm](https://www.npmjs.com/package/ddl-radar)，也可 `npm i -g ddl-radar` |
 | 📬 **邮件 / Slack / Discord / 飞书** | GitHub Actions 每周一推送摘要——按 [`.github/workflows/digest.yml`](.github/workflows/digest.yml) 里的说明配置 Secrets 即可 |
 | 📓 **Obsidian** | DataviewJS 在笔记里嵌实时截稿表，或使用构建生成的 [`deadlines.md`](https://yzyhhhstudy.github.io/paper-deadlines/deadlines.md)——见 [`clients/obsidian/`](clients/obsidian/) |
 | 🔌 **自己开发** | 直接 `GET` [`/data.json`](https://yzyhhhstudy.github.io/paper-deadlines/data.json) |
@@ -115,4 +116,5 @@ history:        # 往年全文截稿日（可选）
 - [x] 基于 data.json 的浏览器插件 / Raycast / 菜单栏 / CLI
 - [x] 每周对账机器人 + 自动修正 PR（ccfddl）
 - [ ] 自动爬取官网获取精确 DDL / CFP 详情
-- [ ] 插件上架 Chrome Web Store / Edge Add-ons；CLI 发布到 npm
+- [x] CLI 发布到 npm（[`ddl-radar`](https://www.npmjs.com/package/ddl-radar)）
+- [ ] 插件上架 Chrome Web Store / Edge Add-ons（已提交，审核中）
