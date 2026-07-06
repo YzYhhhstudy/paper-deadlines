@@ -39,6 +39,9 @@ const I18N = {
     subBtn: "📡 订阅日历",
     subTitle: "在 Google/Apple 日历中订阅 DDL，数据更新自动同步",
     subAll: "📅 全部会议",
+    subOpenSel: (n) => `📡 订阅所选（${n}）`,
+    subCopySel: "复制链接",
+    subCopied: "✓ 已复制，粘贴到日历应用",
     sortOptions: { deadline: "按截止时间", h5: "按 h5 指数", acceptAsc: "录取率 升序", acceptDesc: "录取率 降序" },
     viewCards: "▦ 卡片",
     viewTimeline: "☰ 时间线",
@@ -120,6 +123,9 @@ const I18N = {
     subBtn: "📡 Subscribe",
     subTitle: "Subscribe to DDLs in Google/Apple Calendar — updates sync automatically",
     subAll: "📅 All conferences",
+    subOpenSel: (n) => `📡 Subscribe selected (${n})`,
+    subCopySel: "Copy URLs",
+    subCopied: "✓ Copied — paste into your calendar app",
     sortOptions: { deadline: "By deadline", h5: "By h5-index", acceptAsc: "Accept rate asc.", acceptDesc: "Accept rate desc." },
     viewCards: "▦ Cards",
     viewTimeline: "☰ Timeline",
@@ -616,13 +622,48 @@ const rankSel = setupMsel("#rankSel", state.ranks,
 const FEED_HOST = "yzyhhhstudy.github.io/paper-deadlines";
 const feedSlug = (s) => s.toLowerCase().replace(/&/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
+// 缺失的文案 fallback 到英文（新键只维护 en/zh 两份）
+const tf = (key) => I18N[lang][key] ?? I18N.en[key];
+
 function buildSubPanel() {
-  const link = (slug, label) => `<a href="webcal://${FEED_HOST}/feeds/${slug}.ics">${label}</a>`;
+  const feedUrl = (slug) => `webcal://${FEED_HOST}/feeds/${slug}.ics`;
+  const link = (slug, label) => `<a href="${feedUrl(slug)}">${label}</a>`;
   const areas = [...new Set(CONFERENCES.map((c) => c.area))].sort();
   $("#subPanel").innerHTML =
-    link("all", t("subAll")) + areas.map((a) => link(feedSlug(a), a)).join("");
+    link("all", t("subAll")) +
+    areas.map((a) =>
+      `<div class="subrow"><input type="checkbox" data-slug="${feedSlug(a)}">${link(feedSlug(a), a)}</div>`
+    ).join("") +
+    `<div class="sub-footer" hidden>
+       <button type="button" id="subOpenSel"></button>
+       <button type="button" id="subCopySel"></button>
+     </div>`;
   biLabel($("#subBtn"), "subBtn");
   $("#subBtn").title = t("subTitle");
+
+  const boxes = [...$("#subPanel").querySelectorAll(".subrow input")];
+  const footer = $("#subPanel").querySelector(".sub-footer");
+  const openBtn = $("#subOpenSel");
+  const copyBtn = $("#subCopySel");
+  const selected = () => boxes.filter((b) => b.checked).map((b) => b.dataset.slug);
+  const sync = () => {
+    const n = selected().length;
+    footer.hidden = n === 0;
+    openBtn.textContent = tf("subOpenSel")(n);
+    copyBtn.textContent = tf("subCopySel");
+  };
+  boxes.forEach((b) => { b.onclick = (e) => e.stopPropagation(); b.onchange = sync; });
+  // 依次唤起系统日历订阅；部分浏览器每次手势只放行一个外部协议，复制链接作兜底
+  openBtn.onclick = (e) => {
+    e.stopPropagation();
+    selected().forEach((slug, i) => setTimeout(() => { window.location.href = feedUrl(slug); }, i * 900));
+  };
+  copyBtn.onclick = async (e) => {
+    e.stopPropagation();
+    await navigator.clipboard.writeText(selected().map(feedUrl).join("\n"));
+    copyBtn.textContent = tf("subCopied");
+    setTimeout(sync, 2000);
+  };
 }
 
 $("#subBtn").onclick = (e) => {

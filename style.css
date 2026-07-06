@@ -184,6 +184,19 @@ main { max-width: min(1680px, 94vw); margin: 0 auto; padding: 20px 24px 40px; }
 /* 语言下拉：固定宽度，任何语言下位置不变 */
 #langSel .msel-btn { width: 122px; }
 .msel-panel a.cur { color: var(--accent); font-weight: 700; }
+.subrow { display: flex; align-items: center; }
+.subrow input { accent-color: var(--accent); margin-left: 10px; }
+.subrow a { flex: 1; }
+.sub-footer {
+  position: sticky; bottom: -6px; display: flex; gap: 6px;
+  padding: 6px 4px; margin-top: 4px;
+  background: var(--panel); border-top: 1px solid var(--line);
+}
+.sub-footer button {
+  background: none; border: none; color: var(--accent);
+  font-size: 12px; cursor: pointer; padding: 3px 6px; border-radius: 6px;
+}
+.sub-footer button:hover { background: var(--panel-2); }
 .notify-lbl { font-size: 12px; color: var(--muted); padding: 2px 6px; }
 #notifySel .msel-panel { min-width: 190px; }
 

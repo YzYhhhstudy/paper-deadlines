@@ -115,6 +115,10 @@ function daysLeft(iso) {
 function urgencyClass(d) {
   return d < 7 ? "ddlr-urgent" : d < 30 ? "ddlr-soon" : "ddlr-safe";
 }
+function displayRank(c, lang) {
+  if (lang === "zh") return c.rank || (c.core ? `CORE ${c.core}` : "");
+  return c.core ? `CORE ${c.core}` : c.rank || "";
+}
 function fmtDate(iso) {
   const dt = new Date(iso);
   const p = (n) => String(n).padStart(2, "0");
@@ -289,7 +293,7 @@ var DdlRadarPlugin = class extends import_obsidian.Plugin {
       row.createSpan({ cls: "ddlr-date", text: fmtDate(r.iso) });
       const a = row.createEl("a", { cls: "ddlr-name", text: r.c.name, href: r.c.link || SITE_URL });
       a.setAttr("rel", "noopener");
-      const rank = r.c.rank || r.c.core;
+      const rank = displayRank(r.c, this.settings.language);
       if (rank) row.createSpan({ cls: "ddlr-rank", text: rank });
       if (r.abs) row.createSpan({ cls: "ddlr-abs", text: `\u26A0\uFE0F ${this.t.abs}` });
       row.createSpan({ cls: `ddlr-left ${urgencyClass(r.d)}`, text: this.t.days(r.d) });
@@ -299,7 +303,7 @@ var DdlRadarPlugin = class extends import_obsidian.Plugin {
     const rows = this.filtered(f);
     const lines = [this.t.tblHead];
     for (const r of rows) {
-      const rank = r.c.rank || r.c.core || "";
+      const rank = displayRank(r.c, this.settings.language);
       const abs = r.abs ? ` \u26A0\uFE0F${this.t.abs}` : "";
       lines.push(
         `| ${fmtDate(r.iso)}${abs} | [${r.c.name}](${r.c.link || SITE_URL}) | ${rank} | ${r.c.area || ""} | ${this.t.days(r.d)} |`
@@ -446,7 +450,7 @@ var RadarView = class extends import_obsidian.ItemView {
       const a = row.createEl("a", { cls: "ddlr-name", text: r.c.name, href: r.c.link || SITE_URL });
       a.setAttr("rel", "noopener");
       a.setAttr("title", r.c.fullName || r.c.name);
-      const rank = r.c.rank || r.c.core;
+      const rank = displayRank(r.c, this.plugin.settings.language);
       if (rank) row.createSpan({ cls: "ddlr-rank", text: rank });
       if (r.abs) row.createSpan({ cls: "ddlr-abs", text: `\u26A0\uFE0F${t.abs}` });
       row.createSpan({ cls: `ddlr-left ${urgencyClass(r.d)}`, text: t.days(r.d) });
