@@ -60,9 +60,8 @@
 
 ## 上架后（2026-07-06 已收录进 community-plugins.json，提交次日即上架）
 
-- [x] README 静态徽章 Obsidian community plugin（链接 obsidian.md/plugins?id=ddl-radar）
-- [ ] 换成下载量徽章：等 community-plugin-stats.json 收录 `ddl-radar` 后，
-      shields dynamic json 查 `$["ddl-radar"].downloads`
+- [x] README 徽章已换成动态下载量版（2026-07-09，stats 收录耗时约 3 天；
+      shields dynamic json 查 `$["ddl-radar"].downloads`）
 - [x] README"多端使用"表格：Obsidian 行改为商店一键安装优先
 - [x] Roadmap 勾掉 Obsidian 上架项
 

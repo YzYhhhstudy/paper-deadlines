@@ -9,7 +9,7 @@
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/hdpljcjehnoghfblbppkmfpgmhnefcpg?label=Chrome%20Web%20Store&color=fbbc05)](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg)
 [![Chrome users](https://img.shields.io/chrome-web-store/users/hdpljcjehnoghfblbppkmfpgmhnefcpg?label=users&color=34a853)](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Add--ons-in_review-0078d7)](clients/extension/)
-[![Obsidian](https://img.shields.io/badge/Obsidian-community_plugin-7c3aed?logo=obsidian&logoColor=white)](https://obsidian.md/plugins?id=ddl-radar)
+[![Obsidian downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fobsidianmd%2Fobsidian-releases%2Fmaster%2Fcommunity-plugin-stats.json&query=%24%5B%22ddl-radar%22%5D.downloads&label=obsidian&logo=obsidian&logoColor=white&color=7c3aed&suffix=%20downloads)](https://obsidian.md/plugins?id=ddl-radar)
 [![i18n](https://img.shields.io/badge/i18n-7_languages-1baf7a)](#功能)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/YzYhhhstudy/paper-deadlines/tree/master/data/conferences)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://github.com/YzYhhhstudy/paper-deadlines)
