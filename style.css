@@ -286,15 +286,40 @@ footer code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; 
   background: var(--accent); color: #fff; font-size: 10px; font-weight: 700;
   padding: 1px 8px; border-radius: 10px;
 }
+/* 时间轴项 = 截点刻度(+投稿窗口连线) + 短名；左边缘的刻度对齐日期，文字宽度无时间含义 */
 .tl-pin {
-  position: absolute; padding: 4px 10px; font-size: 12px; white-space: nowrap;
-  background: var(--panel-2); border: 1px solid var(--border); border-radius: 14px;
-  cursor: pointer; font-variant-numeric: tabular-nums;
+  position: absolute; display: flex; align-items: center;
+  font-size: 12px; white-space: nowrap; cursor: pointer;
+  padding: 3px 6px 3px 0; font-variant-numeric: tabular-nums;
 }
-.tl-pin:hover { border-color: var(--accent); }
-.tl-pin.urgent { border-color: var(--urgent); color: var(--urgent); font-weight: 700; }
-.tl-pin.soon { border-color: var(--soon); color: var(--soon); }
+.tl-tick { width: 3px; height: 15px; border-radius: 2px; background: currentColor; flex: none; }
+.tl-tick-abs { width: 5px; background: transparent; border: 1.5px solid currentColor; box-sizing: border-box; }
+.tl-spanline { height: 2px; background: currentColor; opacity: .45; flex: none; }
+.tl-name { margin-left: 5px; font-weight: 600; }
+.tl-pin:hover .tl-name { text-decoration: underline; text-underline-offset: 3px; }
+.tl-pin.urgent { color: var(--urgent); font-weight: 700; }
+.tl-pin.soon { color: var(--soon); }
 .tl-pin.safe { color: var(--text); }
+.tl-tip {
+  display: none; position: absolute; left: 0; top: calc(100% + 5px); z-index: 6;
+  background: var(--panel); color: var(--text); border: 1px solid var(--border);
+  border-radius: 9px; padding: 5px 10px; font-size: 12px; font-weight: 400;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .28);
+}
+.tl-pin:hover .tl-tip { display: block; }
+.tl-wk { position: absolute; top: 26px; bottom: 0; border-left: 1px dotted var(--line); opacity: .55; }
+.tl-wklbl { position: absolute; top: 13px; font-size: 9.5px; color: var(--muted); opacity: .85; }
+
+/* 页脚 Latest! 最近数据更新 */
+.latest {
+  margin: 12px 0 4px; padding: 10px 14px; font-size: 12.5px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+}
+.latest b { display: block; margin-bottom: 6px; font-size: 13px; }
+.lat-row { display: flex; gap: 10px; padding: 2px 0; flex-wrap: wrap; align-items: baseline; }
+.lat-date { color: var(--muted); font-variant-numeric: tabular-nums; flex: none; }
+.lat-confs { font-weight: 600; }
+.lat-sub { color: var(--muted); }
 
 .timeline { display: flex; flex-direction: column; gap: 5px; }
 .tl-month { font-weight: 700; font-size: 14px; color: var(--accent); margin: 14px 0 4px; }

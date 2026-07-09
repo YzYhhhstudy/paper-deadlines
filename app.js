@@ -36,6 +36,9 @@ const I18N = {
     foot1: `⚠️ 截稿日期为示例/往年推算数据，投稿前请务必核对会议官网。数据维护在
       <code>data/conferences/*.yml</code>，欢迎提 PR 修改补充（CI 自动校验并重建站点）。`,
     foot2: "倒计时按会议官方时区计算（多数为 AoE = UTC-12）。收藏保存在浏览器本地。等级依据 CCF 推荐目录。",
+    latestTitle: "🆕 最近数据更新",
+    latMore: (n) => `等 ${n} 个`,
+    cadence: "🔄 数据更新机制：CI 每周一自动与各会议官网、OpenReview 交叉核对并生成修正 PR；社区 PR 随时合并，合并后几分钟内网站/插件/日历订阅同步生效。",
     subBtn: "📡 订阅日历",
     subTitle: "在 Google/Apple 日历中订阅 DDL，数据更新自动同步",
     subAll: "📅 全部会议",
@@ -120,6 +123,9 @@ const I18N = {
       official website before submitting. Data lives in <code>data/conferences/*.yml</code> —
       PRs welcome (CI validates and rebuilds the site).`,
     foot2: "Countdowns use each venue's official timezone (mostly AoE = UTC-12). Stars are stored locally in your browser. Ranks follow the CORE conference ranking (portal.core.edu.au).",
+    latestTitle: "🆕 Latest data updates",
+    latMore: (n) => `+${n} more`,
+    cadence: "🔄 Data freshness: every Monday, CI cross-checks each venue against its official site and OpenReview and opens auto-fix PRs; community PRs go live across the site, extension and calendar feeds within minutes of merging.",
     subBtn: "📡 Subscribe",
     subTitle: "Subscribe to DDLs in Google/Apple Calendar — updates sync automatically",
     subAll: "📅 All conferences",
@@ -928,20 +934,24 @@ function tlAxisHtml(confs, viewportW) {
   const xOf = (ts) => (ts - start) / DAY * PX_PER_DAY;
 
   // 泳道分配：与本行上一个标签重叠就换行
+  // 每项 = 截点刻度（有 abstract 未过时：摘要刻度—细线—全文刻度，即投稿窗口）+ 短名
+  const shortName = (n) => n.replace(/\s*20\d\d/, "");
   const lanes = [];
   const items = dated.map((c) => {
     const nd = nextDeadline(c);
     const x = xOf(new Date(nd.iso).getTime());
-    const label = `${c.name} · ${t("daysLeft")(Math.max(0, Math.floor(msLeft(c) / DAY)))}`;
-    const w = label.length * 7.4 + 34;
+    const spanW = nd.type === "abstract"
+      ? Math.max(7, xOf(new Date(c.deadline).getTime()) - x) : 0;
+    const label = shortName(c.name);
+    const w = spanW + label.length * 7.4 + 30;
     let lane = lanes.findIndex((endX) => endX + 10 < x);
     if (lane < 0) { lane = lanes.length; lanes.push(0); }
     lanes[lane] = x + w;
-    return { c, nd, x, lane, label };
+    return { c, nd, x, spanW, lane, label };
   });
-  const height = lanes.length * LANE_H + 34;
+  const height = lanes.length * LANE_H + 58; // 底部余量给悬停提示
 
-  // 月份网格线
+  // 月份网格线 + 周刻度（缩放足够密时显示"月/日"，解决"只知道几月不知道几日"）
   let months = "";
   const cur = new Date(start);
   cur.setDate(1); cur.setMonth(cur.getMonth() + 1);
@@ -950,12 +960,30 @@ function tlAxisHtml(confs, viewportW) {
     months += `<div class="tl-gridline" style="left:${x}px"></div>
       <div class="tl-gridlbl" style="left:${x + 5}px">${cur.toLocaleString(t("dateLocale"), { year: "2-digit", month: "short" })}</div>`;
   }
+  if (PX_PER_DAY * 7 >= 34) {
+    const wk = new Date(start);
+    wk.setHours(0, 0, 0, 0);
+    wk.setDate(wk.getDate() + (((8 - wk.getDay()) % 7) || 7)); // 下一个周一
+    for (; wk.getTime() < end; wk.setDate(wk.getDate() + 7)) {
+      if (wk.getDate() <= 3) continue; // 紧贴月线的略过，避免标签打架
+      const x = xOf(wk.getTime());
+      months += `<div class="tl-wk" style="left:${x}px"></div>
+        <div class="tl-wklbl" style="left:${x + 3}px">${wk.getMonth() + 1}/${wk.getDate()}</div>`;
+    }
+  }
 
-  const pins = items.map(({ c, nd, x, lane, label }) => {
+  const dfmt = (iso) => new Date(iso).toLocaleDateString(t("dateLocale"), { month: "2-digit", day: "2-digit" });
+  const pins = items.map(({ c, nd, x, spanW, lane, label }) => {
     const d = Math.floor(msLeft(c) / DAY);
     const cls = d < 7 ? "urgent" : d < 30 ? "soon" : "safe";
-    return `<div class="tl-pin ${cls}" style="left:${x}px;top:${lane * LANE_H + 26}px" data-name="${c.name}"
-      title="${nd.iso.slice(0, 10)}${nd.type === "abstract" ? " · " + t("absTag") : ""}">${nd.type === "abstract" ? "⚠️ " : ""}${label}</div>`;
+    const tip = spanW
+      ? `${c.name} · ⚠️ ${t("absTag")} ${dfmt(nd.iso)} → 📄 ${dfmt(c.deadline)} · ${t("daysLeft")(Math.max(0, d))}`
+      : `${c.name} · ${dfmt(nd.iso)}${nd.type === "abstract" ? " · ⚠️ " + t("absTag") : ""} · ${t("daysLeft")(Math.max(0, d))}`;
+    const marks = spanW
+      ? `<span class="tl-tick tl-tick-abs"></span><span class="tl-spanline" style="width:${Math.max(3, spanW - 4)}px"></span><span class="tl-tick"></span>`
+      : `<span class="tl-tick"></span>`;
+    return `<div class="tl-pin ${cls}" style="left:${x}px;top:${lane * LANE_H + 26}px" data-name="${c.name}">
+      ${marks}<span class="tl-name">${label}</span><span class="tl-tip">${tip}</span></div>`;
   }).join("");
 
   const todayX = xOf(Date.now());
@@ -1165,6 +1193,8 @@ function applyLang() {
   biLabel($("#hidePastLabel"), "hidePast");
   $("#foot1").innerHTML = t("foot1");
   $("#foot2").textContent = t("foot2");
+  $("#cadence").textContent = tf("cadence");
+  renderLatest();
   renderContrib();
   renderDataOps();
   applyTheme();
@@ -1318,6 +1348,20 @@ async function checkNotifications() {
     }
   }
   localStorage.setItem("ddlradar-notified", JSON.stringify(seen));
+}
+
+// 页脚 Latest!：最近数据更新（updates.js 由构建时的 git 历史生成，ccfddl 式 shoutout）
+function renderLatest() {
+  const box = $("#latest");
+  if (!box) return;
+  const esc = (s) => String(s).replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
+  const ups = (window.DDL_UPDATES || []).slice(0, 6);
+  if (!ups.length) { box.hidden = true; return; }
+  box.hidden = false;
+  box.innerHTML = `<b>${tf("latestTitle")}</b>` + ups.map((u) => {
+    const confs = u.confs.join(" · ") + (u.more ? ` ${tf("latMore")(u.more)}` : "");
+    return `<div class="lat-row"><span class="lat-date">${esc(u.date)}</span><span class="lat-confs">${esc(confs)}</span><span class="lat-sub">${esc(u.subject)}</span></div>`;
+  }).join("");
 }
 
 function updateNotifyBtn() {

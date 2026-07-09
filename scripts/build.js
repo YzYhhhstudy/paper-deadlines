@@ -29,6 +29,7 @@ if (!files.length) {
 }
 
 const conferences = []; // 展平后的各届会议（沿用前端 data.js 的字段结构）
+const seriesByFile = {}; // yml 文件名 → 系列名（Latest! 页脚显示用）
 
 for (const f of files) {
   let doc;
@@ -39,6 +40,7 @@ for (const f of files) {
     continue;
   }
   if (!doc || typeof doc !== "object") { err(f, "文件为空或不是对象"); continue; }
+  if (typeof doc.name === "string") seriesByFile[f] = doc.name;
 
   for (const key of ["name", "fullName", "area", "ccf", "core", "link"]) {
     if (typeof doc[key] !== "string" || !doc[key].trim()) err(f, `缺少字段 ${key}`);
@@ -178,6 +180,42 @@ fs.writeFileSync(path.join(ROOT, "deadlines.md"), [
   "",
 ].join("\n"));
 console.log(`✔ data.js + data.json + deadlines.md（${conferences.length} 届）`);
+
+// ---------- 生成 updates.js（页脚 Latest! 最近数据更新）----------
+// 来源：git log 里改动过 data/conferences 的提交（跳过机器人重建提交）。
+// 注意：内容依赖本地 git 历史，因此不参与 CI 的"生成物是否同步"检查，
+// 由 master 构建单独提交。git 不可用（浅克隆等）时保留旧文件，绝不让构建失败。
+try {
+  const { execSync } = require("child_process");
+  const run = (cmd) => execSync(cmd, { cwd: ROOT, stdio: ["ignore", "pipe", "ignore"] }).toString().trim();
+  const commits = run('git log --no-merges --date=short --pretty=format:"%H|%ad|%s" -n 40 -- data/conferences')
+    .split("\n").filter(Boolean)
+    .map((l) => { const [hash, date, ...s] = l.split("|"); return { hash, date, subject: s.join("|") }; })
+    .filter((c) => !/^chore: rebuild/.test(c.subject));
+  const updates = [];
+  for (const c of commits) {
+    if (updates.length >= 8) break;
+    const confs = [...new Set(
+      run(`git diff-tree --no-commit-id --name-only -r ${c.hash} -- data/conferences`)
+        .split("\n").filter(Boolean)
+        .map((p) => seriesByFile[path.basename(p)] || path.basename(p).replace(/\.ya?ml$/, "").toUpperCase())
+    )];
+    if (!confs.length) continue;
+    // 批量提交只列前几个，避免页脚被 70+ 个会议名撑爆
+    const entry = { date: c.date, confs: confs.slice(0, 5), subject: c.subject };
+    if (confs.length > 5) entry.more = confs.length - 5;
+    updates.push(entry);
+  }
+  fs.writeFileSync(path.join(ROOT, "updates.js"),
+    "// ⚠️ 由 scripts/build.js 从 git 历史自动生成（Latest! 页脚），请勿手改\n" +
+    "window.DDL_UPDATES = " + JSON.stringify(updates, null, 1) + ";\n");
+  console.log(`✔ updates.js（${updates.length} 条最近更新）`);
+} catch (e) {
+  if (!fs.existsSync(path.join(ROOT, "updates.js"))) {
+    fs.writeFileSync(path.join(ROOT, "updates.js"), "window.DDL_UPDATES = [];\n");
+  }
+  console.log("⚠ git 历史不可用，updates.js 保持原样");
+}
 
 // ---------- 生成 feeds/*.ics ----------
 // 注意：输出必须是确定性的（不用 Date.now），否则 CI 的"生成物是否同步"检查会误报

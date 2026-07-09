@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # updates.js（Latest! 页脚）需要完整 git 历史
 
       - uses: actions/setup-node@v4
         with:
@@ -38,7 +40,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data.js data.json deadlines.md feeds
+          git add data.js data.json deadlines.md feeds updates.js
           git diff --cached --quiet || {
             git commit -m "chore: rebuild data.js and feeds from YAML [skip ci]"
             git push
