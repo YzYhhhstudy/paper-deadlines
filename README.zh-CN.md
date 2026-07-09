@@ -6,7 +6,8 @@
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fyzyhhhstudy.github.io%2Fpaper-deadlines%2F&label=site)](https://yzyhhhstudy.github.io/paper-deadlines/)
 [![PWA](https://img.shields.io/badge/PWA-installable-5b4be0)](https://yzyhhhstudy.github.io/paper-deadlines/)
 [![npm](https://img.shields.io/npm/v/ddl-radar?logo=npm&color=cb3837)](https://www.npmjs.com/package/ddl-radar)
-[![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-in_review-fbbc05)](clients/extension/)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/hdpljcjehnoghfblbppkmfpgmhnefcpg?label=Chrome%20Web%20Store&color=fbbc05)](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg)
+[![Chrome users](https://img.shields.io/chrome-web-store/users/hdpljcjehnoghfblbppkmfpgmhnefcpg?label=users&color=34a853)](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Add--ons-in_review-0078d7)](clients/extension/)
 [![Obsidian](https://img.shields.io/badge/Obsidian-community_plugin-7c3aed?logo=obsidian&logoColor=white)](https://obsidian.md/plugins?id=ddl-radar)
 [![i18n](https://img.shields.io/badge/i18n-7_languages-1baf7a)](#功能)
@@ -95,7 +96,7 @@ history:        # 往年全文截稿日（可选）
 |----|------|
 | 🌐 **网页 / PWA** | [线上站点](https://yzyhhhstudy.github.io/paper-deadlines/)——桌面 Chrome/Edge 点地址栏安装图标、iPhone 用 Safari 分享→添加到主屏幕；离线可用；界面支持 中 / EN / 日 |
 | 📅 **日历订阅** | 页头**订阅日历**按钮 → `webcal://` 订阅源，Google/Apple 日历自动同步 |
-| 🧩 **Chrome / Edge 插件** | 角标显示 7 天内截止数 + 弹窗列表。加载 [`clients/extension/`](clients/extension/)，步骤见其 [README](clients/extension/README.md) |
+| 🧩 **Chrome / Edge 插件** | **[Chrome 商店一键安装](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg)**——角标显示 7 天内截止数 + 弹窗搜索/等级。Edge 商店审核中；手动加载方式见 [`clients/extension/`](clients/extension/README.md) |
 | ⚡ **Raycast** | 把 [`clients/raycast/`](clients/raycast/) 添加为 Script Commands 目录 |
 | 📟 **macOS 菜单栏** | 把 [`clients/menubar/ddlradar.1h.sh`](clients/menubar/ddlradar.1h.sh) 拷入 SwiftBar/xbar 插件目录 |
 | 💻 **命令行** | `npx ddl-radar --days 30 --area AI/ML`——已发布 [npm](https://www.npmjs.com/package/ddl-radar)，也可 `npm i -g ddl-radar` |
@@ -120,5 +121,6 @@ history:        # 往年全文截稿日（可选）
 - [x] 每周对账机器人 + 自动修正 PR（ccfddl）
 - [ ] 自动爬取官网获取精确 DDL / CFP 详情
 - [x] CLI 发布到 npm（[`ddl-radar`](https://www.npmjs.com/package/ddl-radar)）
-- [ ] 插件上架 Chrome Web Store / Edge Add-ons（已提交，审核中）
+- [x] 插件上架 Chrome Web Store（[一键安装](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg)）
+- [ ] Edge Add-ons 上架（已提交，审核中）
 - [x] Obsidian 社区插件市场上架（[一键安装](https://obsidian.md/plugins?id=ddl-radar)）

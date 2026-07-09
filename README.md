@@ -6,7 +6,8 @@
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fyzyhhhstudy.github.io%2Fpaper-deadlines%2F&label=site)](https://yzyhhhstudy.github.io/paper-deadlines/)
 [![PWA](https://img.shields.io/badge/PWA-installable-5b4be0)](https://yzyhhhstudy.github.io/paper-deadlines/)
 [![npm](https://img.shields.io/npm/v/ddl-radar?logo=npm&color=cb3837)](https://www.npmjs.com/package/ddl-radar)
-[![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-in_review-fbbc05)](clients/extension/)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/hdpljcjehnoghfblbppkmfpgmhnefcpg?label=Chrome%20Web%20Store&color=fbbc05)](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg)
+[![Chrome users](https://img.shields.io/chrome-web-store/users/hdpljcjehnoghfblbppkmfpgmhnefcpg?label=users&color=34a853)](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Add--ons-in_review-0078d7)](clients/extension/)
 [![Obsidian](https://img.shields.io/badge/Obsidian-community_plugin-7c3aed?logo=obsidian&logoColor=white)](https://obsidian.md/plugins?id=ddl-radar)
 [![i18n](https://img.shields.io/badge/i18n-7_languages-1baf7a)](#features)
@@ -106,7 +107,7 @@ One data source (`data.json`), many clients:
 |--------|-----|
 | 🌐 **Web / PWA** | [Live site](https://yzyhhhstudy.github.io/paper-deadlines/) — install via the address-bar icon (Chrome/Edge) or Share → Add to Home Screen (iOS); works offline; UI in 中 / EN / 日 |
 | 📅 **Calendar** | Header **Subscribe** button → `webcal://` feeds, auto-syncing in Google/Apple Calendar |
-| 🧩 **Chrome / Edge extension** | Badge = deadlines within 7 days + popup list. Load [`clients/extension/`](clients/extension/) unpacked — see its [README](clients/extension/README.md) |
+| 🧩 **Chrome / Edge extension** | **[Install from Chrome Web Store](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg)** — badge = deadlines within 7 days + popup with search and ranks. Edge Add-ons in review; manual load-unpacked instructions in [`clients/extension/`](clients/extension/README.md) |
 | ⚡ **Raycast** | Add [`clients/raycast/`](clients/raycast/) as a Script Commands directory |
 | 📟 **macOS menu bar** | Copy [`clients/menubar/ddlradar.1h.sh`](clients/menubar/ddlradar.1h.sh) into your SwiftBar/xbar plugins folder |
 | 💻 **CLI** | `npx ddl-radar --days 30 --area AI/ML` — on [npm](https://www.npmjs.com/package/ddl-radar), or `npm i -g ddl-radar` |
@@ -131,7 +132,8 @@ Pure static page: `open index.html`, or deploy to GitHub Pages / Vercel.
 - [x] Weekly reconciliation bot with auto-fix PRs (ccfddl)
 - [ ] Automated crawling of official sites for deadlines/CFP details
 - [x] CLI published to npm ([`ddl-radar`](https://www.npmjs.com/package/ddl-radar))
-- [ ] Publish extension to Chrome Web Store / Edge Add-ons (submitted, in review)
+- [x] Chrome Web Store listing ([install](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg))
+- [ ] Edge Add-ons listing (submitted, in review)
 - [x] Obsidian community-plugin listing ([install](https://obsidian.md/plugins?id=ddl-radar))
 
 ## License
