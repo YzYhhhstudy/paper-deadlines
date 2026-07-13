@@ -242,8 +242,8 @@ DTSTAMP:20270116T115959Z
 DTSTART:20270116T115959Z
 DTEND:20270116T115959Z
 SUMMARY:📡 CSCW 2027 full paper deadline
-DESCRIPTION:ACM Conference on Computer-Supported Cooperative Work（季
- 度滚动）\nhttps://cscw.acm.org
+DESCRIPTION:ACM Conference on Computer-Supported Cooperative Work\nhttps:
+ //cscw.acm.org
 BEGIN:VALARM
 TRIGGER:-P7D
 ACTION:DISPLAY
@@ -991,7 +991,7 @@ DTSTART:20260802T115959Z
 DTEND:20260802T115959Z
 SUMMARY:📡 UbiComp/IMWUT 2027 full paper deadline
 DESCRIPTION:ACM International Joint Conference on Pervasive and Ubiquitou
- s Computing（季度滚动）\nhttps://ubicomp.org
+ s Computing\nhttps://ubicomp.org
 BEGIN:VALARM
 TRIGGER:-P7D
 ACTION:DISPLAY

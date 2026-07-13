@@ -71,8 +71,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if ! grep -q "⚠️" report.md; then
-            echo "无差异，跳过 issue"
+          # 只有"具体差异条目"（- ⚠️ 开头的行）才开 issue；
+          # 统计行里的 ⚠️ 符号和 ❓ 折叠区不算（否则零差异也会每周开 issue）
+          if ! grep -qE "^- ⚠️" report.md; then
+            echo "无需人工处理的差异，跳过 issue"
             exit 0
           fi
           gh label create data-reconcile --force --color FBCA04 \

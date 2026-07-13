@@ -1,6 +1,6 @@
 # CSCW — 修改后请提 PR，CI 会自动校验格式并重建站点
 name: "CSCW"
-fullName: "ACM Conference on Computer-Supported Cooperative Work（季度滚动）"
+fullName: "ACM Conference on Computer-Supported Cooperative Work"
 area: "HCI"
 ccf: "CCF-A"   # CCF-A / CCF-B / CCF-C / Non-CCF
 core: "A"   # CORE: A* / A / B / C / Unranked

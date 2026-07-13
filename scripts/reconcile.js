@@ -49,6 +49,7 @@ function findTheirs(base, aliases) {
 
 const lines = ["# 与 ccfddl 的数据对账报告", "", `双方均为社区维护数据，差异仅供人工核对官网。共比对 ${ours.length} 条。`, ""];
 let diff = 0, ok = 0, notFound = 0, fixed = 0, locked = 0;
+const unknownLines = []; // ❓ ccfddl 无对应数据：纯噪音，折叠展示、不触发 issue
 
 for (const c of ours) {
   if (c.rolling) continue; // 期刊无固定 DDL，跳过
@@ -58,16 +59,16 @@ for (const c of ours) {
   const year = +yearStr;
 
   const entry = findTheirs(base, c.aliases);
-  if (!entry) { notFound++; lines.push(`- ❓ **${c.name}**：在 ccfddl 中未找到同名会议`); continue; }
+  if (!entry) { notFound++; unknownLines.push(`- ❓ **${c.name}**：在 ccfddl 中未找到同名会议`); continue; }
 
   const conf = (entry.confs || []).find((x) => x.year === year);
-  if (!conf) { lines.push(`- ❓ **${c.name}**：ccfddl 尚无 ${year} 年数据`); notFound++; continue; }
+  if (!conf) { unknownLines.push(`- ❓ **${c.name}**：ccfddl 尚无 ${year} 年数据`); notFound++; continue; }
 
   const ourDate = c.deadline.slice(0, 10);
   const theirDates = (conf.timeline || [])
     .map((tl) => String(tl.deadline || "").slice(0, 10))
     .filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d));
-  if (!theirDates.length) { lines.push(`- ❓ **${c.name}**：ccfddl 的 ${year} 年截稿日为 TBD`); notFound++; continue; }
+  if (!theirDates.length) { unknownLines.push(`- ❓ **${c.name}**：ccfddl 的 ${year} 年截稿日为 TBD`); notFound++; continue; }
 
   if (theirDates.includes(ourDate)) { ok++; continue; }
 
@@ -102,5 +103,8 @@ for (const c of ours) {
   lines.push(`- ⚠️ **${c.name}**：我们 \`${ourDate}\`，ccfddl \`${theirDates.join(" / ")}\` — 请核对官网后修正 \`data/conferences/\``);
 }
 
-lines.push("", `**结果**：✅ 一致 ${ok}${FIX ? ` · 🔧 已自动修正 ${fixed}` : ""}${locked ? ` · 🔒 官网核实保持 ${locked}` : ""} · ⚠️ 待人工处理 ${diff} · ❓ 无法比对 ${notFound}`);
+if (unknownLines.length) {
+  lines.push("", `<details><summary>❓ 无法比对 ${unknownLines.length} 条（ccfddl 尚无对应数据，仅供参考）</summary>`, "", ...unknownLines, "", "</details>");
+}
+lines.push("", `**结果**：✅ 一致 ${ok}${FIX ? ` · 🔧 已自动修正 ${fixed}` : ""}${locked ? ` · 🔒 官网核实保持 ${locked}` : ""} · 需人工处理 ${diff} · 无法比对 ${notFound}`);
 console.log(lines.join("\n"));

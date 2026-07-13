@@ -514,7 +514,7 @@ const CONFERENCES = [
   },
   {
     "name": "CSCW 2027",
-    "fullName": "ACM Conference on Computer-Supported Cooperative Work（季度滚动）",
+    "fullName": "ACM Conference on Computer-Supported Cooperative Work",
     "area": "HCI",
     "rank": "CCF-A",
     "core": "A",
@@ -2318,7 +2318,7 @@ const CONFERENCES = [
   },
   {
     "name": "UbiComp/IMWUT 2027",
-    "fullName": "ACM International Joint Conference on Pervasive and Ubiquitous Computing（季度滚动）",
+    "fullName": "ACM International Joint Conference on Pervasive and Ubiquitous Computing",
     "area": "HCI",
     "rank": "CCF-A",
     "core": "A*",
