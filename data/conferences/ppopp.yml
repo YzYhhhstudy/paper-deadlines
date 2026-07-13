@@ -7,7 +7,7 @@ core: "A"   # CORE: A* / A / B / C / Unranked
 link: "https://ppopp27.sigplan.org"
 editions:
   - id: "PPoPP 2027"
-    deadline: "2026-08-10T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    deadline: "2026-08-03T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-02"
     place: "TBD"
 acceptHistory:   # 历年录取率 %（约数）
