@@ -1,6 +1,14 @@
 // ⚠️ 由 scripts/build.js 从 git 历史自动生成（Latest! 页脚），请勿手改
 window.DDL_UPDATES = [
  {
+  "date": "2026-07-13",
+  "confs": [
+   "CSCW",
+   "UbiComp/IMWUT"
+  ],
+  "subject": "fix: reconcile-bot noise — fold '❓ no ccfddl data' rows, only open issues on real mismatches"
+ },
+ {
   "date": "2026-07-05",
   "confs": [
    "AAMAS",
@@ -79,17 +87,5 @@ window.DDL_UPDATES = [
    "NeurIPS Workshops"
   ],
   "subject": "feat: workshop entries (type: workshop)"
- },
- {
-  "date": "2026-07-05",
-  "confs": [
-   "AAAI",
-   "ACL",
-   "ACM CCS",
-   "CHI",
-   "CVPR"
-  ],
-  "subject": "feat: h5-index and acceptance-rate tags with sort options",
-  "more": 31
  }
 ];
