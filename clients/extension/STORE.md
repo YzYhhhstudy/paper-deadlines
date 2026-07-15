@@ -141,11 +141,15 @@ Edge 审核通常比 Chrome 慢一些（最长 7 天），但要求更宽松。
 
 ---
 
-## C. 过审后 checklist
+## C. 过审后 checklist（2026-07 双商店均已完成）
 
-- [ ] README 徽章：加 `chrome-web-store/v/<扩展ID>` 和 `chrome-web-store/users/<扩展ID>`
-- [ ] 两份 README 的"在哪里使用"表格：插件行从 load-unpacked 改为商店链接优先，
-      load-unpacked 收进 `<details>` 折叠
-- [ ] Roadmap 勾掉"插件上架"一项
-- [ ] 以后更新版本：改 `manifest.json` 的 `version` → `npm run pack:extension` →
-      开发者控制台上传新 zip（listing 文案不用重填）
+- [x] CWS 2026-07-06 过审，Edge 2026-07-09 过审（提交于 07-06，3 天）
+  - Chrome：`chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg`
+  - Edge：`microsoftedge.microsoft.com/addons/detail/ddl-radar/pjeajfgilojgegmcbefpbceaipjcojia`
+    （CRX ID `pjeajfgilojgegmcbefpbceaipjcojia`；用户数徽章走公开端点
+    `getproductdetailsbycrxid/<crxid>` 的 `$.activeInstallCount`，shields dynamic json）
+- [x] README 徽章：CWS 用户数 + Edge 用户数（均为动态徽章）
+- [x] 两份 README 表格：插件行改为双商店链接优先
+- [x] Roadmap 勾掉两个商店的上架项
+- 以后更新版本：改 `manifest.json` 的 `version` → `npm run pack:extension` →
+  两个商店的控制台分别上传同一个新 zip（listing 文案不用重填）

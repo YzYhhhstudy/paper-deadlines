@@ -7,7 +7,7 @@
 [![PWA](https://img.shields.io/badge/PWA-installable-5b4be0)](https://yzyhhhstudy.github.io/paper-deadlines/)
 [![npm](https://img.shields.io/npm/v/ddl-radar?logo=npm&color=cb3837)](https://www.npmjs.com/package/ddl-radar)
 [![Chrome Web Store users](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fimg.shields.io%2Fchrome-web-store%2Fusers%2Fhdpljcjehnoghfblbppkmfpgmhnefcpg.json&query=%24.value&label=chrome%20web%20store&suffix=%20users&color=fbbc05)](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg)
-[![Edge Add-ons](https://img.shields.io/badge/Edge_Add--ons-in_review-0078d7)](clients/extension/)
+[![Edge Add-ons users](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fpjeajfgilojgegmcbefpbceaipjcojia&query=%24.activeInstallCount&label=edge%20add-ons&suffix=%20users&color=0078d7)](https://microsoftedge.microsoft.com/addons/detail/ddl-radar/pjeajfgilojgegmcbefpbceaipjcojia)
 [![Obsidian downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fobsidianmd%2Fobsidian-releases%2Fmaster%2Fcommunity-plugin-stats.json&query=%24%5B%22ddl-radar%22%5D.downloads&label=obsidian&logo=obsidian&logoColor=white&color=7c3aed&suffix=%20downloads)](https://obsidian.md/plugins?id=ddl-radar)
 [![i18n](https://img.shields.io/badge/i18n-7_languages-1baf7a)](#features)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/YzYhhhstudy/paper-deadlines/tree/master/data/conferences)
@@ -106,7 +106,7 @@ One data source (`data.json`), many clients:
 |--------|-----|
 | 🌐 **Web / PWA** | [Live site](https://yzyhhhstudy.github.io/paper-deadlines/) — install via the address-bar icon (Chrome/Edge) or Share → Add to Home Screen (iOS); works offline; UI in 中 / EN / 日 |
 | 📅 **Calendar** | Header **Subscribe** button → `webcal://` feeds, auto-syncing in Google/Apple Calendar |
-| 🧩 **Chrome / Edge extension** | **[Install from Chrome Web Store](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg)** — badge = deadlines within 7 days + popup with search and ranks. Edge Add-ons in review; manual load-unpacked instructions in [`clients/extension/`](clients/extension/README.md) |
+| 🧩 **Chrome / Edge extension** | Install from **[Chrome Web Store](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg)** or **[Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/ddl-radar/pjeajfgilojgegmcbefpbceaipjcojia)** — badge = deadlines within 7 days + popup with search and ranks. Manual load-unpacked instructions in [`clients/extension/`](clients/extension/README.md) |
 | ⚡ **Raycast** | Add [`clients/raycast/`](clients/raycast/) as a Script Commands directory |
 | 📟 **macOS menu bar** | Copy [`clients/menubar/ddlradar.1h.sh`](clients/menubar/ddlradar.1h.sh) into your SwiftBar/xbar plugins folder |
 | 💻 **CLI** | `npx ddl-radar --days 30 --area AI/ML` — on [npm](https://www.npmjs.com/package/ddl-radar), or `npm i -g ddl-radar` |
@@ -132,7 +132,7 @@ Pure static page: `open index.html`, or deploy to GitHub Pages / Vercel.
 - [ ] Automated crawling of official sites for deadlines/CFP details
 - [x] CLI published to npm ([`ddl-radar`](https://www.npmjs.com/package/ddl-radar))
 - [x] Chrome Web Store listing ([install](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg))
-- [ ] Edge Add-ons listing (submitted, in review)
+- [x] Edge Add-ons listing ([install](https://microsoftedge.microsoft.com/addons/detail/ddl-radar/pjeajfgilojgegmcbefpbceaipjcojia))
 - [x] Obsidian community-plugin listing ([install](https://obsidian.md/plugins?id=ddl-radar))
 
 ## License

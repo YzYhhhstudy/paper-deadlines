@@ -7,7 +7,7 @@
 [![PWA](https://img.shields.io/badge/PWA-installable-5b4be0)](https://yzyhhhstudy.github.io/paper-deadlines/)
 [![npm](https://img.shields.io/npm/v/ddl-radar?logo=npm&color=cb3837)](https://www.npmjs.com/package/ddl-radar)
 [![Chrome Web Store users](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fimg.shields.io%2Fchrome-web-store%2Fusers%2Fhdpljcjehnoghfblbppkmfpgmhnefcpg.json&query=%24.value&label=chrome%20web%20store&suffix=%20users&color=fbbc05)](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg)
-[![Edge Add-ons](https://img.shields.io/badge/Edge_Add--ons-in_review-0078d7)](clients/extension/)
+[![Edge Add-ons users](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fpjeajfgilojgegmcbefpbceaipjcojia&query=%24.activeInstallCount&label=edge%20add-ons&suffix=%20users&color=0078d7)](https://microsoftedge.microsoft.com/addons/detail/ddl-radar/pjeajfgilojgegmcbefpbceaipjcojia)
 [![Obsidian downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fobsidianmd%2Fobsidian-releases%2Fmaster%2Fcommunity-plugin-stats.json&query=%24%5B%22ddl-radar%22%5D.downloads&label=obsidian&logo=obsidian&logoColor=white&color=7c3aed&suffix=%20downloads)](https://obsidian.md/plugins?id=ddl-radar)
 [![i18n](https://img.shields.io/badge/i18n-7_languages-1baf7a)](#功能)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/YzYhhhstudy/paper-deadlines/tree/master/data/conferences)
@@ -95,7 +95,7 @@ history:        # 往年全文截稿日（可选）
 |----|------|
 | 🌐 **网页 / PWA** | [线上站点](https://yzyhhhstudy.github.io/paper-deadlines/)——桌面 Chrome/Edge 点地址栏安装图标、iPhone 用 Safari 分享→添加到主屏幕；离线可用；界面支持 中 / EN / 日 |
 | 📅 **日历订阅** | 页头**订阅日历**按钮 → `webcal://` 订阅源，Google/Apple 日历自动同步 |
-| 🧩 **Chrome / Edge 插件** | **[Chrome 商店一键安装](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg)**——角标显示 7 天内截止数 + 弹窗搜索/等级。Edge 商店审核中；手动加载方式见 [`clients/extension/`](clients/extension/README.md) |
+| 🧩 **Chrome / Edge 插件** | **[Chrome 商店](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg)** / **[Edge 商店](https://microsoftedge.microsoft.com/addons/detail/ddl-radar/pjeajfgilojgegmcbefpbceaipjcojia)** 一键安装——角标显示 7 天内截止数 + 弹窗搜索/等级。手动加载方式见 [`clients/extension/`](clients/extension/README.md) |
 | ⚡ **Raycast** | 把 [`clients/raycast/`](clients/raycast/) 添加为 Script Commands 目录 |
 | 📟 **macOS 菜单栏** | 把 [`clients/menubar/ddlradar.1h.sh`](clients/menubar/ddlradar.1h.sh) 拷入 SwiftBar/xbar 插件目录 |
 | 💻 **命令行** | `npx ddl-radar --days 30 --area AI/ML`——已发布 [npm](https://www.npmjs.com/package/ddl-radar)，也可 `npm i -g ddl-radar` |
@@ -121,5 +121,5 @@ history:        # 往年全文截稿日（可选）
 - [ ] 自动爬取官网获取精确 DDL / CFP 详情
 - [x] CLI 发布到 npm（[`ddl-radar`](https://www.npmjs.com/package/ddl-radar)）
 - [x] 插件上架 Chrome Web Store（[一键安装](https://chromewebstore.google.com/detail/hdpljcjehnoghfblbppkmfpgmhnefcpg)）
-- [ ] Edge Add-ons 上架（已提交，审核中）
+- [x] Edge Add-ons 上架（[一键安装](https://microsoftedge.microsoft.com/addons/detail/ddl-radar/pjeajfgilojgegmcbefpbceaipjcojia)）
 - [x] Obsidian 社区插件市场上架（[一键安装](https://obsidian.md/plugins?id=ddl-radar)）
