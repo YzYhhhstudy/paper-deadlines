@@ -12,8 +12,8 @@
 | HPCA 2027 | 2026-07-31 | — | CCF-A | Arch/HPC |
 | INFOCOM 2027 | 2026-07-31 | — | CCF-A | Networking |
 | UbiComp/IMWUT 2027 | 2026-08-01 | — | CCF-A | HCI |
+| PPoPP 2027 | 2026-08-03 | — | CCF-A | Arch/HPC |
 | KDD 2027 (Cycle 1) | 2026-08-05 | — | CCF-A | Data Mining |
-| PPoPP 2027 | 2026-08-10 | — | CCF-A | Arch/HPC |
 | MobiCom 2027 | 2026-08-15 | — | CCF-A | Networking |
 | NDSS 2027 (Fall) | 2026-08-19 | — | CCF-A | Security |
 | WSDM 2027 | 2026-08-24 | — | CCF-B | Data Mining |
@@ -33,7 +33,7 @@
 | AISTATS 2027 | 2026-10-08 | 2026-10-01 | CCF-C | AI/ML |
 | AAMAS 2027 | 2026-10-09 | 2026-10-01 | CCF-B | AI/ML |
 | Eurographics 2027 | 2026-10-09 | — | CCF-B | Graphics |
-| WWW 2027 | 2026-10-14 | 2026-10-07 | CCF-A | Data Mining |
+| WWW 2027 | 2026-10-18 | 2026-10-07 | CCF-A | Data Mining |
 | STOC 2027 | 2026-11-03 | — | CCF-A | Theory |
 | ICDE 2027 | 2026-11-11 | — | CCF-A | DB |
 | CVPR 2027 | 2026-11-13 | — | CCF-A | CV |

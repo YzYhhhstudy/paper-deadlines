@@ -8,7 +8,7 @@ link: "https://thewebconf.org"
 editions:
   - id: "WWW 2027"
     abstractDeadline: "2026-10-07T23:59:59-12:00"
-    deadline: "2026-10-14T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    deadline: "2026-10-18T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-05"
     place: "TBD"
 history:   # 往年全文截稿日（大致日期）
