@@ -1,6 +1,14 @@
 // ⚠️ 由 scripts/build.js 从 git 历史自动生成（Latest! 页脚），请勿手改
 window.DDL_UPDATES = [
  {
+  "date": "2026-07-16",
+  "confs": [
+   "PPoPP",
+   "WWW"
+  ],
+  "subject": "bot: auto-fix deadlines from ccfddl reconciliation (#4)"
+ },
+ {
   "date": "2026-07-13",
   "confs": [
    "CSCW",
@@ -79,13 +87,5 @@ window.DDL_UPDATES = [
   ],
   "subject": "feat: notification & rebuttal dates with countdowns",
   "more": 4
- },
- {
-  "date": "2026-07-05",
-  "confs": [
-   "CVPR Workshops",
-   "NeurIPS Workshops"
-  ],
-  "subject": "feat: workshop entries (type: workshop)"
  }
 ];
