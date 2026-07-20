@@ -8,7 +8,7 @@
 | EMNLP 2026 (ARR) | 2026-05-25 | — | CCF-B | NLP |
 | SODA 2027 | 2026-07-09 | — | CCF-B | Theory |
 | SIGMOD 2027 | 2026-07-17 | 2026-07-10 | CCF-A | DB |
-| AAAI 2027 | 2026-07-27 | 2026-07-25 | CCF-A | AI/ML |
+| AAAI 2027 | 2026-07-28 | 2026-07-25 | CCF-A | AI/ML |
 | HPCA 2027 | 2026-07-31 | — | CCF-A | Arch/HPC |
 | INFOCOM 2027 | 2026-07-31 | — | CCF-A | Networking |
 | UbiComp/IMWUT 2027 | 2026-08-01 | — | CCF-A | HCI |
