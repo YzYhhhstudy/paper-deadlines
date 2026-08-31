@@ -8,7 +8,7 @@ link: "https://iclr.cc"
 editions:
   - id: "ICLR 2027"
     abstractDeadline: "2026-09-18T23:59:59-12:00"
-    deadline: "2026-09-24T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    deadline: "2026-09-25T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-04"
     place: "TBD"
     submitLink: "https://openreview.net/group?id=ICLR.cc/2027/Conference"
