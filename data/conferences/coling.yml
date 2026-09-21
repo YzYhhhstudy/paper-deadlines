@@ -7,7 +7,7 @@ core: "B"   # CORE: A* / A / B / C / Unranked
 link: "https://coling2027.org"
 editions:
   - id: "COLING 2027"
-    deadline: "2026-09-15T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    deadline: "2026-10-12T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-01"
     place: "TBD"
 acceptHistory:   # 历年录取率 %（约数）
