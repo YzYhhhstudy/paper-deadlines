@@ -7,7 +7,7 @@ core: "A*"   # CORE: A* / A / B / C / Unranked
 link: "https://cvpr.thecvf.com"
 editions:
   - id: "CVPR 2027"
-    deadline: "2026-11-13T23:59:59-08:00"   # 带时区偏移，AoE 写 -12:00
+    deadline: "2026-11-16T23:59:59-08:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-06"
     place: "TBD (USA)"
     rebuttal: "2027-01-22"   # rebuttal 开始（约数）
