@@ -7,7 +7,7 @@ core: "A*"   # CORE: A* / A / B / C / Unranked
 link: "https://www.icra2027.org"
 editions:
   - id: "ICRA 2027"
-    deadline: "2026-09-15T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    deadline: "2026-09-16T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-06"
     place: "TBD"
 history:   # 往年全文截稿日（大致日期）
