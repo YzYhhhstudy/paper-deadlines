@@ -8,7 +8,7 @@ link: "https://aistats.org"
 editions:
   - id: "AISTATS 2027"
     abstractDeadline: "2026-10-01T23:59:59-12:00"
-    deadline: "2026-10-08T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
+    deadline: "2026-10-06T23:59:59-12:00"   # 带时区偏移，AoE 写 -12:00
     confDate: "2027-04"
     place: "TBD"
     submitLink: "https://openreview.net/group?id=aistats.org/AISTATS/2027/Conference"
